@@ -117,6 +117,7 @@ class Teacher extends  Controller
     $this->model_home->bang_diem();
     $this->data['content'] = 'teacher/bang_diem';
     $this->data['page_title'] = 'Bảng điểm';
+    $this->data['target'] = 'bangdiem';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/teacher', $this->data);
   }

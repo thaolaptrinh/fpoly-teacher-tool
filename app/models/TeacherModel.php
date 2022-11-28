@@ -15,6 +15,8 @@ class TeacherModel extends Model
             'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY thu_tu"),
             'mon_hoc' => $this->get_list("SELECT * FROM `mon_hoc` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_mon DESC"),
             'loai_lop' => $this->get_list("SELECT * FROM `loai_lop` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_loai DESC"),
+            'lien_ket' => $this->get_list("SELECT * FROM `lien_ket` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_lienket DESC"),
+
 
         ];
     }

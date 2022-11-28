@@ -29,13 +29,7 @@
 <?php
 
 if ($target == 'teacher') { ?>
-
-  <script src="<?= BASE_URL('assets/js/custom/utilities/modals/create-campaign.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/utilities/modals/create-app.js') ?>"></script>
-  <script src="<?= BASE_URL('assets/js/custom/utilities/modals/new-card.js') ?>"></script>
-  <script src="<?= BASE_URL('assets/js/custom/utilities/modals/upgrade-plan.js') ?>"></script>
-  <script src="<?= BASE_URL('assets/js/custom/utilities/modals/users-search.js') ?>"></script>
-
 <?php } ?>
 <?php
 if ($target == 'auth/login') { ?>
@@ -54,7 +48,9 @@ if ($target == 'auth/login') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/update.js') ?>"></script>
-
+<?php } elseif ($target == 'bangdiem') { ?>
+  <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/table.js') ?>"></script>
+  <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/update.js') ?>"></script>
 <?php } ?>
 </body>
 

@@ -8,11 +8,10 @@ define('DATABASE', 'fpoly_teacher_tool');
 define('PORT', '2003');
 
 
-
 // define('HOSTNAME', 'localhost');
-// define('USERNAME', 'viewscom_fpoly_manager');
-// define('PASSWORD', 'fpoly_manager');
-// define('DATABASE', 'viewscom_fpoly_manager');
+// define('USERNAME', 'ihzwudyw_app');
+// define('PASSWORD', '160723Thao@');
+// define('DATABASE', 'ihzwudyw_app');
 // define('PORT', '3306');
 
 

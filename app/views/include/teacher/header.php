@@ -308,23 +308,28 @@ global $DB;
   </div>
 
   <div class="app-header-secondary">
+
     <div class="app-container container-xxl d-flex align-items-stretch">
       <div class="w-100 d-flex flex-stack">
         <div class="d-flex flex-stack me-5">
           <span class="text-white fw-bold fs-5 me-3 me-lg-6">Liên kết</span>
           <div class="d-flex gap-1 gap-lg-2">
-            <a href="#" class="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
-              <img src="/keen/demo9/assets/media/svg/brand-logos/google-icon.svg" class="w-20px" alt="" />
-              <span class="d-none d-lg-inline text-muted fw-bold text-hover-primary fs-5 ps-3">Google</span>
-            </a>
+            <?php
+            if (!empty($this->data['lien_ket'])) {
+              $lien_ket = $this->data['lien_ket'];
 
-
+              foreach ($lien_ket as $item) {
+                extract($item);
+            ?>
+                <a href="<?= $url ?>" target="_blank" class="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
+                  <img src="https://ui-avatars.com/api/?name=<?= $ten ?>" class="w-20px" alt="" />
+                  <span class="d-none d-lg-inline text-muted fw-bold text-hover-primary fs-5 ps-3"><?= $ten ?></span>
+                </a>
+            <?php }
+            } ?>
           </div>
-
         </div>
-
         <a href="" class="btn btn-sm btn-primary py-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Tạo bảng điểm</span></a>
-
       </div>
 
     </div>

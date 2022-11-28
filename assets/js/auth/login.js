@@ -9,7 +9,6 @@ var KTSigninGeneral = (function () {
 
   // Handle form
   var handleForm = function (e) {
-    // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     validator = FormValidation.formValidation(form, {
       fields: {
         email: {
@@ -86,6 +85,7 @@ var KTSigninGeneral = (function () {
                   customClass: {
                     confirmButton: "btn btn-primary",
                   },
+                  allowOutsideClick: !response.data.status,
                 }).then(function (result) {
                   if (result.isConfirmed && response.data.status) {
                     form.querySelector('[name="email"]').value = "";
@@ -100,11 +100,8 @@ var KTSigninGeneral = (function () {
               .catch((error) => {
                 console.log(error);
               });
-
-            // Show message popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
           }, 2000);
         } else {
-          // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
           Swal.fire({
             text: "Xin lỗi, vui lòng thử lại.",
             icon: "error",
