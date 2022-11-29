@@ -22,6 +22,7 @@ var initUpdatetnDetail = (id) => {
           e.setAttribute("checked", "checked");
         }
       });
+
       form.querySelector('[name="tn_noidung_update"]').value = data.noi_dung;
     })
     .catch((error) => {
@@ -105,6 +106,7 @@ var KTtnsUpdatetn = (function () {
                     customClass: {
                       confirmButton: "btn btn-primary",
                     },
+                    allowOutsideClick: !response.data.status,
                   }).then(function (result) {
                     if (result.isConfirmed && response.data.status) {
                       modal.hide();

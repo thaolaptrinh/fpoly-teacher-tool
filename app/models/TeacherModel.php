@@ -654,10 +654,11 @@ class TeacherModel extends Model
         if (isset($_POST['is_update'])) {
             $id = $_POST['id'];
             $noidung = $_POST['tn_noidung_update'];
+            $status = $_POST['tn_status_update'];
 
             if (!empty($noidung)) {
 
-                $result = $this->update_value('thanh_ngu', ['noi_dung' => $noidung], "id = '$id'");
+                $result = $this->update_value('thanh_ngu', ['noi_dung' => $noidung, 'status' => $status], "id = '$id'");
 
                 if ($result) {
                     $response['status'] = true;
@@ -1182,6 +1183,8 @@ class TeacherModel extends Model
         }
 
 
+
+
         if (isset($_POST['insert_data'])) {
 
             $data_insert = [
@@ -1231,17 +1234,17 @@ class TeacherModel extends Model
         ];
 
 
-        if (isset($_POST['is_update'])) {
+        if (isset($_POST['is_detail'])) {
             $id = $_POST['id'];
-
-            $response['data'] = $this->get_row("SELECT * FROM `loai_diem` WHERE id = '$id'");
+            $response['data'] = $this->get_row("SELECT * FROM `loai_diem`
+             WHERE id = '$id'");
             die(json_encode($response));
         }
 
-        if (isset($_POST['action_update'])) {
+        if (isset($_POST['is_update'])) {
             $id = $_POST['id'];
             $data_post = [
-                'ten_diem' => check_string($_POST['ten_diem']),
+                'ten_diem' => check_string($_POST['link_ten_diem_update']),
             ];
 
             $result = array_filter($data_post, 'myFilter');
@@ -1253,19 +1256,16 @@ class TeacherModel extends Model
 
                 if ($result) {
                     $response['status'] = true;
-                    $response['title'] = 'Cập nhật công thành công';
-                    $response['message'] = 'Bạn đã cập nhật dữ liệu thành công';
+                    $response['message'] = 'Bạn đã cập nhật dữ liệu thành công!';
                     die(json_encode($response));
                 } else {
                     $response['status'] = false;
-                    $response['title'] = 'Đã có lỗi xảy ra';
-                    $response['message'] = 'Cập nhật thất bại';
+                    $response['message'] = 'Cập nhật thất bại!';
                     die(json_encode($response));
                 }
             } else {
                 $response['status'] = false;
-                $response['title'] = 'Đã có lỗi xảy ra';
-                $response['message'] = 'Vui lòng không để trống dữ liệu';
+                $response['message'] = 'Vui lòng không để trống dữ liệu!';
                 die(json_encode($response));
             }
         }
@@ -1278,8 +1278,7 @@ class TeacherModel extends Model
             $result =  $this->remove('loai_diem', "id = '$id'");
             if ($result) {
                 $response['status'] = true;
-                $response['title'] = 'Xóa thành công thành công';
-                $response['message'] = 'Bạn đã xóa thành công dữ liệu';
+                $response['message'] = 'Bạn đã xóa thành công dữ liệu!';
                 die(json_encode($response));
             }
         }

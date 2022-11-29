@@ -1,21 +1,24 @@
 "use strict";
-const element = document.getElementById("kt_modal_update_link");
-const form = element.querySelector("#kt_modal_update_link_form");
+const element = document.getElementById("kt_modal_update");
+const form = element.querySelector("#kt_modal_update_form");
 const modal = new bootstrap.Modal(element);
 var formData_update = new FormData();
 var formData_check = new FormData();
 
-var initUpdateLinkDetail = (id) => {
+var initUpdateDetail = (id) => {
   formData_check.append("id", id);
   formData_update.append("id", id);
   formData_check.append("is_detail", true);
   axios
     .post(window.location.href, formData_check)
     .then((response) => {
-      let data = response.data.data;
-      form.querySelector('[name="link_name_update"]').value = data.ten;
-      form.querySelector('[name="link_url_update"]').value = data.url;
-      form.querySelector('[name="link_mota_update"]').value = data.mo_ta;
+      const data = [];
+      for (let i in response.data.data) {
+        if (form.querySelector(`[name="link_${i}_update"]`)) {
+          form.querySelector(`[name="link_${i}_update"]`).value =
+            response.data.data[i];
+        }
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -23,38 +26,15 @@ var initUpdateLinkDetail = (id) => {
 };
 
 // Class definition
-var KTLinksUpdateLink = (function () {
+var KTUpdate = (function () {
   // Shared variables
 
   // Init Update schedule modal
 
-  var initUpdateLink = () => {
+  var initUpdateLink = (fields, formData_text) => {
     // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     var validator = FormValidation.formValidation(form, {
-      fields: {
-        link_name_update: {
-          validators: {
-            notEmpty: {
-              message: "Tên liên kết không được để trống",
-            },
-          },
-        },
-        link_url_update: {
-          validators: {
-            notEmpty: {
-              message: "URL liên kết không được để trống",
-            },
-          },
-        },
-
-        link_mota_update: {
-          validators: {
-            notEmpty: {
-              message: "Mô tả liên kết không được để trống",
-            },
-          },
-        },
-      },
+      fields: fields,
 
       plugins: {
         trigger: new FormValidation.plugins.Trigger(),
@@ -68,24 +48,19 @@ var KTLinksUpdateLink = (function () {
 
     // Submit button handler
     const submitButton = element.querySelector(
-      '[data-kt-links-modal-action="submit"]'
+      '[data-kt-modal-action="submit"]'
     );
     submitButton.addEventListener("click", (e) => {
       e.preventDefault();
 
-      formData_update.append(
-        "link_name_update",
-        form.querySelector('[name="link_name_update"]').value
-      );
-      formData_update.append(
-        "link_url_update",
-        form.querySelector('[name="link_url_update"]').value
-      );
-      formData_update.append(
-        "link_mota_update",
-        form.querySelector('[name="link_mota_update"]').value
-      );
-      formData_update.append("is_updatelink", true);
+      formData_text.forEach((element) => {
+        formData_update.append(
+          element.name,
+          form.querySelector(`[name="${element.name}"]`).value
+        );
+      });
+
+      formData_update.append("is_update", true);
 
       // Validate form before submit
       if (validator) {
@@ -145,7 +120,7 @@ var KTLinksUpdateLink = (function () {
 
     // Cancel button handler
     const cancelButton = element.querySelector(
-      '[data-kt-links-modal-action="cancel"]'
+      '[data-kt-modal-action="cancel"]'
     );
     cancelButton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -153,9 +128,7 @@ var KTLinksUpdateLink = (function () {
     });
 
     // Close button handler
-    const closeButton = element.querySelector(
-      '[data-kt-links-modal-action="close"]'
-    );
+    const closeButton = element.querySelector('[data-kt-modal-action="close"]');
 
     closeButton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -166,12 +139,28 @@ var KTLinksUpdateLink = (function () {
   return {
     // Public functions
     init: function () {
-      initUpdateLink();
+      var fields_diem = {
+        link_ten_diem_update: {
+          validators: {
+            notEmpty: {
+              message: "Tên điểm không được để trống",
+            },
+          },
+        },
+      };
+
+      var formData_diem = [
+        {
+          name: "link_ten_diem_update",
+        },
+      ];
+
+      initUpdateLink(fields_diem, formData_diem);
     },
   };
 })();
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-  KTLinksUpdateLink.init();
+  KTUpdate.init();
 });

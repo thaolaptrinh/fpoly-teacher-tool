@@ -1,7 +1,7 @@
 "use strict";
 
 // Class definition
-var KTAppEcommerceProducts = (function () {
+var KTAppListDiem = (function () {
   // Shared variables
   var table;
   var datatable;
@@ -14,7 +14,7 @@ var KTAppEcommerceProducts = (function () {
       order: [],
       pageLength: 10,
       columnDefs: [
-        { render: DataTable.render.number(",", ".", 2), targets: 4 },
+        // { render: DataTable.render.number(",", ".", 2), targets: 4 },
         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
         // { orderable: false, targets: 7 }, // Disable ordering on column 7 (actions)
       ],
@@ -29,7 +29,7 @@ var KTAppEcommerceProducts = (function () {
   // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
   var handleSearchDatatable = () => {
     const filterSearch = document.querySelector(
-      '[data-kt-ecommerce-product-filter="search"]'
+      '[data-kt-list-diem-filter="search"]'
     );
     filterSearch.addEventListener("keyup", function (e) {
       datatable.search(e.target.value).draw();
@@ -39,7 +39,7 @@ var KTAppEcommerceProducts = (function () {
   // Handle status filter dropdown
   var handleStatusFilter = () => {
     const filterStatus = document.querySelector(
-      '[data-kt-ecommerce-product-filter="status"]'
+      '[data-kt-list-diem-filter="status"]'
     );
     $(filterStatus).on("change", (e) => {
       let value = e.target.value;
@@ -54,7 +54,7 @@ var KTAppEcommerceProducts = (function () {
   var handleDeleteRows = () => {
     // Select all delete buttons
     const deleteButtons = table.querySelectorAll(
-      '[data-kt-ecommerce-product-filter="delete_row"]'
+      '[data-kt-list-diem-filter="delete_row"]'
     );
 
     deleteButtons.forEach((d) => {
@@ -67,7 +67,7 @@ var KTAppEcommerceProducts = (function () {
 
         // Get category name
         const productName = parent.querySelector(
-          '[data-kt-ecommerce-product-filter="product_name"]'
+          '[data-kt-list-diem-filter="product_name"]'
         ).innerText;
 
         // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
@@ -115,7 +115,7 @@ var KTAppEcommerceProducts = (function () {
   // Public methods
   return {
     init: function () {
-      table = document.querySelector("#kt_ecommerce_products_table");
+      table = document.querySelector("#kt_list_diem_table");
 
       if (!table) {
         return;
@@ -131,5 +131,5 @@ var KTAppEcommerceProducts = (function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-  KTAppEcommerceProducts.init();
+  KTAppListDiem.init();
 });

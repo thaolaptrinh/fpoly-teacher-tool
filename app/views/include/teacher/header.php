@@ -322,7 +322,7 @@ global $DB;
                 extract($item);
             ?>
                 <a href="<?= $url ?>" target="_blank" class="custom-link rounded px-lg-4 py-lg-2 d-flex flex-center">
-                  <img src="https://ui-avatars.com/api/?name=<?= $ten ?>" class="w-20px" alt="" />
+                  <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=<?= $url ?>/&size=64" class="w-20px" alt="" />
                   <span class="d-none d-lg-inline text-muted fw-bold text-hover-primary fs-5 ps-3"><?= $ten ?></span>
                 </a>
             <?php }

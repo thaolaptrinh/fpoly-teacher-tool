@@ -29,7 +29,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="/keen/demo9/../demo9/apps/file-manager/folders.html" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
@@ -56,7 +56,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="/keen/demo9/../demo9/apps/ecommerce/catalog/products.html" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
@@ -88,7 +88,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="/keen/demo9/../demo9/pages/contact.html" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen055.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
@@ -131,14 +131,14 @@
                 <rect x="11" y="17" width="2" height="2" rx="1" transform="rotate(-90 11 17)" fill="currentColor" />
               </svg>
             </span>
-    
+
           </span>
-        
+
           <div class="me-2">
             <a href="#" class="text-gray-800 text-hover-primary fs-4 fw-bolder">Thông báo!</a>
             <span class="text-gray-700 fw-semibold d-block fs-5">Đây là thông báo của chúng tôi</span>
           </div>
-        
+
         </div>
         <!--end::Block-->
         <!--begin::Action-->

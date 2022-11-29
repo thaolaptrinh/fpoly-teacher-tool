@@ -34,6 +34,7 @@ class Database
   }
 
 
+
   function dis_connect()
   {
     if ($this->conn) {

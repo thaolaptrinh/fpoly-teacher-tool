@@ -98,6 +98,7 @@ var KTLinksAddLink = (function () {
                     customClass: {
                       confirmButton: "btn btn-primary",
                     },
+                    allowOutsideClick: !response.data.status,
                   }).then(function (result) {
                     if (result.isConfirmed && response.data.status) {
                       modal.hide();

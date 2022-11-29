@@ -28,7 +28,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <?php
 
-if ($target == 'teacher') { ?>
+if ($page_target == 'teacher') { ?>
   <script src="<?= BASE_URL('assets/js/custom/utilities/modals/create-app.js') ?>"></script>
 <?php } ?>
 <?php

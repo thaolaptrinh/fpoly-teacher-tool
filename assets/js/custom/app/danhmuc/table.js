@@ -1,8 +1,8 @@
 "use strict";
 
-var KTULinksList = (function () {
+var KTUList = (function () {
   // Define shared variables
-  var table = document.getElementById("kt_table_links");
+  var table = document.getElementById("kt_table_list");
   var datatable;
   var toolbarBase;
   var toolbarSelected;
@@ -10,7 +10,7 @@ var KTULinksList = (function () {
   var formData = new FormData();
 
   // Private functions
-  var initUserTable = function () {
+  var initListTable = function () {
     // Set date data order
     const tableRows = table.querySelectorAll("tbody tr");
 
@@ -26,7 +26,7 @@ var KTULinksList = (function () {
       },
       columnDefs: [
         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
-        { orderable: false, targets: 5 }, // Disable ordering on column 5 (actions)
+        // { orderable: false, targets: 5 }, // Disable ordering on column 5 (actions)
       ],
     });
 
@@ -41,7 +41,7 @@ var KTULinksList = (function () {
   // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
   var handleSearchDatatable = () => {
     const filterSearch = document.querySelector(
-      '[data-kt-link-table-filter="search"]'
+      '[data-kt-table-filter="search"]'
     );
     filterSearch.addEventListener("keyup", function (e) {
       datatable.search(e.target.value).draw();
@@ -52,14 +52,14 @@ var KTULinksList = (function () {
   var handleResetForm = () => {
     // Select reset button
     const resetButton = document.querySelector(
-      '[data-kt-link-table-filter="reset"]'
+      '[data-kt-table-filter="reset"]'
     );
 
     // Reset datatable
     resetButton.addEventListener("click", function () {
       // Select filter options
       const filterForm = document.querySelector(
-        '[data-kt-link-table-filter="form"]'
+        '[data-kt-table-filter="form"]'
       );
       const selectOptions = filterForm.querySelectorAll("select");
 
@@ -77,7 +77,7 @@ var KTULinksList = (function () {
   var handleDeleteRows = () => {
     // Select all delete buttons
     const deleteButtons = table.querySelectorAll(
-      '[data-kt-links-table-filter="delete_row"]'
+      '[data-kt-table-filter="delete_row"]'
     );
 
     deleteButtons.forEach((d) => {
@@ -94,7 +94,7 @@ var KTULinksList = (function () {
         const target = parent.querySelectorAll("td")[1];
         // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
 
-        formData.append("is_removelink", true);
+        formData.append("is_delete", true);
         formData.append("id", id);
 
         Swal.fire({
@@ -157,15 +157,15 @@ var KTULinksList = (function () {
     const checkboxes = table.querySelectorAll('[type="checkbox"]');
 
     // Select elements
-    toolbarBase = document.querySelector('[data-kt-link-table-toolbar="base"]');
+    toolbarBase = document.querySelector('[data-kt-table-toolbar="base"]');
     toolbarSelected = document.querySelector(
-      '[data-kt-link-table-toolbar="selected"]'
+      '[data-kt-table-toolbar="selected"]'
     );
     selectedCount = document.querySelector(
-      '[data-kt-link-table-select="selected_count"]'
+      '[data-kt-table-select="selected_count"]'
     );
     const deleteSelected = document.querySelector(
-      '[data-kt-link-table-select="delete_selected"]'
+      '[data-kt-table-select="delete_selected"]'
     );
 
     // Toggle delete selected toolbar
@@ -273,7 +273,7 @@ var KTULinksList = (function () {
         return;
       }
 
-      initUserTable();
+      initListTable();
       initToggleToolbar();
       handleSearchDatatable();
       handleResetForm();
@@ -284,5 +284,5 @@ var KTULinksList = (function () {
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-  KTULinksList.init();
+  KTUList.init();
 });
