@@ -4,6 +4,11 @@
 var KTLAdd = (function () {
   // Shared variables
 
+  let seq = 0,
+    $ch = $('input[name="diem"]').on("click", function () {
+      $(this).data("seq", seq++);
+    });
+
   var initAdd = (element_text, form_text, fields, formData_text) => {
     const element = document.getElementById(element_text);
     if (!element) {
@@ -39,6 +44,21 @@ var KTLAdd = (function () {
         );
       });
 
+      // chọn từng loại điểm
+      if (page_target == "mon-hoc") {
+        var diem = Array.prototype.sort
+          .call($ch.filter(":checked"), function (a, b) {
+            return $(a).data("seq") - $(b).data("seq");
+          })
+          .map(function (i, el) {
+            return el.value;
+          })
+          .get()
+          .join(",");
+        formData.append("diem", diem);
+      }
+
+      console.log(diem);
       formData.append("is_add", true);
 
       if (validator) {
@@ -206,6 +226,43 @@ var KTLAdd = (function () {
           };
 
           formData = ["ten_hocky", "thu_tu"];
+          break;
+        }
+
+        case "mon-hoc": {
+          fields = {
+            ma_mon: {
+              validators: {
+                notEmpty: {
+                  message: "Mã môn không được để trống",
+                },
+              },
+            },
+            ten_mon: {
+              validators: {
+                notEmpty: {
+                  message: "Tên môn không được để trống",
+                },
+              },
+            },
+            diem: {
+              validators: {
+                notEmpty: {
+                  message: "Điểm không được để trống",
+                },
+              },
+            },
+
+            ghi_chu: {
+              validators: {
+                notEmpty: {
+                  message: "Ghi chú không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = ["ma_mon", "ten_mon", "ghi_chu", "diem"];
           break;
         }
 

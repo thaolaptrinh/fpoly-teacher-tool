@@ -587,8 +587,9 @@ class TeacherModel extends Model
 
         $this->data = [
             'mon_hoc' => $this->get_list("SELECT * FROM `mon_hoc` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
-        ];
+            'loai_diem' => $this->get_list("SELECT * FROM `loai_diem` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
 
+        ];
 
 
         if (isset($_POST['is_detail'])) {
@@ -600,7 +601,6 @@ class TeacherModel extends Model
                 'diem' => check_string($_POST['diem_update']),
                 'ma_mon' => check_string($_POST['ma_mon_update']),
                 'ten_mon' => check_string($_POST['ten_mon_update']),
-                'loai_diem_xet' => check_string($_POST['loai_diem_xet_update']),
                 'ghi_chu' => check_string($_POST['ghi_chu_update']),
             ];
             $this->update_item(
@@ -612,7 +612,6 @@ class TeacherModel extends Model
             $data_insert = [
                 'ten_mon' => check_string($_POST['ten_mon']),
                 'ma_mon' => check_string($_POST['ma_mon']),
-                'loai_diem_xet' => check_string($_POST['loai_diem_xet']),
                 'ghi_chu' => check_string($_POST['ghi_chu']),
                 'diem' => $_POST['diem'],
                 'id_teacher' => $this->getInfoTeacher('id_teacher'),

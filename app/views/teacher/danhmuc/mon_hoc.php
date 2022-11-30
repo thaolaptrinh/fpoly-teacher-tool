@@ -59,35 +59,46 @@
               <form id="kt_modal_update_form" class="form" action="#">
                 <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_header" data-kt-scroll-wrappers="#kt_modal_update_scroll" data-kt-scroll-offset="300px">
 
-
-
                   <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Khóa học</label>
-
-                    <select name="id_khoa_update" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Khóa học">
-                      <option></option>
-                      <?php
-                      if (isset($this->model_home->data['khoa']) && !empty($this->model_home->data['khoa'])) {
-                        $khoa = $this->model_home->data['khoa'];
-                        foreach ($khoa as $row) { ?>
-                          <option value="<?= $row['id_khoa'] ?>"><?= $row['ten_khoa'] ?></option>
-                        <?php }
-                      } else { ?>
-                        <option value="">Không có dữ liệu</option>
-                      <?php } ?>
-                    </select>
+                    <label class="required fw-semibold fs-6 mb-2">Mã môn</label>
+                    <input type="text" name="ma_mon_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
                   </div>
 
 
                   <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Tên lớp</label>
-                    <input type="text" name="ten_lop_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
+                    <label class="required fw-semibold fs-6 mb-2">Tên môn học</label>
+                    <input type="text" name="ten_mon_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
                   </div>
 
+
+
+
                   <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Mô tả</label>
-                    <textarea name="mo_ta_update" class="form-control form-control-solid mb-3 mb-lg-0"></textarea>
+                    <label class="required fw-semibold fs-6 mb-2">Điểm
+                    </label>
+                    <i class="fas fa-question-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Thứ tự điểm theo thứ tự click chọn"></i>
+                    <br>
+                    <?php
+                    if (isset($this->model_home->data['loai_diem']) && !empty($this->model_home->data['loai_diem'])) {
+                      $data = $this->model_home->data['loai_diem'];
+                      foreach ($data as $row) { ?>
+                        <div class="p-2 form-check form-check-sm form-check-custom form-check-solid d-inline-block">
+                          <input class="form-check-input" type="checkbox" name="diem_update" value="<?= $row['ten_diem'] ?>">
+                          <label><?= $row['ten_diem'] ?></label>
+                        </div>
+                    <?php }
+                    } ?>
+
                   </div>
+
+
+
+                  <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-semibold fs-6 mb-2">Ghi chú</label>
+                    <input type="text" name="ghi_chu_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
+                  </div>
+
+
                 </div>
 
                 <div class="text-center pt-15">
@@ -123,33 +134,44 @@
               <form id="kt_modal_add_form" class="form" action="#">
                 <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_header" data-kt-scroll-wrappers="#kt_modal_add_scroll" data-kt-scroll-offset="300px">
 
-                  <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Khóa học</label>
 
-                    <select name="id_khoa" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Khóa học">
-                      <option></option>
-                      <?php
-                      if (isset($this->model_home->data['khoa']) && !empty($this->model_home->data['khoa'])) {
-                        $khoa = $this->model_home->data['khoa'];
-                        foreach ($khoa as $row) { ?>
-                          <option value="<?= $row['id_khoa'] ?>"><?= $row['ten_khoa'] ?></option>
-                        <?php }
-                      } else { ?>
-                        <option value="">Không có dữ liệu</option>
-                      <?php } ?>
-                    </select>
+                  <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-semibold fs-6 mb-2">Mã môn</label>
+                    <input type="text" name="ma_mon" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
                   </div>
 
 
                   <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Tên lớp</label>
-                    <input type="text" name="ten_lop" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
+                    <label class="required fw-semibold fs-6 mb-2">Tên môn học</label>
+                    <input type="text" name="ten_mon" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
+                  </div>
+
+
+
+
+                  <div class="fv-row mb-7 fv-plugins-icon-container">
+                    <label class="required fw-semibold fs-6 mb-2">Điểm
+                    </label>
+                    <i class="fas fa-question-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Thứ tự điểm theo thứ tự click chọn"></i>
+                    <br>
+                    <?php
+                    if (isset($this->model_home->data['loai_diem']) && !empty($this->model_home->data['loai_diem'])) {
+                      $data = $this->model_home->data['loai_diem'];
+                      foreach ($data as $row) { ?>
+                        <div class="p-2 form-check form-check-sm form-check-custom form-check-solid d-inline-block">
+                          <input class="form-check-input" type="checkbox" name="diem" value="<?= $row['ten_diem'] ?>">
+                          <label><?= $row['ten_diem'] ?></label>
+                        </div>
+                    <?php }
+                    } ?>
+
                   </div>
 
                   <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Mô tả</label>
-                    <textarea name="mo_ta" class="form-control form-control-solid mb-3 mb-lg-0"></textarea>
+                    <label class="required fw-semibold fs-6 mb-2">Ghi chú</label>
+                    <textarea name="ghi_chu" class="form-control form-control-solid mb-3 mb-lg-0"></textarea>
                   </div>
+
                 </div>
 
                 <div class="text-center pt-15">
@@ -177,9 +199,10 @@
             </div>
           </th>
           <th class="min-w-100px">STT</th>
-          <th class="min-w-125px">Tên lớp</th>
-          <th class="min-w-125px">Mô tả</th>
-          <th class="min-w-125px">Khóa</th>
+          <th class="min-w-125px">Mã môn</th>
+          <th class="min-w-125px">Tên môn</th>
+          <th class="min-w-125px">Điểm</th>
+          <th class="min-w-125px">Ghi chú</th>
           <th class="text-end min-w-100px">Actions</th>
         </tr>
       </thead>
@@ -196,13 +219,14 @@
             <tr>
               <td>
                 <div class="form-check form-check-sm form-check-custom form-check-solid">
-                  <input class="form-check-input" type="checkbox" value="<?= $id_loai ?>">
+                  <input class="form-check-input" type="checkbox" value="<?= $id_mon ?>">
                 </div>
               </td>
               <td> <?= $index++ ?> </td>
-              <td> <?= $ten_lop ?> </td>
-              <td> <?= $mo_ta ?> </td>
-              <td> <?= $ten_khoa ?> </td>
+              <td> <?= $ma_mon ?> </td>
+              <td> <?= $ten_mon ?> </td>
+              <td> <?= $diem ?> </td>
+              <td> <?= $ghi_chu ?> </td>
               <td class="text-end">
                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                   <span class="svg-icon svg-icon-5 m-0">
@@ -213,7 +237,7 @@
                 </a>
                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                   <div class="menu-item px-3">
-                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#kt_modal_update" class="menu-link px-3" onclick="initUpdateDetail(<?= $id_loai ?>);">Edit</a>
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#kt_modal_update" class="menu-link px-3" onclick="initUpdateDetail(<?= $id_mon ?>);">Edit</a>
                   </div>
                   <div class="menu-item px-3">
                     <a href="javascript:void(0)" class="menu-link px-3" data-kt-table-filter="delete_row">Delete</a>

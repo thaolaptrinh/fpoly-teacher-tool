@@ -243,6 +243,49 @@ var KTUpdate = (function () {
           formData = ["ten_hocky_update", "thu_tu_update"];
           break;
         }
+
+        case "mon-hoc": {
+          fields = {
+            ma_mon_update: {
+              validators: {
+                notEmpty: {
+                  message: "Mã môn không được để trống",
+                },
+              },
+            },
+            ten_mon_update: {
+              validators: {
+                notEmpty: {
+                  message: "Tên môn không được để trống",
+                },
+              },
+            },
+            diem_update: {
+              validators: {
+                notEmpty: {
+                  message: "Điểm không được để trống",
+                },
+              },
+            },
+
+            ghi_chu_update: {
+              validators: {
+                notEmpty: {
+                  message: "Ghi chú không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = [
+            "ma_mon_update",
+            "ten_mon_update",
+            "ghi_chu_update",
+            "diem_update",
+          ];
+          break;
+        }
+
         default: {
           return;
         }
