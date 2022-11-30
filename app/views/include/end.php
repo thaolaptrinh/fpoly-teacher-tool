@@ -23,32 +23,33 @@
 
 <script>
   let base_url = $("#base_url").attr("href");
+  let page_target = $("#base_url").attr("target");
 </script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <?php
 
-if ($page_target == 'teacher') { ?>
+if ($type == 'teacher') { ?>
   <script src="<?= BASE_URL('assets/js/custom/utilities/modals/create-app.js') ?>"></script>
 <?php } ?>
 <?php
-if ($target == 'auth/login') { ?>
+if ($page_target == 'login') { ?>
   <script src="<?= BASE_URL('assets/js/auth/login.js') ?>"></script>
-<?php } elseif ($target == 'auth/register') { ?>
+<?php } elseif ($page_target == 'register') { ?>
   <script src="<?= BASE_URL('assets/js/auth/register.js') ?>"></script>
-<?php } elseif ($target == 'extensions/links') { ?>
+<?php } elseif ($page_target == 'lien-ket') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/update.js') ?>"></script>
-<?php } elseif ($target == 'extensions/thanh-ngu') { ?>
+<?php } elseif ($page_target == 'thanh-ngu') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/thanhngu/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/thanhngu/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/thanhngu/update.js') ?>"></script>
-<?php } elseif ($target == 'danhmuc') { ?>
+<?php } elseif ($page_parent == 'danh-muc') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/danhmuc/update.js') ?>"></script>
-<?php } elseif ($target == 'bangdiem') { ?>
+<?php } elseif ($page_target == 'bang-diem') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/update.js') ?>"></script>
 <?php } ?>

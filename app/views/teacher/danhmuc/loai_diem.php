@@ -23,7 +23,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_loaidiem">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add">
           <span class="svg-icon svg-icon-2">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor" />
@@ -60,7 +60,7 @@
                 <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_update_header" data-kt-scroll-wrappers="#kt_modal_update_scroll" data-kt-scroll-offset="300px">
                   <div class="fv-row mb-7 fv-plugins-icon-container">
                     <label class="required fw-semibold fs-6 mb-2">Tên loại điểm</label>
-                    <input type="text" name="link_ten_diem_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="AP" value="AP">
+                    <input type="text" name="ten_diem_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="AP" value="AP">
                     <div class="fv-plugins-message-container invalid-feedback"></div>
                   </div>
 
@@ -81,7 +81,7 @@
       </div>
 
 
-      <div class="modal fade" id="kt_modal_add_loaidiem" tabindex="-1" aria-hidden="true">
+      <div class="modal fade" id="kt_modal_add" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered mw-650px">
           <div class="modal-content">
             <div class="modal-header" id="kt_modal_add_header">
@@ -96,11 +96,11 @@
               </div>
             </div>
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-              <form id="kt_modal_add_loaidiem_form" class="form" action="#">
+              <form id="kt_modal_add_form" class="form" action="#">
                 <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_header" data-kt-scroll-wrappers="#kt_modal_add_scroll" data-kt-scroll-offset="300px">
                   <div class="fv-row mb-7 fv-plugins-icon-container">
                     <label class="required fw-semibold fs-6 mb-2">Tên loại điểm</label>
-                    <input type="text" name="loaidiem_ten" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="LAB1" value="LAB1">
+                    <input type="text" name="ten_diem" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="LAB1" value="LAB1">
                   </div>
 
                 </div>

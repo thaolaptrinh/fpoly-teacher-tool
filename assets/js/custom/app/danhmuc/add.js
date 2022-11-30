@@ -6,6 +6,10 @@ var KTLAdd = (function () {
 
   var initAdd = (element_text, form_text, fields, formData_text) => {
     const element = document.getElementById(element_text);
+    if (!element) {
+      return;
+    }
+
     const form = element.querySelector(form_text);
     const modal = new bootstrap.Modal(element);
     var formData = new FormData();
@@ -30,8 +34,8 @@ var KTLAdd = (function () {
 
       formData_text.forEach((element) => {
         formData.append(
-          element.name,
-          form.querySelector(`[name="${element.name}"]`).value
+          element,
+          form.querySelector(`[name="${element}"]`).value
         );
       });
 
@@ -109,25 +113,108 @@ var KTLAdd = (function () {
     // Public functions
     init: function () {
       // loại điểm
-      var element_diem = "kt_modal_add_loaidiem";
-      var form_diem = "#kt_modal_add_loaidiem_form";
-      var fields_diem = {
-        loaidiem_ten: {
-          validators: {
-            notEmpty: {
-              message: "Tên liên kết không được để trống",
+      var element = "kt_modal_add";
+      var form = "#kt_modal_add_form";
+      var fields = [],
+        formData = [];
+
+      switch (page_target) {
+        case "loai-diem": {
+          fields = {
+            ten_diem: {
+              validators: {
+                notEmpty: {
+                  message: "Tên điểm không được để trống",
+                },
+              },
             },
-          },
-        },
-      };
+          };
+          formData = [
+            {
+              name: "ten_diem",
+            },
+          ];
+          break;
+        }
+        case "loai-lop": {
+          fields = {
+            id_khoa: {
+              validators: {
+                notEmpty: {
+                  message: "Khóa học không được để trống",
+                },
+              },
+            },
+            ten_lop: {
+              validators: {
+                notEmpty: {
+                  message: "Tên lớp không được để trống",
+                },
+              },
+            },
+            mo_ta: {
+              validators: {
+                notEmpty: {
+                  message: "Mô tả không được để trống",
+                },
+              },
+            },
+          };
 
-      var formData_diem = [
-        {
-          name: "loaidiem_ten",
-        },
-      ];
+          formData = ["ten_lop", "id_khoa", "mo_ta"];
 
-      initAdd(element_diem, form_diem, fields_diem, formData_diem);
+          break;
+        }
+        case "khoa-hoc": {
+          fields = {
+            ten_khoa: {
+              validators: {
+                notEmpty: {
+                  message: "Tên khóa không được để trống",
+                },
+              },
+            },
+            thu_tu: {
+              validators: {
+                notEmpty: {
+                  message: "Thứ tự không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = ["ten_khoa", "thu_tu"];
+          break;
+        }
+
+        case "hoc-ky": {
+          fields = {
+            ten_hocky: {
+              validators: {
+                notEmpty: {
+                  message: "Tên học kỳ không được để trống",
+                },
+              },
+            },
+            thu_tu: {
+              validators: {
+                notEmpty: {
+                  message: "Thứ tự không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = ["ten_hocky", "thu_tu"];
+          break;
+        }
+
+        default: {
+          return;
+        }
+      }
+
+      initAdd(element, form, fields, formData);
     },
   };
 })();

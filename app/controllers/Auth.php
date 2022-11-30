@@ -15,8 +15,7 @@ class Auth extends Controller
       header('Location: ' . BASE_URL('dashboard'));
       exit();
     }
-
-
+    $this->data['type'] = 'auth';
     $this->model_home = $this->model('AuthModel');
     $this->data = array_merge($this->data, $this->model_home->data);
   }
@@ -25,13 +24,9 @@ class Auth extends Controller
   {
     # code...
     $this->model_home->login();
-    $this->data = [
-      'page_target' => 'auth',
-      'target' => 'auth/login',
-      'content' => 'auth/login',
-      'page_title' => 'Đăng nhập',
-    ];
-
+    $this->data['content'] = 'auth/login';
+    $this->data['page_target'] = 'login';
+    $this->data['page_title'] = 'Đăng nhập';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/auth', $this->data);
   }
@@ -40,12 +35,9 @@ class Auth extends Controller
   {
     # code...
     $this->model_home->register();
-    $this->data = [
-      'page_target' => 'auth',
-      'target' => 'auth/register',
-      'content' => 'auth/register',
-      'page_title' => 'Đăng ký',
-    ];
+    $this->data['content'] = 'auth/register';
+    $this->data['page_target'] = 'register';
+    $this->data['page_title'] = 'Đăng ký';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/auth', $this->data);
   }
@@ -53,12 +45,9 @@ class Auth extends Controller
   {
     # code...
     $this->model_home->resetpass();
-    $this->data = [
-      'page_target' => 'auth',
-      'target' => 'auth/resetpassword',
-      'content' => 'auth/resetpass',
-      'page_title' => 'Quên mật khẩu',
-    ];
+    $this->data['content'] = 'auth/resetpass';
+    $this->data['page_target'] = 'resetpass';
+    $this->data['page_title'] = 'Quên mật khẩu';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/auth', $this->data);
   }

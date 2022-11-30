@@ -114,7 +114,7 @@ global $DB;
               <div <?= isset($sub) ? 'data-kt-menu-trigger="{' . "default: 'click'" . " ,lg:'hover'" . '}"' : '' ?> data-kt-menu-placement="bottom-start" class="menu-item <?= route(0) == $path ? 'here show' : false ?>" menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
                 <?php
                 if (!isset($sub)) { ?>
-                  <a class="menu-link  py-3" href="<?= BASE_URL($path) ?>"><?= $name ?></a>
+                  <a class="menu-link py-3" href="<?= BASE_URL($path) ?>"><?= $name ?></a>
                 <?php } else { ?>
                   <span class="menu-link py-3">
                     <span class="menu-title">
@@ -131,7 +131,7 @@ global $DB;
                       <?php
                       foreach ($sub as $item) { ?>
                         <div class="menu-item">
-                          <a class="menu-link py-3" href="<?= BASE_URL($path . '/' . $item['path']) ?>" title="Website quản lý điểm sinh viên dành cho giáo viên FPT Polytechnic" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right">
+                          <a class="menu-link py-3" href="<?= BASE_URL($path . '/' . $item['path']) ?>" title="Website quản lý điểm sinh viên dành cho giáo viên FPT Polytechnic" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" target="_parent">
                             <span class="menu-icon">
                               <span class="svg-icon svg-icon-3">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

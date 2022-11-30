@@ -12,7 +12,7 @@ global $site_name;
 <html lang="en">
 
 <head>
-  <base id="base_url" href="<?= $site_url ?>">
+  <base id="base_url" target="<?= $page_target ?>" href="<?= $site_url ?>">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,6 @@ global $site_name;
   <title><?= $page_title  . ' | ' . $site_name ?> </title>
   <meta name="keywords" content="<?= $site_keywords ?>">
   <meta name="description" content="<?= $site_description ?>">
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
   <link href="<?= BASE_URL('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') ?>" rel="stylesheet" type="text/css" />
   <link href="<?= BASE_URL('assets/plugins/custom/datatables/datatables.bundle.css') ?>" rel="stylesheet" type="text/css" />
@@ -36,7 +35,7 @@ global $site_name;
 
 </head>
 
-<body id="kt_body" data-kt-app-header-stacked="true" class="<?= $page_target == 'auth' ? 'app-blank' : 'app-default' ?> ">
+<body id="kt_body" data-kt-app-header-stacked="true" class="<?= $type == 'auth' ? 'app-blank' : 'app-default' ?> ">
   <script>
     var defaultThemeMode = "light";
     var themeMode;

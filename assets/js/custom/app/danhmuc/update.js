@@ -13,10 +13,24 @@ var initUpdateDetail = (id) => {
     .post(window.location.href, formData_check)
     .then((response) => {
       const data = [];
-      for (let i in response.data.data) {
-        if (form.querySelector(`[name="link_${i}_update"]`)) {
-          form.querySelector(`[name="link_${i}_update"]`).value =
-            response.data.data[i];
+      var opts = [];
+      for (let key in response.data.data) {
+        // khoa select
+        // if (form.querySelector(`select[name="${key}_update"]`)) {
+        //   opts = form.querySelectorAll(`select[name="${key}_update"]>option`);
+        //   form
+        //     .querySelector(`select[name="${key}_update"]`)
+        //     .setAttribute("data-placeholder", "22");
+        //   opts.forEach((element) => {
+        //     if (element.value == response.data.data[key]) {
+        //       console.log(element);
+        //     }
+        //   });
+        // }
+
+        if (form.querySelector(`[name="${key}_update"]`)) {
+          form.querySelector(`[name="${key}_update"]`).value =
+            response.data.data[key];
         }
       }
     })
@@ -31,7 +45,7 @@ var KTUpdate = (function () {
 
   // Init Update schedule modal
 
-  var initUpdateLink = (fields, formData_text) => {
+  var initUpdate = (fields, formData_text) => {
     // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     var validator = FormValidation.formValidation(form, {
       fields: fields,
@@ -55,8 +69,8 @@ var KTUpdate = (function () {
 
       formData_text.forEach((element) => {
         formData_update.append(
-          element.name,
-          form.querySelector(`[name="${element.name}"]`).value
+          element,
+          form.querySelector(`[name="${element}"]`).value
         );
       });
 
@@ -92,6 +106,7 @@ var KTUpdate = (function () {
                     customClass: {
                       confirmButton: "btn btn-primary",
                     },
+                    allowOutsideClick: !response.data.status,
                   }).then(function (result) {
                     if (result.isConfirmed && response.data.status) {
                       modal.hide();
@@ -139,23 +154,101 @@ var KTUpdate = (function () {
   return {
     // Public functions
     init: function () {
-      var fields_diem = {
-        link_ten_diem_update: {
-          validators: {
-            notEmpty: {
-              message: "Tên điểm không được để trống",
+      var fields = [],
+        formData = [];
+
+      switch (page_target) {
+        case "loai-diem": {
+          fields = {
+            ten_diem_update: {
+              validators: {
+                notEmpty: {
+                  message: "Tên điểm không được để trống",
+                },
+              },
             },
-          },
-        },
-      };
+          };
+          formData = ["ten_diem_update"];
+          break;
+        }
+        case "loai-lop": {
+          fields = {
+            khoa: {
+              validators: {
+                notEmpty: {
+                  message: "Khóa học không được để trống",
+                },
+              },
+            },
+            ten_lop: {
+              validators: {
+                notEmpty: {
+                  message: "Tên lớp không được để trống",
+                },
+              },
+            },
+            mo_ta: {
+              validators: {
+                notEmpty: {
+                  message: "Mô tả không được để trống",
+                },
+              },
+            },
+          };
 
-      var formData_diem = [
-        {
-          name: "link_ten_diem_update",
-        },
-      ];
+          formData = ["ten_lop_update", "id_khoa_update", "mo_ta_update"];
 
-      initUpdateLink(fields_diem, formData_diem);
+          break;
+        }
+
+        case "khoa-hoc": {
+          fields = {
+            thu_tu_update: {
+              validators: {
+                notEmpty: {
+                  message: "Tên khóa không được để trống",
+                },
+              },
+            },
+            thu_tu_update: {
+              validators: {
+                notEmpty: {
+                  message: "Thứ tự không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = ["ten_khoa_update", "thu_tu_update"];
+          break;
+        }
+        case "hoc-ky": {
+          fields = {
+            ten_hocky_update: {
+              validators: {
+                notEmpty: {
+                  message: "Tên học kỳ không được để trống",
+                },
+              },
+            },
+            thu_tu_update: {
+              validators: {
+                notEmpty: {
+                  message: "Thứ tự không được để trống",
+                },
+              },
+            },
+          };
+
+          formData = ["ten_hocky_update", "thu_tu_update"];
+          break;
+        }
+        default: {
+          return;
+        }
+      }
+
+      initUpdate(fields, formData);
     },
   };
 })();
