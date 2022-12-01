@@ -12,7 +12,7 @@ global $site_name;
 <html lang="en">
 
 <head>
-  <base id="base_url" target="<?= $page_target ?>" href="<?= $site_url ?>">
+  <base id="base_url" page_target="<?= $page_target ?>" href="<?= $site_url ?>">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

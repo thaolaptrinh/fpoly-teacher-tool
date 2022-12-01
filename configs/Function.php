@@ -49,6 +49,8 @@ function logout()
 
 
 
+
+
 function check_string($data)
 {
   return (trim(htmlspecialchars(addslashes($data))));

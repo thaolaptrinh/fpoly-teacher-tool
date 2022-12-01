@@ -23,7 +23,7 @@
 
 <script>
   let base_url = $("#base_url").attr("href");
-  let page_target = $("#base_url").attr("target");
+  let page_target = $("#base_url").attr("page_target");
 </script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
