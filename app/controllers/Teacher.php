@@ -162,16 +162,15 @@ class Teacher extends  Controller
 
 
 
-  // public function profile()
-  // {
-  //   # code...
-  //   $this->model_home->profile();
-  //   $this->data['content'] = 'teacher/profile';
-  //   $this->data['parent'] = 'Tiện ích';
-  //   $this->data['page_title'] = 'Profile';
-  //   $this->data = array_merge($this->data, $this->model_home->data);
-  //   $this->render('layouts/teacher', $this->data);
-  // }
+  public function profile()
+  {
+    # code...
+    $this->model_home->profile();
+    $this->data['content'] = 'teacher/profile';
+    $this->data['page_title'] = 'Profile';
+    $this->data = array_merge($this->data, $this->model_home->data);
+    $this->render('layouts/teacher', $this->data);
+  }
 
 
 

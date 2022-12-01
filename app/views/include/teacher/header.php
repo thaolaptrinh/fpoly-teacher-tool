@@ -193,7 +193,7 @@ global $DB;
 
 
             <div class="menu-item px-5 my-1">
-              <a href="" class="menu-link px-5">Cài đặt tài khoản</a>
+              <a href="<?= BASE_URL('profile') ?>" class="menu-link px-5">Cài đặt tài khoản</a>
             </div>
 
             <div class="menu-item px-5">

@@ -44,6 +44,21 @@ var KTSigninGeneral = (function () {
       },
     });
 
+    // let checkbox_remember = form.querySelector('[name="remember"]');
+    // checkbox_remember.addEventListener("change", function () {});
+
+    // if (localStorage.getItem("is_remember")) {
+    //   form
+    //     .querySelector('[name="remember"]')
+    //     .setAttribute("checked", "checked");
+
+    //   form.querySelector('[name="email"]').value =
+    //     localStorage.getItem("user_name");
+    //   form.querySelector('[name="password"]').value =
+    //     localStorage.getItem("user_password");
+    // }
+
+    console.log(localStorage.getItem("user_password"));
     // Handle form submit
     submitButton.addEventListener("click", function (e) {
       // Prevent button default action
@@ -55,8 +70,8 @@ var KTSigninGeneral = (function () {
         form.querySelector('[name="password"]').value
       );
 
-      let email = formData.get("email");
-      let password = formData.get("password");
+      // let email = formData.get("email");
+      // let password = formData.get("password");
       // Validate form
       validator.validate().then(function (status) {
         if (status == "Valid") {
@@ -90,6 +105,25 @@ var KTSigninGeneral = (function () {
                   if (result.isConfirmed && response.data.status) {
                     form.querySelector('[name="email"]').value = "";
                     form.querySelector('[name="password"]').value = "";
+
+                    // form.querySelector('[name="remember"]:checked:enabled')
+                    //   ? localStorage.setItem("is_remember", true)
+                    //   : localStorage.setItem("is_remember", false);
+
+                    // localStorage.getItem("is_remember") &&
+                    //   form
+                    //     .querySelector('[name="remember"]')
+                    //     .setAttribute("checked", "checked");
+
+                    // if (localStorage.getItem("is_remember")) {
+                    //   localStorage.setItem("user_email", formData.get("email"));
+                    //   localStorage.setItem(
+                    //     "user_pass",
+                    //     formData.get("password")
+                    //   );
+                    // }
+                    // console.log(localStorage.getItem("is_remember"));
+
                     var redirectUrl = form.getAttribute("data-kt-redirect-url");
                     if (redirectUrl) {
                       location.href = redirectUrl;

@@ -22,6 +22,10 @@ class AuthModel extends Model
 
     if (isset($_POST['email'])) {
 
+
+
+
+
       $data = [
         'email' => check_string($_POST['email']),
         'password' => check_string($_POST['password']),
@@ -42,6 +46,19 @@ class AuthModel extends Model
           $response['status'] = true;
           $response['message']  = 'Bạn đã đăng nhập thành công!';
           $_SESSION['email'] = $data['email'];
+
+          // if (!empty($_POST["is_remember"])) {
+          //   setcookie("user_login", $_POST["email"], time() + (10 * 365 * 24 * 60 * 60));
+          //   setcookie("user_password", $_POST["password"], time() + (10 * 365 * 24 * 60 * 60));
+          // } else {
+          //   if (isset($_COOKIE['user_login'])) {
+          //     setcookie("user_login", "");
+          //   }
+          //   if (isset($_COOKIE['user_password'])) {
+          //     setcookie("user_password", "");
+          //   }
+          // }
+
           die(json_encode($response));
         }
       } else {

@@ -29,7 +29,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="<?= BASE_URL('lich-day') ?>" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
@@ -56,9 +56,8 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
-                  <!--begin::Icon-->
-                  <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                <a href="<?= BASE_URL('bang-diem') ?>" class="btn btn-active-color-primary p-9 text-start w-100">
+
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor"></rect>
@@ -67,9 +66,7 @@
                       <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor"></rect>
                     </svg>
                   </span>
-                  <!--end::Svg Icon-->
-                  <!--end::Icon-->
-                  <!--begin::Desc-->
+
                   <div class="fw-bold fs-4 pt-8">Xem bảng điểm</div>
 
                   <!--end::Desc-->
@@ -88,7 +85,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="https://www.facebook.com/thaotoiday" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen055.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">

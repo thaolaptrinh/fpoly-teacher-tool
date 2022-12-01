@@ -24,7 +24,11 @@
         <input type="password" placeholder="Mật khẩu" name="password" autocomplete="off" class="form-control bg-transparent">
       </div>
       <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-        <div></div>
+
+        <div class="p-2 form-check form-check-sm form-check-custom form-check-solid d-inline-block">
+          <input class="form-check-input" type="checkbox" id="remember" name="remember">
+          <label class="fw-semibold fs-6 mb-2" for="remember">Ghi nhớ mật khẩu</label>
+        </div>
         <a href="<?= BASE_URL('auth/reset-password') ?>" class="link-primary">Quên mật khẩu ?</a>
       </div>
       <div class="d-grid mb-10">
