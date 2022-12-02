@@ -102,7 +102,6 @@
                               </div>
                               <div class="stepper-line h-40px"></div>
                             </div>
-
                             <div class="stepper-item mark-completed" data-kt-stepper-element="nav">
                               <div class="stepper-wrapper">
                                 <div class="stepper-icon w-40px h-40px">
@@ -119,7 +118,8 @@
                         </div>
 
                         <div class="flex-row-fluid py-lg-5 px-lg-15">
-                          <form class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" id="kt_modal_create_app_form">
+
+                          <form class="form fv-plugins-bootstrap5 fv-plugins-framework" enctype="multipart/form-data" novalidate="novalidate" id="kt_modal_create_app_form">
                             <div class="current" data-kt-stepper-element="content">
                               <div class="w-100">
                                 <div class="fv-row">
@@ -147,11 +147,10 @@
                                             </span>
                                             <span class="d-flex flex-column">
                                               <span class="fw-bold fs-6"><?= $ten_hocky ?></span>
-                                              <!-- <span class="fs-7 text-muted">Creating a clear text structure is just one SEO</span> -->
                                             </span>
                                           </span>
                                           <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" name="hocky" value="<?= $id_hocky ?>">
+                                            <input class="form-check-input" type="radio" name="hoc-ky" value="<?= $id_hocky ?>">
                                           </span>
                                         </label>
                                     <?php }
@@ -188,11 +187,10 @@
                                           </span>
                                           <span class="d-flex flex-column">
                                             <span class="fw-bold fs-6"><?= $ten_khoa ?></span>
-                                            <!-- <span class="fs-7 text-muted"></span> -->
                                           </span>
                                         </span>
                                         <span class="form-check form-check-custom form-check-solid">
-                                          <input class="form-check-input" type="radio" name="khoahoc" value="<?= $id_khoa ?>">
+                                          <input class="form-check-input" type="radio" name="khoa-hoc" value="<?= $id_khoa ?>">
                                         </span>
                                       </label>
                                   <?php }
@@ -227,7 +225,7 @@
                                           </span>
                                         </span>
                                         <span class="form-check form-check-custom form-check-solid">
-                                          <input class="form-check-input" type="radio" name="dbengine" checked="checked" value="1">
+                                          <input class="form-check-input" type="radio" name="loai-lop" checked="checked" value="1">
                                         </span>
                                       </label>
                                   <?php }
@@ -270,7 +268,7 @@
                                             </span>
                                           </span>
                                           <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" name="monhoc" value="<?= $id_hocky ?>">
+                                            <input class="form-check-input" type="radio" name="mon-hoc" value="<?= $id_hocky ?>">
                                           </span>
                                         </label>
                                     <?php }
@@ -282,41 +280,20 @@
                             <div data-kt-stepper-element="content">
                               <div class="w-100">
                                 <div class="fv-row">
+
                                   <label class="d-flex align-items-center fs-5 fw-semibold mb-4">
-                                    <span class="required">Danh sách</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Lựa chọn môn học"></i>
+                                    <span class="required">Import </span>
+                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Import danh sách sinh viên"></i>
                                   </label>
                                   <div class="fv-row fv-plugins-icon-container scroll-y  max-h-300px">
-                                    <?php
-                                    if (!empty($this->data['mon_hoc']) && isset($this->data['mon_hoc'])) {
-                                      $mon_hoc = $this->data['mon_hoc'];
-                                      foreach ($mon_hoc as $value) {
-                                        extract($value); ?>
-                                        <label class="d-flex flex-stack mb-5 cursor-pointer">
-                                          <span class="d-flex align-items-center me-2">
-                                            <span class="symbol symbol-50px me-6">
-                                              <span class="symbol-label bg-light-primary">
-                                                <span class="svg-icon svg-icon-1 svg-icon-primary">
-                                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path opacity="0.3" d="M18.4 5.59998C21.9 9.09998 21.9 14.8 18.4 18.3C14.9 21.8 9.2 21.8 5.7 18.3L18.4 5.59998Z" fill="currentColor"></path>
-                                                    <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM19.9 11H13V8.8999C14.9 8.6999 16.7 8.00005 18.1 6.80005C19.1 8.00005 19.7 9.4 19.9 11ZM11 19.8999C9.7 19.6999 8.39999 19.2 7.39999 18.5C8.49999 17.7 9.7 17.2001 11 17.1001V19.8999ZM5.89999 6.90002C7.39999 8.10002 9.2 8.8 11 9V11.1001H4.10001C4.30001 9.4001 4.89999 8.00002 5.89999 6.90002ZM7.39999 5.5C8.49999 4.7 9.7 4.19998 11 4.09998V7C9.7 6.8 8.39999 6.3 7.39999 5.5ZM13 17.1001C14.3 17.3001 15.6 17.8 16.6 18.5C15.5 19.3 14.3 19.7999 13 19.8999V17.1001ZM13 4.09998C14.3 4.29998 15.6 4.8 16.6 5.5C15.5 6.3 14.3 6.80002 13 6.90002V4.09998ZM4.10001 13H11V15.1001C9.1 15.3001 7.29999 16 5.89999 17.2C4.89999 16 4.30001 14.6 4.10001 13ZM18.1 17.1001C16.6 15.9001 14.8 15.2 13 15V12.8999H19.9C19.7 14.5999 19.1 16.0001 18.1 17.1001Z" fill="currentColor"></path>
-                                                  </svg>
-                                                </span>
-                                              </span>
-                                            </span>
-                                            <span class="d-flex flex-column">
-                                              <span class="fw-bold fs-6"><?= $ma_mon ?></span>
-                                              <span class="fs-7 text-muted">
-                                                <?= $ten_mon ?>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" name="monhoc" value="<?= $id_hocky ?>">
-                                          </span>
-                                        </label>
-                                    <?php }
-                                    } ?>
+                                    <label for="import-sv" class="btn btn-primary"><span class="svg-icon svg-icon-2">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
+                                          <path d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM16 11.6L12.7 8.29999C12.3 7.89999 11.7 7.89999 11.3 8.29999L8 11.6H11V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H16Z" fill="currentColor"></path>
+                                          <path opacity="0.3" d="M11 11.6V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H11Z" fill="currentColor"></path>
+                                        </svg>
+                                      </span>Upload File</label>
+                                    <input type="file" id="import-sv" name="import-sv">
                                   </div>
                                 </div>
                               </div>
@@ -347,7 +324,7 @@
                                       <path d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z" fill="currentColor"></path>
                                     </svg>
                                   </span>
-                                  Quan lại
+                                  Quay lại
                                 </button>
                               </div>
                               <div>
@@ -395,5 +372,6 @@
   </div>
 </div>
 </div>
+
 <?php require_once 'app/views/include/teacher/widget.php'; ?>
 <?php require_once 'app/views/include/end.php'; ?>

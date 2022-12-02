@@ -83,7 +83,7 @@ var KTCreateApp = (function () {
 
     formSubmitButton.addEventListener("click", function (e) {
       // Validate form before change stepper step
-      var validator = validations[3]; // get validator for last form
+      var validator = validations[4]; // get validator for last form
 
       validator.validate().then(function (status) {
         console.log("validated!");
@@ -129,22 +129,6 @@ var KTCreateApp = (function () {
   // Init form inputs
   var initForm = function () {
     // Expiry month. For more info, plase visit the official plugin site: https://select2.org/
-    $(form.querySelector('[name="card_expiry_month"]')).on(
-      "change",
-      function () {
-        // Revalidate the field when an option is chosen
-        validations[3].revalidateField("card_expiry_month");
-      }
-    );
-
-    // Expiry year. For more info, plase visit the official plugin site: https://select2.org/
-    $(form.querySelector('[name="card_expiry_year"]')).on(
-      "change",
-      function () {
-        // Revalidate the field when an option is chosen
-        validations[3].revalidateField("card_expiry_year");
-      }
-    );
   };
 
   var initValidation = function () {
@@ -153,7 +137,7 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          hocky: {
+          "hoc-ky": {
             validators: {
               notEmpty: {
                 message: "Học kỳ không được bỏ trống",
@@ -176,7 +160,7 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          khoahoc: {
+          "khoa-hoc": {
             validators: {
               notEmpty: {
                 message: "Khóa học không được bỏ trống",
@@ -200,17 +184,10 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          dbname: {
+          "loai-lop": {
             validators: {
               notEmpty: {
-                message: "Database name is required",
-              },
-            },
-          },
-          dbengine: {
-            validators: {
-              notEmpty: {
-                message: "Database engine is required",
+                message: "Lớp học không được bỏ trống",
               },
             },
           },
@@ -231,49 +208,35 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          card_name: {
+          "mon-hoc": {
             validators: {
               notEmpty: {
-                message: "Name on card is required",
+                message: "Môn học không được bỏ trống",
               },
             },
           },
-          card_number: {
+        },
+
+        plugins: {
+          trigger: new FormValidation.plugins.Trigger(),
+          // Bootstrap Framework Integration
+          bootstrap: new FormValidation.plugins.Bootstrap5({
+            rowSelector: ".fv-row",
+            eleInvalidClass: "",
+            eleValidClass: "",
+          }),
+        },
+      })
+    );
+
+    // Step 5
+    validations.push(
+      FormValidation.formValidation(form, {
+        fields: {
+          "import-sv": {
             validators: {
               notEmpty: {
-                message: "Card member is required",
-              },
-              creditCard: {
-                message: "Card number is not valid",
-              },
-            },
-          },
-          card_expiry_month: {
-            validators: {
-              notEmpty: {
-                message: "Month is required",
-              },
-            },
-          },
-          card_expiry_year: {
-            validators: {
-              notEmpty: {
-                message: "Year is required",
-              },
-            },
-          },
-          card_cvv: {
-            validators: {
-              notEmpty: {
-                message: "CVV is required",
-              },
-              digits: {
-                message: "CVV must contain only digits",
-              },
-              stringLength: {
-                min: 3,
-                max: 4,
-                message: "CVV must contain 3 to 4 digits only",
+                message: "Chưa có file danh sách sinh viên",
               },
             },
           },
