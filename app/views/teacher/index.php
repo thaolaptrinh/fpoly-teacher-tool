@@ -31,14 +31,12 @@
                 <!--begin::Items-->
                 <a href="<?= BASE_URL('lich-day') ?>" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
-                  <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path opacity="0.3" d="M4.05424 15.1982C8.34524 7.76818 13.5782 3.26318 20.9282 2.01418C21.0729 1.98837 21.2216 1.99789 21.3618 2.04193C21.502 2.08597 21.6294 2.16323 21.7333 2.26712C21.8372 2.37101 21.9144 2.49846 21.9585 2.63863C22.0025 2.7788 22.012 2.92754 21.9862 3.07218C20.7372 10.4222 16.2322 15.6552 8.80224 19.9462L4.05424 15.1982ZM3.81924 17.3372L2.63324 20.4482C2.58427 20.5765 2.5735 20.7163 2.6022 20.8507C2.63091 20.9851 2.69788 21.1082 2.79503 21.2054C2.89218 21.3025 3.01536 21.3695 3.14972 21.3982C3.28408 21.4269 3.42387 21.4161 3.55224 21.3672L6.66524 20.1802L3.81924 17.3372ZM16.5002 5.99818C16.2036 5.99818 15.9136 6.08615 15.6669 6.25097C15.4202 6.41579 15.228 6.65006 15.1144 6.92415C15.0009 7.19824 14.9712 7.49984 15.0291 7.79081C15.0869 8.08178 15.2298 8.34906 15.4396 8.55884C15.6494 8.76862 15.9166 8.91148 16.2076 8.96935C16.4986 9.02723 16.8002 8.99753 17.0743 8.884C17.3484 8.77046 17.5826 8.5782 17.7474 8.33153C17.9123 8.08486 18.0002 7.79485 18.0002 7.49818C18.0002 7.10035 17.8422 6.71882 17.5609 6.43752C17.2796 6.15621 16.8981 5.99818 16.5002 5.99818Z" fill="currentColor"></path>
                       <path d="M4.05423 15.1982L2.24723 13.3912C2.15505 13.299 2.08547 13.1867 2.04395 13.0632C2.00243 12.9396 1.9901 12.8081 2.00793 12.679C2.02575 12.5498 2.07325 12.4266 2.14669 12.3189C2.22013 12.2112 2.31752 12.1219 2.43123 12.0582L9.15323 8.28918C7.17353 10.3717 5.4607 12.6926 4.05423 15.1982ZM8.80023 19.9442L10.6072 21.7512C10.6994 21.8434 10.8117 21.9129 10.9352 21.9545C11.0588 21.996 11.1903 22.0083 11.3195 21.9905C11.4486 21.9727 11.5718 21.9252 11.6795 21.8517C11.7872 21.7783 11.8765 21.6809 11.9402 21.5672L15.7092 14.8442C13.6269 16.8245 11.3061 18.5377 8.80023 19.9442ZM7.04023 18.1832L12.5832 12.6402C12.7381 12.4759 12.8228 12.2577 12.8195 12.032C12.8161 11.8063 12.725 11.5907 12.5653 11.4311C12.4057 11.2714 12.1901 11.1803 11.9644 11.1769C11.7387 11.1736 11.5205 11.2583 11.3562 11.4132L5.81323 16.9562L7.04023 18.1832Z" fill="currentColor"></path>
                     </svg>
                   </span>
-                  <!--end::Svg Icon-->
                   <!--end::Icon-->
                   <!--begin::Desc-->
                   <div class="fw-bold fs-4 pt-8">Lịch giảng dạy</div>
@@ -87,7 +85,6 @@
                 <!--begin::Items-->
                 <a href="https://www.facebook.com/thaotoiday" target="_blank" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
-                  <!--begin::Svg Icon | path: icons/duotune/general/gen055.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path opacity="0.3" fill-rule="evenodd" clip-rule="evenodd" d="M2 4.63158C2 3.1782 3.1782 2 4.63158 2H13.47C14.0155 2 14.278 2.66919 13.8778 3.04006L12.4556 4.35821C11.9009 4.87228 11.1726 5.15789 10.4163 5.15789H7.1579C6.05333 5.15789 5.15789 6.05333 5.15789 7.1579V16.8421C5.15789 17.9467 6.05333 18.8421 7.1579 18.8421H16.8421C17.9467 18.8421 18.8421 17.9467 18.8421 16.8421V13.7518C18.8421 12.927 19.1817 12.1387 19.7809 11.572L20.9878 10.4308C21.3703 10.0691 22 10.3403 22 10.8668V19.3684C22 20.8218 20.8218 22 19.3684 22H4.63158C3.1782 22 2 20.8218 2 19.3684V4.63158Z" fill="currentColor" />
@@ -214,7 +211,7 @@
         </div>
       </div>
     </div>
-    <div class="card card-flush border-0">
+    <!-- <div class="card card-flush border-0">
       <div class="card-header pt-7">
         <h3 class="card-title align-items-start flex-column">
           <span class="card-label fs-3 fw-bold text-gray-800">Lịch giảng dạy</span>
@@ -255,8 +252,7 @@
                 <th class="p-0 pb-3 w-50px text-end">ACTION</th>
               </tr>
             </thead>
-            <!--end::Table head-->
-            <!--begin::Table body-->
+
             <tbody>
               <tr>
                 <td>
@@ -277,14 +273,12 @@
                 </td>
                 <td class="text-center">
                   <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
                     <span class="svg-icon svg-icon-5 svg-icon-gray-700">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
                         <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
                       </svg>
                     </span>
-                    <!--end::Svg Icon-->
                   </a>
                 </td>
               </tr>
@@ -307,14 +301,12 @@
                 </td>
                 <td class="text-center">
                   <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
                     <span class="svg-icon svg-icon-5 svg-icon-gray-700">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
                         <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
                       </svg>
                     </span>
-                    <!--end::Svg Icon-->
                   </a>
                 </td>
               </tr>
@@ -337,14 +329,12 @@
                 </td>
                 <td class="text-center">
                   <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
                     <span class="svg-icon svg-icon-5 svg-icon-gray-700">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
                         <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
                       </svg>
                     </span>
-                    <!--end::Svg Icon-->
                   </a>
                 </td>
               </tr>
@@ -367,31 +357,23 @@
                 </td>
                 <td class="text-center">
                   <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
                     <span class="svg-icon svg-icon-5 svg-icon-gray-700">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
                         <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
                       </svg>
                     </span>
-                    <!--end::Svg Icon-->
                   </a>
                 </td>
               </tr>
             </tbody>
-            <!--end::Table body-->
           </table>
         </div>
-        <!--end::Table-->
-        <!--begin::Separator-->
         <div class="separator separator-dashed border-gray-200 mb-n4"></div>
-        <!--end::Separator-->
-        <!--begin::Pagination-->
         <div class="d-flex flex-stack flex-wrap pt-10">
           <div class="fs-6 fw-semibold text-gray-700">
             Showing 1 to 10 of 50 entries
           </div>
-          <!--begin::Pages-->
           <ul class="pagination">
             <li class="page-item previous">
               <a href="#" class="page-link">
@@ -424,6 +406,6 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

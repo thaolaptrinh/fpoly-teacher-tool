@@ -51,7 +51,7 @@
     </div>
     <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 
-      <a href="" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" class="btn btn-primary">Thêm mới</a>
+      <!-- <a href="" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" class="btn btn-primary">Thêm mới</a> -->
     </div>
   </div>
   <div class="card-body pt-0">
