@@ -1,128 +1,146 @@
-<div class="kt-portlet">
-  <div class="kt-portlet__body">
+<div class="card">
+  <div class="card-body py-4">
     <form method="get" action="">
-      <div class="form-group">
-        <label for="day">Chọn trạng thái</label>
-        <select name="status" id="status" onchange="this.form.submit();" class="form-control">
-          <option value="1" <?= (isset($_GET['status'])  && $_GET['status'] == 1) || !isset($_GET['status']) ? 'selected="selected"' : false  ?>>Lịch đang dạy</option>
-          <option value="0" <?= isset($_GET['status']) && $_GET['status'] == 0 ? 'selected="selected"' : false  ?>>Lịch đã dạy</option>
-        </select> <span class="form-text text-muted">Lựa chọn trạng thái để hiện thị chi tiết lịch học</span>
+      <div class="row mb-10">
+        <div class="col-lg-6">
+          <label class="required fs-6 fw-semibold form-label mb-2 badge badge-light-success">
+            Lựa chọn trạng thái để hiện thị chi tiết lịch học
+          </label>
+          <div class="row fv-row">
+            <select name="status" onchange="this.form.submit();" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Trạng thái">
+              <option></option>
+              <option value="1" <?= (isset($_GET['status'])  && $_GET['status'] == 1) || !isset($_GET['status']) ? 'selected="selected"' : false  ?>>Lịch đang dạy</option>
+              <option value="0" <?= isset($_GET['status']) && $_GET['status'] == 0 ? 'selected="selected"' : false  ?>>Lịch đã dạy</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <label class="required fs-6 fw-semibold form-label mb-2 badge badge-light-success">Lựa chọn môn học để hiện thị chi tiết lịch học</label>
+          <div class="row fv-row">
+            <select name="day" onchange="this.form.submit();" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Thời gian">
+              <option></option>
+              <option value="7" <?= (isset($_GET['day'])  && $_GET['day'] == 7) || !isset($_GET['day']) ? 'selected="selected"' : false  ?>>7</option>
+              <option value="9" <?= isset($_GET['day']) && $_GET['day'] == 9 ? 'selected="selected"' : false  ?>>9</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="day">Thời gian</label>
-        <select name="day" id="day" onchange="this.form.submit();" class="form-control">
-          <option value="7" <?= (isset($_GET['day'])  && $_GET['day'] == 7) || !isset($_GET['day']) ? 'selected="selected"' : false  ?>>7</option>
-          <option value="9" <?= isset($_GET['day']) && $_GET['day'] == 9 ? 'selected="selected"' : false  ?>>9</option>
-        </select> <span class="form-text text-muted">Lựa chọn thời gian để hiện thị chi tiết lịch học</span>
-      </div>
+
     </form>
+
   </div>
+
+
 </div>
-<div class="kt-portlet">
-  <div class="kt-portlet__head kt-portlet__head--lg">
-    <div class="kt-portlet__head-label"><span class="kt-portlet__head-icon"><i class="kt-font-brand flaticon-event-calendar-symbol"></i></span>
-      <h3 class="kt-portlet__head-title">
-        <?= $this->data['page_title'] ?>
-      </h3>
+
+<br>
+
+
+<div class="card card-flush">
+  <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+    <div class="card-title">
+      <div class="d-flex align-items-center position-relative my-1">
+        <span class="svg-icon svg-icon-1 position-absolute ms-4">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+          </svg>
+        </span>
+        <input type="text" data-kt-list-diem-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Tìm kiếm nhanh" />
+      </div>
+    </div>
+    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+
+      <a href="" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app" class="btn btn-primary">Thêm mới</a>
     </div>
   </div>
-  <div class="table-responsive">
-    <div class="kt-portlet__body">
-      <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-        <div class="row">
-          <div class="col-sm-6 text-left"></div>
-          <div class="col-sm-6 text-right">
-            <div class="dt-buttons btn-group"> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="DataTables_Table_0" type="button"><span>Print</span></button> <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="DataTables_Table_0" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="DataTables_Table_0" type="button"><span>Excel</span></button> <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="DataTables_Table_0" type="button"><span>CSV</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_0" type="button"><span>PDF</span></button> </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <table class="table table-bordered table-content dataTable no-footer dtr-inline" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info" style="width: 1158px;">
-              <thead>
-                <tr role="row">
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25.25px;" aria-label="STT: activate to sort column ascending">STT</th>
-                  <th class="no-sort sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 44.25px;" aria-label="Ngày: activate to sort column ascending">Học kỳ</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 57.25px;" aria-label="Tên lớp: activate to sort column ascending">Tên lớp</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 46.25px;" aria-label="Mã môn: activate to sort column ascending">Mã môn</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25.25px;" aria-label="Xem: activate to sort column ascending">Xem</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25.25px;" aria-label=" Ngày: activate to sort column ascending">Ngày</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25.25px;" aria-label="Ca học: activate to sort column ascending">Ca học</th>
-                  <th class="sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 25.25px;;" aria-label="Phòng: activate to sort column ascending" aria-sort="descending">Phòng</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width:46.25px;" aria-label="Số sinh viên: activate to sort column ascending">Số sinh viên</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 52.25px;" aria-label="Ghi chú: activate to sort column ascending">Ghi chú</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 74.25px;" aria-label="Bắt đầu: activate to sort column ascending">Bắt đầu</th>
-                  <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" style="width: 74.25px;" aria-label="Kết thúc: activate to sort column ascending">Kết thúc</th>
-                </tr>
-              </thead>
-              <tbody>
-
-                <?php
+  <div class="card-body pt-0">
+    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_list_diem_table">
+      <thead>
 
 
-                if (!empty($this->model_home->data['lich_day'])) {
-                  $lichday = $this->model_home->data['lich_day'];
-
-                  foreach ($lichday as $row) { ?>
-
-                    <tr>
-                      <td tabindex="0"><?= $row['id'] ?></td>
-                      <td class="text-capitalize"><?= $row['ten_hocky'] ?></td>
-                      <td><?= $row['ten_lop'] ?></td>
-                      <td><?= $row['ma_mon'] ?></td>
-                      <td></td>
-                      <td><?= $row['ngay_hoc'] ?></td>
-                      <td><?= $row['ca_hoc'] ?></td>
-                      <td><?= $row['phong_hoc'] ?></td>
-                      <td><?= $row['so_sv'] ?></td>
-                      <td><?= $row['ghi_chu'] ?></td>
-                      <td><?= $row['ngay_bat_dau'] ?></td>
-                      <td><?= $row['ngay_ket_thuc'] ?></td>
-                    </tr>
-                  <?php }
-                } else { ?>
-
-                  <tr>
-                    <td colspan="12" class="text-center">Không có dữ liệu</td>
-                  </tr>
-                <?php } ?>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 col-md-5">
-            <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Đang xem 1 đến 3 trong tổng số 3 mục</div>
-          </div>
-          <div class="col-sm-12 col-md-7 dataTables_pager">
-            <div class="dataTables_length" id="DataTables_Table_0_length"><label>Xem <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="custom-select custom-select-sm form-control form-control-sm">
-                  <option value="10">10</option>
-                  <option value="25">25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select> mục</label></div>
-            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-              <ul class="pagination">
-                <li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">Trước</a></li>
-                <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                <li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">Tiếp</a></li>
-              </ul>
+        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+          <th class="w-10px pe-2">
+            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+              <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_list_diem_table .form-check-input" value="1" />
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="kt_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade" style="display: none;">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="exampleModalLabel" class="modal-title">Nội dung</h5> <button type="button" data-dismiss="modal" aria-label="Close" class="close"></button>
-      </div>
-      <div class="modal-body ">
-        <p class="schedule-body"></p>
-      </div>
-      <div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-secondary">Đóng</button></div>
-    </div>
+          </th>
+          <th class="min-w-10px">STT</th>
+          <th class="text-end min-w-50px">Học kỳ</th>
+          <th class="text-end min-w-100px">Tên lớp</th>
+          <th class="text-end min-w-70px">Mã môn</th>
+          <th class="text-end min-w-70px">Xem</th>
+          <th class="text-end min-w-70px">Ngày</th>
+          <th class="text-end min-w-70px">Ca học</th>
+          <th class="text-end min-w-70px">Phòng</th>
+          <th class="text-end min-w-70px">Số sinh viên</th>
+          <th class="text-end min-w-70px">Ngày bắt đầu</th>
+          <th class="text-end min-w-70px">Ngày kết thúc</th>
+          <th class="text-end min-w-70px">Ghi chú</th>
+          <th class="text-end min-w-70px">Actions</th>
+        </tr>
+      </thead>
+
+
+      <style>
+        [contenteditable]:focus {
+          border: none;
+          outline: none;
+          background: var(--kt-primary-light);
+          caret-color: var(--kt-primary);
+        }
+      </style>
+      <tbody class="fw-semibold text-gray-600">
+        <?php
+
+        if (!empty($this->model_home->data['lich_day'])) {
+          $lich_day = $this->model_home->data['lich_day'];
+          $i = 0;
+          foreach ($lich_day as $row) {
+            extract($row); ?>
+            <tr>
+              <td>
+                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                  <input class="form-check-input" type="checkbox" value="<?= $id ?>" />
+                </div>
+              </td>
+              <td><?= ++$i ?></td>
+              <td class="text-end pe-0"><?= $ten_hocky ?></td>
+              <td class="text-end pe-0"><?= $ten_lop ?></td>
+              <td class="text-end pe-0"><?= $ma_mon ?></td>
+              <td class="text-end pe-0">
+                <a href="<?= BASE_URL('bang-diem?lop=' . $ten_lop . '&mon=' . $ma_mon) ?>" target="_blank">Bảng điểm</a>
+              </td>
+              <td class="text-end pe-0"><?= $ngay_hoc ?></td>
+              <td class="text-end pe-0"><?= $ca_hoc ?></td>
+              <td class="text-end pe-0"><?= $phong_hoc ?></td>
+              <td class="text-end pe-0"><?= $ngay_bat_dau ?></td>
+              <td class="text-end pe-0"><?= $ngay_ket_thuc ?></td>
+              <td class="text-end pe-0"><?= $ghi_chu ?></td>
+
+              <td class="text-end">
+                <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                  <span class="svg-icon svg-icon-5 m-0">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z" fill="currentColor" />
+                    </svg>
+                  </span>
+                </a>
+                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                  <div class="menu-item px-3">
+                    <a href="" class="menu-link px-3">Edit</a>
+                  </div>
+                  <div class="menu-item px-3">
+                    <a href="#" class="menu-link px-3" data-kt-list-diem-filter="delete_row">Delete</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+        <?php }
+        } ?>
+
+
+      </tbody>
+    </table>
   </div>
 </div>

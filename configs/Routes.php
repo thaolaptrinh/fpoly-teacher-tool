@@ -25,18 +25,11 @@ $routes['bang-diem'] = 'teacher/bang_diem';
 
 // Lớp học
 $routes['lich-day'] = 'teacher/lich_day';
-$routes['lich-thi'] = 'teacher/lich_thi';
 
 
-// Sinh viên
-$routes['sinh-vien/sinh-vien-gioi'] = 'teacher/sv_gioi';
-$routes['sinh-vien/sinh-vien-yeu'] = 'teacher/sv_yeu';
 
-$routes['tao-bang-diem'] = 'teacher/tao_bang_diem';
 
 // Tiện ích
-
 $routes['tien-ich/thanh-ngu'] = 'teacher/thanh_ngu';
 $routes['tien-ich/lien-ket'] = 'teacher/links';
-
 $routes['profile'] = 'teacher/profile';

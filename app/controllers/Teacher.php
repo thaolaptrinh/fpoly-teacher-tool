@@ -104,12 +104,6 @@ class Teacher extends  Controller
 
 
 
-  public  function fetch_data()
-  {
-    # code...
-    $this->model_home->fetch_data();
-    $this->data = array_merge($this->data, $this->model_home->data);
-  }
 
 
   public function bang_diem()
@@ -174,49 +168,16 @@ class Teacher extends  Controller
   }
 
 
-
-  // public function lich_day()
-  // {
-  //   # code...
-  //   $this->model_home->lich_day();
-  //   $this->data['is_newitem'] = true;
-  //   $this->data['content'] = 'teacher/calendar/lich_day';
-  //   $this->data['page_title'] = 'Lịch dạy';
-  //   $this->render('layouts/teacher', $this->data);
-  // }
-
-
-  // public function lich_thi()
-  // {
-  //   # code...
-  //   $this->model_home->lich_thi();
-  //   $this->data['content'] = 'teacher/calendar/lich_thi';
-  //   $this->data['page_title'] = 'Lịch thi';
-  //   $this->render('layouts/teacher', $this->data);
-  // }
-
-
-
-
-  // public function sv_gioi()
-  // {
-  //   # code...
-  //   $this->data['content'] = 'teacher/sinhvien/sv_gioi';
-  //   $this->data['parent'] = 'Sinh viên';
-  //   $this->data['page_title'] = 'Sinh viên giỏi';
-  //   $this->render('layouts/teacher', $this->data);
-  // }
-
-  // public function sv_yeu()
-  // {
-  //   # code...
-  //   $this->data['content'] = 'teacher/sinhvien/sv_yeu';
-  //   $this->data['parent'] = 'Sinh viên';
-
-  //   $this->data['page_title'] = 'Sinh viên yếu';
-  //   $this->render('layouts/teacher', $this->data);
-  // }
-
+  public function lich_day()
+  {
+    # code...
+    $this->model_home->lich_day();
+    $this->data['content'] = 'teacher/calendar/lich_day';
+    $this->data['page_title'] = 'Lịch dạy';
+    $this->data['page_target'] = 'lich';
+    $this->data = array_merge($this->data, $this->model_home->data);
+    $this->render('layouts/teacher', $this->data);
+  }
 
 
 

@@ -703,9 +703,4 @@ class TeacherModel extends Model
             }
         }
     }
-
-    public function lich_thi()
-    {
-        # code...
-    }
 }

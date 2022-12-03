@@ -34,6 +34,10 @@ global $DB;
                 'path' => 'bang-diem',
               ],
               [
+                'name' => 'Lịch dạy',
+                'path' => 'lich-day',
+              ],
+              [
                 'name' => 'Danh mục',
                 'path' => 'danh-muc',
                 'sub' => [
@@ -59,34 +63,6 @@ global $DB;
                   ],
                 ]
               ],
-              // [
-              //   'name' => 'Lịch dạy & thi',
-              //   'sub' => [
-              //     [
-              //       'name' => 'Lịch dạy',
-              //       'path' => 'lich-day',
-              //     ],
-              //     [
-              //       'name' => 'Lịch thi',
-              //       'path' => 'lich-thi',
-              //     ]
-              //   ]
-              // ],
-
-              // [
-              //   'name' => 'Sinh viên',
-              //   'path' => 'sinh-vien',
-              //   'sub' => [
-              //     [
-              //       'name' => 'Sinh viên giỏi',
-              //       'path' => 'sinh-vien-gioi',
-              //     ],
-              //     [
-              //       'name' => 'Sinh viên yếu',
-              //       'path' => 'sinh-vien-yeu',
-              //     ]
-              //   ]
-              // ],
               [
                 'name' => 'Tiện ích',
                 'path' => 'tien-ich',
