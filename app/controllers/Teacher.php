@@ -168,6 +168,7 @@ class Teacher extends  Controller
     $this->model_home->profile();
     $this->data['content'] = 'teacher/profile';
     $this->data['page_title'] = 'Profile';
+    $this->data['page_target'] = 'profile';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/teacher', $this->data);
   }

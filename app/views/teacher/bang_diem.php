@@ -88,24 +88,24 @@
                 <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_list_diem_table .form-check-input" value="1" />
               </div>
             </th>
-            <th class="min-w-30px">STT</th>
-            <th class="text-end min-w-100px">MSSV</th>
-            <th class="text-end min-w-70px">Họ tên</th>
+            <th class="min-w-10px">STT</th>
+            <th class="text-end min-w-50px">MSSV</th>
+            <th class="text-end min-w-100px">Họ tên</th>
             <?php
             if (!empty($mon_hoc['diem'])) {
               $diem1 = $mon_hoc['diem'];
               $array_diem1 = explode(',', $diem1);
               foreach ($array_diem1 as $key) { ?>
-                <th class="text-end min-w-100px">
+                <th class="text-end min-w-20px">
                   <?= $key ?>
-                  <i class="fas fa-question-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Click vào ô điểm bất kỳ để chỉnh sửa"></i>
+                  <!-- <i class="fas fa-question-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Click vào ô điểm bất kỳ để chỉnh sửa"></i> -->
                 </th>
             <?php }
             } ?>
 
-            <th class="text-end min-w-100px contenteditable">Nhận xét</th>
-            <th class="text-end min-w-100px">Phân loại</th>
-            <th class="text-end min-w-70px">Actions</th>
+            <th class="text-end min-w-70px contenteditable">Nhận xét</th>
+            <!-- <th class="text-end min-w-70px">Phân loại</th> -->
+            <!-- <th class="text-end min-w-70px">Actions</th> -->
           </tr>
         <?php  } ?>
       </thead>
@@ -147,10 +147,10 @@
               } ?>
 
               <td contenteditable class="nhan_xet text-end pe-0" data-id1="<?= $id ?>"><?= $nhan_xet ?></td>
-              <td class="text-end pe-0" data-order="type">
+              <!-- <td class="text-end pe-0" data-order="type">
                 <div class="badge badge-light-primary">Loai</div>
-              </td>
-              <td class="text-end">
+              </td> -->
+              <!-- <td class="text-end">
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                   <span class="svg-icon svg-icon-5 m-0">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -166,7 +166,7 @@
                     <a href="#" class="menu-link px-3" data-kt-list-diem-filter="delete_row">Delete</a>
                   </div>
                 </div>
-              </td>
+              </td> -->
             </tr>
         <?php }
         } ?>

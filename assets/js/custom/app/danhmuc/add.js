@@ -58,7 +58,6 @@ var KTLAdd = (function () {
         formData.append("diem", diem);
       }
 
-      console.log(diem);
       formData.append("is_add", true);
 
       if (validator) {

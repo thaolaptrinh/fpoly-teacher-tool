@@ -85,7 +85,7 @@
               <!--begin::Body-->
               <div class="card-body p-0">
                 <!--begin::Items-->
-                <a href="https://www.facebook.com/thaotoiday" class="btn btn-active-color-primary p-9 text-start w-100">
+                <a href="https://www.facebook.com/thaotoiday" target="_blank" class="btn btn-active-color-primary p-9 text-start w-100">
                   <!--begin::Icon-->
                   <!--begin::Svg Icon | path: icons/duotune/general/gen055.svg-->
                   <span class="svg-icon svg-icon-3x svg-icon-lg-3hx svg-icon-gray-500 ms-n1">
@@ -137,12 +137,7 @@
           </div>
 
         </div>
-        <!--end::Block-->
-        <!--begin::Action-->
-        <!-- <button class="btn btn-primary fs-3 fw-bolder w-100 py-5" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
-          Thay đổi mật khẩu
-        </button> -->
-        <!--end::Action-->
+
       </div>
     </div>
 
@@ -154,9 +149,17 @@
       <div class="card-body py-0">
         <div class="row align-items-center lh-1 h-100">
           <div class="col-7 ps-xl-10 pe-5">
+
+            <div class="fs-2 fw-bold text-white mb-6">
+              <i>“<?= $this->data['thanh_ngu']['noi_dung'] ?>”</i>
+            </div>
+
+
             <div class="fs-2qx fw-bold text-white mb-6">
               Xin chào Thầy/Cô
             </div>
+
+
 
             <span class="fw-semibold text-white fs-6 mb-8 d-block opacity-75">
               Website quản lý điểm sinh viên dành cho Giáo viên FPT Polytechnic do sinh viên trường phát triển.
@@ -206,15 +209,10 @@
           </div>
 
           <div class="col-5 pt-5 pt-lg-15">
-            <!--begin::Illustration-->
-            <div class="bgi-no-repeat bgi-size-contain bgi-position-x-end bgi-position-y-bottom h-325px" style="background-image:url('/keen/demo9/assets/media/svg/illustrations/easy/8.svg"></div>
-            <!--end::Illustration-->
+            <div class="bgi-no-repeat bgi-size-contain bgi-position-x-end bgi-position-y-bottom h-325px" style="background-image:url(<?= BASE_URL('assets/media/svg/8.svg') ?>)"></div>
           </div>
-          <!--end::Col-->
         </div>
-        <!--end::Row-->
       </div>
-      <!--end::Body-->
     </div>
     <div class="card card-flush border-0">
       <div class="card-header pt-7">

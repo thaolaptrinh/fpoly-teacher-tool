@@ -10,7 +10,7 @@ var KTCreateApp = (function () {
   var form;
   var formSubmitButton;
   var formContinueButton;
-
+  var formData = [];
   // Variables
   var stepperObj;
   var validations = [];
@@ -22,11 +22,11 @@ var KTCreateApp = (function () {
 
     // Stepper change event(handle hiding submit button for the last step)
     stepperObj.on("kt.stepper.changed", function (stepper) {
-      if (stepperObj.getCurrentStepIndex() === 5) {
+      if (stepperObj.getCurrentStepIndex() === 4) {
         formSubmitButton.classList.remove("d-none");
         formSubmitButton.classList.add("d-inline-block");
         formContinueButton.classList.add("d-none");
-      } else if (stepperObj.getCurrentStepIndex() === 6) {
+      } else if (stepperObj.getCurrentStepIndex() === 5) {
         formSubmitButton.classList.add("d-none");
         formContinueButton.classList.add("d-none");
       } else {
@@ -38,14 +38,14 @@ var KTCreateApp = (function () {
 
     // Validation before going to next page
     stepperObj.on("kt.stepper.next", function (stepper) {
-      console.log("stepper.next");
+      // console.log("stepper.next");
 
       // Validate form before change stepper step
       var validator = validations[stepper.getCurrentStepIndex() - 1]; // get validator for currnt step
 
       if (validator) {
         validator.validate().then(function (status) {
-          console.log("validated!");
+          // console.log("validated!");
 
           if (status == "Valid") {
             stepper.goNext();
@@ -75,7 +75,7 @@ var KTCreateApp = (function () {
 
     // Prev event
     stepperObj.on("kt.stepper.previous", function (stepper) {
-      console.log("stepper.previous");
+      // console.log("stepper.previous");
 
       stepper.goPrevious();
       KTUtil.scrollTop();
@@ -83,10 +83,24 @@ var KTCreateApp = (function () {
 
     formSubmitButton.addEventListener("click", function (e) {
       // Validate form before change stepper step
-      var validator = validations[4]; // get validator for last form
+      var validator = validations[3]; // get validator for last form
+
+      var form_text = ["hoc-ky", "loai-lop", "mon-hoc"];
+      form_text.forEach((element) => {
+        formData.append(
+          element,
+          form.querySelector(`[name="${element}"]`).value
+        );
+      });
+
+      formData.append(
+        "file-sv",
+        form.querySelector(`[name="file-sv"]`).files[0]
+      );
+      formData.append("is_import", true);
 
       validator.validate().then(function (status) {
-        console.log("validated!");
+        // console.log("validated!");
 
         if (status == "Valid") {
           // Prevent default button action
@@ -107,6 +121,23 @@ var KTCreateApp = (function () {
             formSubmitButton.disabled = false;
 
             stepperObj.goNext();
+
+            axios
+              .post(base_url, formData)
+              .then((response) => {
+                var data = response.data.data;
+                if (response.data.status) {
+                  var href = `${base_url}bang-diem?lop=${data.lop}&mon=${data.mon}`;
+                  console.log(href);
+                  form
+                    .querySelector("#view-bang-diem")
+                    .setAttribute("href", href);
+                }
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+
             //KTUtil.scrollTop();
           }, 2000);
         } else {
@@ -160,30 +191,6 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          "khoa-hoc": {
-            validators: {
-              notEmpty: {
-                message: "Khóa học không được bỏ trống",
-              },
-            },
-          },
-        },
-        plugins: {
-          trigger: new FormValidation.plugins.Trigger(),
-          // Bootstrap Framework Integration
-          bootstrap: new FormValidation.plugins.Bootstrap5({
-            rowSelector: ".fv-row",
-            eleInvalidClass: "",
-            eleValidClass: "",
-          }),
-        },
-      })
-    );
-
-    // Step 3
-    validations.push(
-      FormValidation.formValidation(form, {
-        fields: {
           "loai-lop": {
             validators: {
               notEmpty: {
@@ -204,7 +211,7 @@ var KTCreateApp = (function () {
       })
     );
 
-    // Step 4
+    // Step 3
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
@@ -229,7 +236,7 @@ var KTCreateApp = (function () {
       })
     );
 
-    // Step 5
+    // Step 4
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
@@ -266,6 +273,8 @@ var KTCreateApp = (function () {
       }
 
       modal = new bootstrap.Modal(modalEl);
+
+      formData = new FormData();
 
       stepper = document.querySelector("#kt_modal_create_app_stepper");
       form = document.querySelector("#kt_modal_create_app_form");

@@ -157,6 +157,8 @@ global $DB;
         <!--begin::User menu-->
         <div class="app-navbar-item ms-3" id="kt_header_user_menu_toggle">
           <!--begin:Info-->
+
+
           <div class="text-end d-none d-sm-flex flex-column justify-content-center me-3">
             <a href="" class="text-white text-hover-primary fs-6 fw-bold">Giáo Viên</a>
             <span class="text-gray-600 fs-7 fw-semibold d-block"><?= $DB->getInfoTeacher('email') ?></span>

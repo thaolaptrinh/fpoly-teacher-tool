@@ -16,9 +16,87 @@ class TeacherModel extends Model
             'mon_hoc' => $this->get_list("SELECT * FROM `mon_hoc` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_mon DESC"),
             'loai_lop' => $this->get_list("SELECT * FROM `loai_lop` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_loai DESC"),
             'lien_ket' => $this->get_list("SELECT * FROM `lien_ket` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_lienket DESC"),
-
-
         ];
+
+        if (isset($_POST["is_import"])) {
+            $hoc_ky = $_POST['hoc-ky'];
+            $mon_hoc = $_POST['mon-hoc'];
+            $loai_lop = $_POST['loai-lop'];
+            $id_teacher = $this->getInfoTeacher('id_teacher');
+            $fileName = $_FILES["file-sv"]["name"];
+            $fileExtension = explode('.', $fileName);
+            $fileExtension = strtolower(end($fileExtension));
+            $newFileName = date("Y.m.d")  . date("h.i.sa") . "." . $fileExtension;
+            $pathFile = "uploads/" . $newFileName;
+            $upload =  move_uploaded_file($_FILES['file-sv']['tmp_name'], $pathFile);
+
+
+            $ds_monhoc = $this->get_row("SELECT * FROM `mon_hoc`");
+
+            $array_diem = explode(',', $ds_monhoc['diem']);
+
+            foreach ($array_diem as  $value) {
+                $format_array_diem[$value] = null;
+            }
+
+            // if (!empty($upload)) {
+            //     $objReader = PHPExcel_IOFactory::createReaderForFile($pathFile);
+            //     $objExcel = $objReader->load($pathFile);
+            //     $sheetData = $objExcel->getActiveSheet()->toArray('null', true, true, true);
+            //     print_r($sheetData);
+            // }
+
+            if (!empty($upload)) {
+
+                $objFile = PHPExcel_IOFactory::identify($pathFile);
+                $objData = PHPExcel_IOFactory::createReader($objFile);
+
+                $objPHPExcel = $objData->load($pathFile);
+
+                $sheet = $objPHPExcel->setActiveSheetIndex(0);
+
+                $TotalRow = $sheet->getHighestRow();
+                $LastColumn = $sheet->getHighestColumn();
+                $TotalCol = PHPExcel_Cell::columnIndexFromString($LastColumn);
+
+                $data_import = [];
+
+                for ($i = 2; $i <= $TotalRow; $i++) {
+                    for ($j = 0; $j < $TotalCol; $j++) {
+                        $data_import[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();
+                    }
+                }
+                unlink($pathFile);
+
+                foreach ($data_import as $row) {
+                    $data_insert = [
+                        'mssv' => $row[1],
+                        'ho_ten' => $row['2'],
+                        'email' => $row['3'],
+                        'sdt' => $row['4'],
+                        'thongtin_sv' => json_encode($row),
+                        'id_mon' => $mon_hoc,
+                        'id_lop' => $loai_lop,
+                        'array_diem' => json_encode($format_array_diem),
+                        'id_teacher' => $id_teacher
+                    ];
+                    $this->insert("diem_sv", $data_insert);
+                }
+
+
+                $response['data'] = [
+                    'lop' => $this->get_row("SELECT * FROM `loai_lop` WHERE id_loai = '$loai_lop' ")['ten_lop'],
+                    'mon' => $this->get_row("SELECT * FROM `mon_hoc` WHERE id_mon = '$mon_hoc' ")['ma_mon'],
+                ];
+                $response['status'] = true;
+
+                die(json_encode($response));
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'Upload file sinh viên không thành công!';
+                die(json_encode($response));
+            }
+        }
     }
 
 
@@ -31,10 +109,9 @@ class TeacherModel extends Model
             INNER JOIN loai_lop ON lich_day.id_lop = loai_lop.id_loai
             INNER JOIN mon_hoc ON lich_day.id_mon = mon_hoc.id_mon
             WHERE lich_day.id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY lich_day.id DESC"),
-
             'loai_lop' => $this->get_list("SELECT * FROM `loai_lop`
-
             WHERE loai_lop.id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY loai_lop.id_loai DESC"),
+            'thanh_ngu' => $this->get_row("SELECT * FROM `thanh_ngu` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' AND status = '2' ORDER BY rand() LIMIT 1"),
 
 
         ];
@@ -106,89 +183,6 @@ class TeacherModel extends Model
         }
     }
 
-    public function tao_bang_diem()
-    {
-        # code...
-        $this->data = [
-            'hoc_ky' => $this->get_list("SELECT * FROM `hoc_ky` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY id_hocky DESC"),
-            'mon_hoc' => $this->get_list("SELECT * FROM `mon_hoc` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_mon DESC"),
-            'loai_lop' => $this->get_list("SELECT * FROM `loai_lop` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_loai DESC"),
-            'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY id_khoa DESC"),
-
-        ];
-
-
-
-        if (isset($_POST["import"])) {
-            $hoc_ky = $_POST['hoc_ky'];
-            $khoa = $_POST['khoa'];
-            $mon_hoc = $_POST['mon_hoc'];
-            $loai_lop = $_POST['loai_lop'];
-
-            $id_teacher = $this->getInfoTeacher('id_teacher');
-
-            $fileName = $_FILES["file_import"]["name"];
-            $fileExtension = explode('.', $fileName);
-            $fileExtension = strtolower(end($fileExtension));
-            $newFileName = date("Y.m.d")  . date("h.i.sa") . "." . $fileExtension;
-            $pathFile = "uploads/" . $newFileName;
-            $upload =  move_uploaded_file($_FILES['file_import']['tmp_name'], $pathFile);
-
-
-            $ds_monhoc = $this->get_row("SELECT * FROM `mon_hoc`");
-
-            $array_diem = explode(',', $ds_monhoc['diem']);
-
-            foreach ($array_diem as  $value) {
-                $format_array_diem[$value] = null;
-            }
-
-            // if (!empty($upload)) {
-            //     $objReader = PHPExcel_IOFactory::createReaderForFile($pathFile);
-            //     $objExcel = $objReader->load($pathFile);
-            //     $sheetData = $objExcel->getActiveSheet()->toArray('null', true, true, true);
-            //     print_r($sheetData);
-            // }
-
-            if (!empty($upload)) {
-
-                $objFile = PHPExcel_IOFactory::identify($pathFile);
-                $objData = PHPExcel_IOFactory::createReader($objFile);
-
-                $objPHPExcel = $objData->load($pathFile);
-
-                $sheet = $objPHPExcel->setActiveSheetIndex(0);
-
-                $TotalRow = $sheet->getHighestRow();
-                $LastColumn = $sheet->getHighestColumn();
-                $TotalCol = PHPExcel_Cell::columnIndexFromString($LastColumn);
-
-                $data_import = [];
-
-                for ($i = 2; $i <= $TotalRow; $i++) {
-                    for ($j = 0; $j < $TotalCol; $j++) {
-                        $data_import[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();
-                    }
-                }
-                unlink($pathFile);
-
-                foreach ($data_import as $row) {
-                    $data_insert = [
-                        'mssv' => $row[1],
-                        'ho_ten' => $row['2'],
-                        'email' => $row['3'],
-                        'sdt' => $row['4'],
-                        'thongtin_sv' => json_encode($row),
-                        'id_mon' => $mon_hoc,
-                        'id_lop' => $loai_lop,
-                        'array_diem' => json_encode($format_array_diem),
-                        'id_teacher' => $id_teacher
-                    ];
-                    $this->insert("diem_sv", $data_insert);
-                }
-            }
-        }
-    }
 
 
     public function profile()

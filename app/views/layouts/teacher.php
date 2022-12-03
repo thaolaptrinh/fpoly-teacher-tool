@@ -1,9 +1,9 @@
 <?php require_once 'app/views/include/head.php'; ?>
-<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+<div class="d-fle  flex-column flex-root app-root" id="kt_app_root">
   <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
     <?php require_once 'app/views/include/teacher/header.php'; ?>
     <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
-      <div class="app-container container-xxl d-flex flex-row flex-column-fluid">
+      <div class="app-container container-xxl d-flex flex-row flex-column-fluid" id="app-container">
         <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
           <div class="d-flex flex-column flex-column-fluid">
             <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -47,20 +47,7 @@
                               </div>
                               <div class="stepper-line h-40px"></div>
                             </div>
-                            <div class="stepper-item" data-kt-stepper-element="nav">
-                              <div class="stepper-wrapper">
-                                <div class="stepper-icon w-40px h-40px">
-                                  <i class="stepper-check fas fa-check"></i>
-                                  <span class="stepper-number">2</span>
-                                </div>
 
-                                <div class="stepper-label">
-                                  <h3 class="stepper-title">Khóa</h3>
-                                  <div class="stepper-desc">Khóa học của trường</div>
-                                </div>
-                              </div>
-                              <div class="stepper-line h-40px"></div>
-                            </div>
                             <div class="stepper-item" data-kt-stepper-element="nav">
                               <div class="stepper-wrapper">
                                 <div class="stepper-icon w-40px h-40px">
@@ -159,46 +146,7 @@
                                 </div>
                               </div>
                             </div>
-                            <div data-kt-stepper-element="content">
-                              <div class="w-100">
-                                <div class="fv-row fv-plugins-icon-container scroll-y max-h-300px">
-                                  <label class="d-flex align-items-center fs-5 fw-semibold mb-4">
-                                    <span class="required">Danh sách</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Chọn khóa học"></i>
-                                  </label>
-                                  <?php
-                                  if (!empty($this->data['khoa']) && isset($this->data['khoa'])) {
-                                    $khoa = $this->data['khoa'];
-                                    foreach ($khoa as $value) {
-                                      extract($value); ?>
-                                      <label class="d-flex flex-stack cursor-pointer mb-5">
-                                        <span class="d-flex align-items-center me-2">
-                                          <span class="symbol symbol-50px me-6">
-                                            <span class="symbol-label bg-light-danger">
-                                              <span class="svg-icon svg-icon-1 svg-icon-danger">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                  <rect x="2" y="2" width="9" height="9" rx="2" fill="currentColor"></rect>
-                                                  <rect opacity="0.3" x="13" y="2" width="9" height="9" rx="2" fill="currentColor"></rect>
-                                                  <rect opacity="0.3" x="13" y="13" width="9" height="9" rx="2" fill="currentColor"></rect>
-                                                  <rect opacity="0.3" x="2" y="13" width="9" height="9" rx="2" fill="currentColor"></rect>
-                                                </svg>
-                                              </span>
-                                            </span>
-                                          </span>
-                                          <span class="d-flex flex-column">
-                                            <span class="fw-bold fs-6"><?= $ten_khoa ?></span>
-                                          </span>
-                                        </span>
-                                        <span class="form-check form-check-custom form-check-solid">
-                                          <input class="form-check-input" type="radio" name="khoa-hoc" value="<?= $id_khoa ?>">
-                                        </span>
-                                      </label>
-                                  <?php }
-                                  } ?>
 
-                                </div>
-                              </div>
-                            </div>
                             <div data-kt-stepper-element="content">
                               <div class="w-100">
                                 <div class="fv-row fv-plugins-icon-container scroll-y  max-h-300px">
@@ -221,11 +169,10 @@
                                           </span>
                                           <span class="d-flex flex-column">
                                             <span class="fw-bold fs-6"><?= $ten_lop ?></span>
-                                            <!-- <span class="fs-7 text-muted"></span> -->
                                           </span>
                                         </span>
                                         <span class="form-check form-check-custom form-check-solid">
-                                          <input class="form-check-input" type="radio" name="loai-lop" checked="checked" value="1">
+                                          <input class="form-check-input" type="radio" name="loai-lop" checked="checked" value="<?= $id_loai ?>">
                                         </span>
                                       </label>
                                   <?php }
@@ -286,14 +233,14 @@
                                     <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Import danh sách sinh viên"></i>
                                   </label>
                                   <div class="fv-row fv-plugins-icon-container scroll-y  max-h-300px">
-                                    <label for="import-sv" class="btn btn-primary"><span class="svg-icon svg-icon-2">
+                                    <label for="file-sv" class="btn btn-primary"><span class="svg-icon svg-icon-2">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path opacity="0.3" d="M10 4H21C21.6 4 22 4.4 22 5V7H10V4Z" fill="currentColor"></path>
                                           <path d="M10.4 3.60001L12 6H21C21.6 6 22 6.4 22 7V19C22 19.6 21.6 20 21 20H3C2.4 20 2 19.6 2 19V4C2 3.4 2.4 3 3 3H9.20001C9.70001 3 10.2 3.20001 10.4 3.60001ZM16 11.6L12.7 8.29999C12.3 7.89999 11.7 7.89999 11.3 8.29999L8 11.6H11V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H16Z" fill="currentColor"></path>
                                           <path opacity="0.3" d="M11 11.6V17C11 17.6 11.4 18 12 18C12.6 18 13 17.6 13 17V11.6H11Z" fill="currentColor"></path>
                                         </svg>
                                       </span>Upload File</label>
-                                    <input type="file" id="import-sv" name="import-sv">
+                                    <input type="file" id="file-sv" name="file-sv">
                                   </div>
                                 </div>
                               </div>
@@ -303,18 +250,23 @@
                                 <h1 class="fw-bold text-dark mb-3">Hoàn tất!</h1>
                                 <div class="text-muted fw-semibold fs-3">Tạo bảng điểm thành công.</div>
                                 <div class="text-center px-4 py-15">
-                                  <img src="/keen/demo9/assets/media/illustrations/sketchy-1/9.png" alt="" class="mw-100 mh-300px" />
+                                  <img src="" alt="" class="mw-100 mh-300px" />
+                                  <div>
+                                    <a href="#" id="view-bang-diem" class="btn btn-lg btn-light-primary me-3">
+                                      Xem bảng điểm
+                                    </a>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div data-kt-stepper-element="content">
+                            <!-- <div data-kt-stepper-element="content">
                               <div class="w-100 text-center">
                                 <h1 class="fw-bold text-dark mb-3">Hoàn tất!</h1>
                                 <div class="text-center px-4 py-15">
-                                  <img src="/keen/demo9/assets/media/illustrations/sketchy-1/9.png" alt="" class="mw-100 mh-300px">
+                                  <img src="" alt="" class="mw-100 mh-300px">
                                 </div>
                               </div>
-                            </div>
+                            </div> -->
                             <div class="d-flex flex-stack pt-10">
                               <div class="me-2">
                                 <button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">

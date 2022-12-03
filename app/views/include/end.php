@@ -24,6 +24,10 @@
 <script>
   let base_url = $("#base_url").attr("href");
   let page_target = $("#base_url").attr("page_target");
+
+  if (page_target == 'bang-diem') {
+    $('#app-container').removeClass('container-xxl');
+  }
 </script>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -37,6 +41,8 @@ if ($page_target == 'login') { ?>
   <script src="<?= BASE_URL('assets/js/auth/login.js') ?>"></script>
 <?php } elseif ($page_target == 'register') { ?>
   <script src="<?= BASE_URL('assets/js/auth/register.js') ?>"></script>
+<?php  } elseif ($page_target == 'profile') { ?>
+  <script src="<?= BASE_URL('assets/js/auth/profile.js') ?>"></script>
 <?php } elseif ($page_target == 'lien-ket') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/add.js') ?>"></script>
@@ -52,7 +58,8 @@ if ($page_target == 'login') { ?>
 <?php } elseif ($page_target == 'bang-diem') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/update.js') ?>"></script>
-<?php } ?>
+<?php
+} ?>
 </body>
 
 </html>
