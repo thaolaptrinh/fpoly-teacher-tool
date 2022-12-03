@@ -7,6 +7,8 @@ var KTSignupGeneral = (function () {
   var passwordMeter;
   var formData = new FormData();
 
+
+  var toggle_pass = form.querySelector('')
   // Handle form
   var handleForm = function (e) {
     // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/

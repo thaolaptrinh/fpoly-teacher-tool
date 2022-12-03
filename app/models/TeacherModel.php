@@ -190,45 +190,40 @@ class TeacherModel extends Model
         # code...
 
 
-        if (isset($_POST['old-password'])) {
 
+
+        if (isset($_POST['is_changepass'])) {
 
             $data = [
-                'old-pass' => check_string($_POST['old-password']),
-                'new-pass' => check_string($_POST['new-password']),
-                'again-newpass' => check_string($_POST['again-newpassword']),
+                'currentpassword' => check_string($_POST['currentpassword']),
+                'newpassword' => check_string($_POST['newpassword']),
+                'confirmpassword' => check_string($_POST['confirmpassword']),
             ];
-
 
             $result = array_filter($data, 'myFilter');
 
             if (!$result) {
 
-                if (count_string($data['new-pass']) < 8) {
-
+                if (count_string($data['newpassword']) < 8) {
                     $response['status'] = false;
-                    $response['title'] = 'Đổi mật khẩu thất bại';
                     $response['message'] = 'Mật khẩu mới phải từ 8 ký tự trở lên';
                     die(json_encode($response));
-                } elseif ($data['new-pass'] !=  $data['again-newpass']) {
+                } elseif ($data['newpassword'] !=  $data['confirmpassword']) {
                     $response['status'] = false;
-                    $response['title'] = 'Đổi mật khẩu thất bại';
                     $response['message'] = 'Mật khẩu mới không khớp';
                     die(json_encode($response));
-                } elseif (typepass($data['new-pass']) == $this->getInfoTeacher('password')) {
+                } elseif (typepass($data['newpassword']) == $this->getInfoTeacher('password')) {
                     $response['status'] = false;
-                    $response['title'] = 'Đổi mật khẩu thất bại';
                     $response['message'] = 'Mật khẩu mới không được trùng với mật khẩu cũ';
                     die(json_encode($response));
-                } elseif (typepass($data['old-pass']) != $this->getInfoTeacher('password')) {
+                } elseif (typepass($data['currentpassword']) != $this->getInfoTeacher('password')) {
                     $response['status'] = false;
-                    $response['title'] = 'Đổi mật khẩu thất bại';
                     $response['message'] = 'Mật khẩu cũ không khớp';
                     die(json_encode($response));
                 } else {
 
                     $data_update = [
-                        'password' => typepass($data['new-pass'])
+                        'password' => typepass($data['newpassword'])
                     ];
 
                     $is_change = $this->update_value('teachers', $data_update, "email = '" . $this->getInfoTeacher('email') . "'");
@@ -236,19 +231,16 @@ class TeacherModel extends Model
                     if ($is_change) {
 
                         $response['status'] = true;
-                        $response['title'] = 'Đổi mật khẩu thành công';
                         $response['message'] = 'Bạn đã đổi mật khẩu thành công';
                         die(json_encode($response));
                     } else {
                         $response['status'] = false;
-                        $response['title'] = 'Đổi mật khẩu thất bại';
                         $response['message'] = 'Đã xảy ra lỗi';
                         die(json_encode($response));
                     }
                 }
             } else {
                 $response['status'] = false;
-                $response['title'] = 'Đổi mật khẩu thất bại';
                 $response['message'] = 'Vui lòng điền đầy đủ thông tin';
                 die(json_encode($response));
             }

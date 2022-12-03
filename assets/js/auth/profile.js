@@ -2,21 +2,11 @@
 
 // Class definition
 var KTAccountSettingsSigninMethods = (function () {
-  var signInForm;
-  var signInMainEl;
-  var signInEditEl;
   var passwordMainEl;
   var passwordEditEl;
-  var signInChangeEmail;
-  var signInCancelEmail;
   var passwordChange;
   var passwordCancel;
-
-  var toggleChangeEmail = function () {
-    signInMainEl.classList.toggle("d-none");
-    signInChangeEmail.classList.toggle("d-none");
-    signInEditEl.classList.toggle("d-none");
-  };
+  var formData = [];
 
   var toggleChangePassword = function () {
     passwordMainEl.classList.toggle("d-none");
@@ -26,21 +16,6 @@ var KTAccountSettingsSigninMethods = (function () {
 
   // Private functions
   var initSettings = function () {
-    if (!signInMainEl) {
-      return;
-    }
-
-    // toggle UI
-    signInChangeEmail
-      .querySelector("button")
-      .addEventListener("click", function () {
-        toggleChangeEmail();
-      });
-
-    signInCancelEmail.addEventListener("click", function () {
-      toggleChangeEmail();
-    });
-
     passwordChange
       .querySelector("button")
       .addEventListener("click", function () {
@@ -50,82 +25,6 @@ var KTAccountSettingsSigninMethods = (function () {
     passwordCancel.addEventListener("click", function () {
       toggleChangePassword();
     });
-  };
-
-  var handleChangeEmail = function (e) {
-    var validation;
-
-    if (!signInForm) {
-      return;
-    }
-
-    validation = FormValidation.formValidation(signInForm, {
-      fields: {
-        emailaddress: {
-          validators: {
-            notEmpty: {
-              message: "Email is required",
-            },
-            emailAddress: {
-              message: "The value is not a valid email address",
-            },
-          },
-        },
-
-        confirmemailpassword: {
-          validators: {
-            notEmpty: {
-              message: "Password is required",
-            },
-          },
-        },
-      },
-
-      plugins: {
-        //Learn more: https://formvalidation.io/guide/plugins
-        trigger: new FormValidation.plugins.Trigger(),
-        bootstrap: new FormValidation.plugins.Bootstrap5({
-          rowSelector: ".fv-row",
-        }),
-      },
-    });
-
-    signInForm
-      .querySelector("#kt_signin_submit")
-      .addEventListener("click", function (e) {
-        e.preventDefault();
-        console.log("click");
-
-        validation.validate().then(function (status) {
-          if (status == "Valid") {
-            swal
-              .fire({
-                text: "Sent password reset. Please check your email",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                  confirmButton: "btn font-weight-bold btn-light-primary",
-                },
-              })
-              .then(function () {
-                signInForm.reset();
-                validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                toggleChangeEmail();
-              });
-          } else {
-            swal.fire({
-              text: "Sorry, looks like there are some errors detected, please try again.",
-              icon: "error",
-              buttonsStyling: false,
-              confirmButtonText: "Ok, got it!",
-              customClass: {
-                confirmButton: "btn font-weight-bold btn-light-primary",
-              },
-            });
-          }
-        });
-      });
   };
 
   var handleChangePassword = function (e) {
@@ -138,12 +37,22 @@ var KTAccountSettingsSigninMethods = (function () {
       return;
     }
 
+    var formData_text = ["currentpassword", "newpassword", "confirmpassword"];
+    formData_text.forEach((element) => {
+      formData.append(
+        element,
+        passwordForm.querySelector(`[name="${element}"]`).value
+      );
+    });
+
+    formData.append("is_changepass", true);
+
     validation = FormValidation.formValidation(passwordForm, {
       fields: {
         currentpassword: {
           validators: {
             notEmpty: {
-              message: "Current Password is required",
+              message: "Không được bỏ trống",
             },
           },
         },
@@ -151,7 +60,7 @@ var KTAccountSettingsSigninMethods = (function () {
         newpassword: {
           validators: {
             notEmpty: {
-              message: "New Password is required",
+              message: "Không được bỏ trống",
             },
           },
         },
@@ -159,20 +68,19 @@ var KTAccountSettingsSigninMethods = (function () {
         confirmpassword: {
           validators: {
             notEmpty: {
-              message: "Confirm Password is required",
+              message: "Không được bỏ trống",
             },
             identical: {
               compare: function () {
                 return passwordForm.querySelector('[name="newpassword"]').value;
               },
-              message: "The password and its confirm are not the same",
+              message: "Mật khẩu mới phải giống nhau",
             },
           },
         },
       },
 
       plugins: {
-        //Learn more: https://formvalidation.io/guide/plugins
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap: new FormValidation.plugins.Bootstrap5({
           rowSelector: ".fv-row",
@@ -184,35 +92,31 @@ var KTAccountSettingsSigninMethods = (function () {
       .querySelector("#kt_password_submit")
       .addEventListener("click", function (e) {
         e.preventDefault();
-        console.log("click");
 
         validation.validate().then(function (status) {
           if (status == "Valid") {
-            swal
-              .fire({
-                text: "Sent password reset. Please check your email",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                  confirmButton: "btn font-weight-bold btn-light-primary",
-                },
+            axios
+              .post(window.location.href, formData)
+              .then((response) => {
+                console.log(response);
+                Swal.fire({
+                  text: response.data.message,
+                  icon: response.data.status ? "success" : "error",
+                  buttonsStyling: false,
+                  confirmButtonText: "Ok!",
+                  customClass: {
+                    confirmButton: "btn btn-primary",
+                  },
+                }).then(function (result) {
+                  if (result.isConfirmed && response.data.status) {
+                    modal.hide();
+                    window.location.reload();
+                  }
+                });
               })
-              .then(function () {
-                passwordForm.reset();
-                validation.resetForm(); // Reset formvalidation --- more info: https://formvalidation.io/guide/api/reset-form/
-                toggleChangePassword();
+              .catch((error) => {
+                console.log(error);
               });
-          } else {
-            swal.fire({
-              text: "Sorry, looks like there are some errors detected, please try again.",
-              icon: "error",
-              buttonsStyling: false,
-              confirmButtonText: "Ok, got it!",
-              customClass: {
-                confirmButton: "btn font-weight-bold btn-light-primary",
-              },
-            });
           }
         });
       });
@@ -225,9 +129,9 @@ var KTAccountSettingsSigninMethods = (function () {
       passwordEditEl = document.getElementById("kt_signin_password_edit");
       passwordChange = document.getElementById("kt_signin_password_button");
       passwordCancel = document.getElementById("kt_password_cancel");
+      formData = new FormData();
 
       initSettings();
-      handleChangeEmail();
       handleChangePassword();
     },
   };

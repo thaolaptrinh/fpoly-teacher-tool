@@ -5,12 +5,10 @@
 			<div class="d-flex flex-wrap align-items-center">
 				<div id="kt_signin_email">
 					<div class="fs-6 fw-bold mb-1">Email</div>
-					<div class="fw-semibold text-gray-600">support@keenthemes.com</div>
+					<div class="fw-semibold text-gray-600"><?= $this->model_home->getInfoTeacher('email') ?></div>
 				</div>
 
-				<div id="kt_signin_email_edit" class="flex-row-fluid d-none">
 
-				</div>
 
 			</div>
 
