@@ -200,6 +200,8 @@ class TeacherModel extends Model
                 'confirmpassword' => check_string($_POST['confirmpassword']),
             ];
 
+
+
             $result = array_filter($data, 'myFilter');
 
             if (!$result) {

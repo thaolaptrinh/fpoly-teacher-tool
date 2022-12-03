@@ -37,16 +37,6 @@ var KTAccountSettingsSigninMethods = (function () {
       return;
     }
 
-    var formData_text = ["currentpassword", "newpassword", "confirmpassword"];
-    formData_text.forEach((element) => {
-      formData.append(
-        element,
-        passwordForm.querySelector(`[name="${element}"]`).value
-      );
-    });
-
-    formData.append("is_changepass", true);
-
     validation = FormValidation.formValidation(passwordForm, {
       fields: {
         currentpassword: {
@@ -88,17 +78,25 @@ var KTAccountSettingsSigninMethods = (function () {
       },
     });
 
+    var formData_text = ["currentpassword", "newpassword", "confirmpassword"];
     passwordForm
       .querySelector("#kt_password_submit")
       .addEventListener("click", function (e) {
         e.preventDefault();
+
+        formData.append("is_changepass", true);
+        formData_text.forEach((element) => {
+          formData.append(
+            element,
+            passwordForm.querySelector(`[name="${element}"]`).value
+          );
+        });
 
         validation.validate().then(function (status) {
           if (status == "Valid") {
             axios
               .post(window.location.href, formData)
               .then((response) => {
-                console.log(response);
                 Swal.fire({
                   text: response.data.message,
                   icon: response.data.status ? "success" : "error",
@@ -107,9 +105,9 @@ var KTAccountSettingsSigninMethods = (function () {
                   customClass: {
                     confirmButton: "btn btn-primary",
                   },
+                  allowOutsideClick: !response.data.status,
                 }).then(function (result) {
                   if (result.isConfirmed && response.data.status) {
-                    modal.hide();
                     window.location.reload();
                   }
                 });
