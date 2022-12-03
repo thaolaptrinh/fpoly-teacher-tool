@@ -43,6 +43,8 @@ if ($page_target == 'login') { ?>
   <script src="<?= BASE_URL('assets/js/auth/register.js') ?>"></script>
 <?php  } elseif ($page_target == 'profile') { ?>
   <script src="<?= BASE_URL('assets/js/auth/profile.js') ?>"></script>
+<?php  } elseif ($page_target == 'resetpass') { ?>
+  <script src="<?= BASE_URL('assets/js/auth/reset-password.js') ?>"></script>
 <?php } elseif ($page_target == 'lien-ket') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/extensions/links/add.js') ?>"></script>

@@ -189,9 +189,6 @@ class TeacherModel extends Model
     {
         # code...
 
-
-
-
         if (isset($_POST['is_changepass'])) {
 
             $data = [
@@ -201,7 +198,7 @@ class TeacherModel extends Model
             ];
 
 
-
+    
             $result = array_filter($data, 'myFilter');
 
             if (!$result) {

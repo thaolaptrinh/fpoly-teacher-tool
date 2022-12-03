@@ -1,6 +1,6 @@
 <div class="d-flex flex-center flex-column flex-lg-row-fluid">
   <div class="w-lg-500px p-10">
-    <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" id="kt_password_reset_form" data-kt-redirect-url="/keen/demo9/../demo9/authentication/layouts/corporate/new-password.html" action="#">
+    <form class="form w-100 fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate" id="kt_password_reset_form" data-kt-redirect-url="<?= BASE_URL('auth/login') ?>" action="#">
       <div class="text-center mb-10">
         <h1 class="text-dark fw-bolder mb-3">Quên mật khẩu ?</h1>
         <div class="text-gray-500 fw-semibold fs-6">Nhập email để đặt lại mật khẩu.</div>

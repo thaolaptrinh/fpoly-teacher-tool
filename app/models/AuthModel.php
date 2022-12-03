@@ -22,10 +22,6 @@ class AuthModel extends Model
 
     if (isset($_POST['email'])) {
 
-
-
-
-
       $data = [
         'email' => check_string($_POST['email']),
         'password' => check_string($_POST['password']),
@@ -77,7 +73,6 @@ class AuthModel extends Model
     if (isset($_POST['email'])) {
 
 
-      // 'name' => check_string($_POST['name']),
       $data = [
         'coso' => $_POST['coso'],
         'email' => check_string($_POST['email']),
@@ -128,5 +123,33 @@ class AuthModel extends Model
   public function resetpass()
   {
     # code...
+
+    if (isset($_POST['is_resetpass'])) {
+
+
+      $data = [
+        'email' => check_string($_POST['email']),
+      ];
+      $result = array_filter($data, 'myFilter');
+
+      if (!$result) {
+        if (!check_email($data['email'])) {
+          $response['status'] = false;
+          $response['message']  = 'Định dạng email không hợp lệ!';
+          die(json_encode($response));
+        } elseif (!$this->get_row("SELECT * FROM  `teachers` WHERE 'email' = '" . $_POST['email'] . "'")) {
+          $response['status'] = false;
+          $response['message']  = 'Không tồn tại tài khoản email này!';
+          die(json_encode($response));
+        } else {
+
+          
+        }
+      } else {
+        $response['status'] = false;
+        $response['message']  = 'Không được bỏ trống!';
+        die(json_encode($response));
+      }
+    }
   }
 }

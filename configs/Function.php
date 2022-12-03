@@ -3,15 +3,10 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 $DB = new Database;
 
-
-
 function count_string($data)
 {
   return strlen(check_string($data));
 }
-
-
-
 
 function myFilter($var)
 {
@@ -46,9 +41,6 @@ function logout()
   session_destroy();
   header("Location: " . BASE_URL(''));
 }
-
-
-
 
 
 function check_string($data)
