@@ -60,7 +60,6 @@ if ($page_target == 'login') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/bangdiem/update.js') ?>"></script>
 
 <?php } elseif ($page_target == 'lich') { ?>
-  <script src="<?= BASE_URL('assets/js/custom/app/calendar/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/calendar/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/calendar/update.js') ?>"></script>
 <?php } ?>

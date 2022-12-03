@@ -57,8 +57,6 @@
   <div class="card-body pt-0">
     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_list_diem_table">
       <thead>
-
-
         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
           <th class="w-10px pe-2">
             <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
@@ -70,10 +68,10 @@
           <th class="text-end min-w-100px">Tên lớp</th>
           <th class="text-end min-w-70px">Mã môn</th>
           <th class="text-end min-w-70px">Xem</th>
-          <th class="text-end min-w-70px">Ngày</th>
+          <th class="text-end min-w-70px">Ngày học</th>
           <th class="text-end min-w-70px">Ca học</th>
           <th class="text-end min-w-70px">Phòng</th>
-          <th class="text-end min-w-70px">Số sinh viên</th>
+          <th class="text-end min-w-70px">Sinh viên</th>
           <th class="text-end min-w-70px">Ngày bắt đầu</th>
           <th class="text-end min-w-70px">Ngày kết thúc</th>
           <th class="text-end min-w-70px">Ghi chú</th>
@@ -91,6 +89,7 @@
         }
       </style>
       <tbody class="fw-semibold text-gray-600">
+
         <?php
 
         if (!empty($this->model_home->data['lich_day'])) {
@@ -105,18 +104,19 @@
                 </div>
               </td>
               <td><?= ++$i ?></td>
-              <td class="text-end pe-0"><?= $ten_hocky ?></td>
-              <td class="text-end pe-0"><?= $ten_lop ?></td>
-              <td class="text-end pe-0"><?= $ma_mon ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ten_hocky ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ten_lop ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ma_mon ?></td>
               <td class="text-end pe-0">
                 <a href="<?= BASE_URL('bang-diem?lop=' . $ten_lop . '&mon=' . $ma_mon) ?>" target="_blank">Bảng điểm</a>
               </td>
-              <td class="text-end pe-0"><?= $ngay_hoc ?></td>
-              <td class="text-end pe-0"><?= $ca_hoc ?></td>
-              <td class="text-end pe-0"><?= $phong_hoc ?></td>
-              <td class="text-end pe-0"><?= $ngay_bat_dau ?></td>
-              <td class="text-end pe-0"><?= $ngay_ket_thuc ?></td>
-              <td class="text-end pe-0"><?= $ghi_chu ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ngay_hoc ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ca_hoc ?></td>
+              <td class="text-end pe-0" contenteditable><?= $phong_hoc ?></td>
+              <td class="text-end pe-0" contenteditable><?= $so_sv ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ngay_bat_dau ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ngay_ket_thuc ?></td>
+              <td class="text-end pe-0" contenteditable><?= $ghi_chu ?></td>
 
               <td class="text-end">
                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -138,8 +138,6 @@
             </tr>
         <?php }
         } ?>
-
-
       </tbody>
     </table>
   </div>
