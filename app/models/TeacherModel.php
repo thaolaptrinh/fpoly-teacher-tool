@@ -71,16 +71,19 @@ class TeacherModel extends Model
                 foreach ($data_import as $row) {
                     $data_insert = [
                         'mssv' => $row[1],
-                        'ho_ten' => $row['2'],
-                        'email' => $row['3'],
-                        'sdt' => $row['4'],
+                        'ho_ten' => $row[2],
+                        'email' => $row[3],
+                        'sdt' => $row[4],
                         'thongtin_sv' => json_encode($row),
                         'id_mon' => $mon_hoc,
                         'id_lop' => $loai_lop,
                         'array_diem' => json_encode($format_array_diem),
                         'id_teacher' => $id_teacher
                     ];
-                    $this->insert("diem_sv", $data_insert);
+                    if (!$this->get_row("SELECT * FROM `diem_sv` WHERE 
+                    mssv = '" . $row[1] . "' AND id_mon = '$mon_hoc' ")) {
+                        $this->insert("diem_sv", $data_insert);
+                    }
                 }
 
 
@@ -166,20 +169,34 @@ class TeacherModel extends Model
 
         // edit dữ liệu điểm
 
-
-
-
-
-        if (isset($_POST['id'])) {
+        if (isset($_POST['is_update'])) {
             $id_diem = $_POST['id'];
             $text = $_POST['text'];
             $column_name = $_POST['column_name'];
-            $is_update =  $this->update_value('diem_sv', [$column_name => $text], "id = $id_diem");
-            // $is_remove =  $this->remove('diem_sv', "id = $id_diem");
+            $target = $_POST['target'];
+
+            $array_diem = $this->getDetailDiem($id_diem, 'array_diem');
+            if ($target == 'diem') {
+                $array_diem = json_decode($array_diem, true);
+                $array_diem[$column_name] =  $text;
+                $response['status'] =  $array_diem;
+                $is_update =  $this->update_value('diem_sv', ['array_diem' => json_encode($array_diem)], "id = $id_diem");
+            } else {
+                $is_update =  $this->update_value('diem_sv', [$column_name => $text], "id = $id_diem");
+            }
             if ($is_update) {
-                $response['status'] = true;
+                $response['status'] =  true;
+                $response['message'] =  'Cập nhât thành công!';
+                die(json_encode($response));
+            } else {
+                $response['status'] =  false;
+                $response['message'] =  'Cập nhât thất bại!';
                 die(json_encode($response));
             }
+        }
+
+        if (isset($_POST['is_delete'])) {
+            $this->delete_item('diem_sv', "id = '" . $_POST['id'] . "'");
         }
     }
 
@@ -197,8 +214,6 @@ class TeacherModel extends Model
                 'confirmpassword' => check_string($_POST['confirmpassword']),
             ];
 
-
-    
             $result = array_filter($data, 'myFilter');
 
             if (!$result) {
@@ -692,6 +707,40 @@ class TeacherModel extends Model
                  ORDER BY lich_day.id DESC")
                 ];
             }
+        }
+
+        if (isset($_POST['is_add'])) {
+            $data_insert = [
+                "id_hocky" => check_string($_POST['hoc_ky']),
+                "id_mon" => check_string($_POST['mon_hoc']),
+                "id_lop" => check_string($_POST['loai_lop']),
+                "ca_hoc" => check_string($_POST['ca_hoc']),
+                "phong_hoc" => check_string($_POST['phong_hoc']),
+                "ngay_hoc" => check_string($_POST['ngay_hoc']),
+                "ghi_chu" => check_string($_POST['ghi_chu']),
+                "so_sv" => check_string($_POST['so_sv']),
+                "ngay_bat_dau" => check_string($_POST['ngay_bat_dau']),
+                "ngay_ket_thuc" => check_string($_POST['ngay_ket_thuc']),
+                "status" => check_string($_POST['status']),
+                "id_teacher" => $this->getInfoTeacher('id_teacher'),
+            ];
+
+            if ($this->get_row("SELECT * FROM `lich_day` WHERE id_lop = '" . $_POST['loai_lop'] . "' AND 
+            id_mon = '" . $_POST['mon_hoc'] . "'")) {
+                $response['status'] = false;
+                $response['message'] = 'Lịch dạy này đã tồn tại trên hệ thống!';
+                die(json_encode($response));
+            } else {
+                $this->add_item(
+                    "lich_day",
+                    $data_insert
+                );
+            }
+        } elseif (isset($_POST['is_delete'])) {
+            $this->delete_item(
+                'lich_day',
+                "id = '" . $_POST['id'] . "'"
+            );
         }
     }
 }

@@ -52,7 +52,7 @@
                               <div class="stepper-wrapper">
                                 <div class="stepper-icon w-40px h-40px">
                                   <i class="stepper-check fas fa-check"></i>
-                                  <span class="stepper-number">3</span>
+                                  <span class="stepper-number">2</span>
                                 </div>
                                 <div class="stepper-label">
                                   <h3 class="stepper-title">Lớp học</h3>
@@ -65,7 +65,7 @@
                               <div class="stepper-wrapper">
                                 <div class="stepper-icon w-40px h-40px">
                                   <i class="stepper-check fas fa-check"></i>
-                                  <span class="stepper-number">4</span>
+                                  <span class="stepper-number">3</span>
                                 </div>
 
                                 <div class="stepper-label">
@@ -93,7 +93,7 @@
                               <div class="stepper-wrapper">
                                 <div class="stepper-icon w-40px h-40px">
                                   <i class="stepper-check fas fa-check"></i>
-                                  <span class="stepper-number">6</span>
+                                  <span class="stepper-number">5</span>
                                 </div>
                                 <div class="stepper-label">
                                   <h3 class="stepper-title">Hoàn tất</h3>
@@ -137,7 +137,7 @@
                                             </span>
                                           </span>
                                           <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" name="hoc-ky" value="<?= $id_hocky ?>">
+                                            <input class="form-check-input" type="radio" name="hoc-ky" checked="checked" value="<?= $id_hocky ?>">
                                           </span>
                                         </label>
                                     <?php }
@@ -215,7 +215,7 @@
                                             </span>
                                           </span>
                                           <span class="form-check form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="radio" name="mon-hoc" value="<?= $id_hocky ?>">
+                                            <input class="form-check-input" type="radio" name="mon-hoc" checked="checked" value="<?= $id_mon ?>">
                                           </span>
                                         </label>
                                     <?php }

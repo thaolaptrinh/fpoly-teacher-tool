@@ -142,8 +142,6 @@ class AuthModel extends Model
           $response['message']  = 'Không tồn tại tài khoản email này!';
           die(json_encode($response));
         } else {
-
-          
         }
       } else {
         $response['status'] = false;

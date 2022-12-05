@@ -16,6 +16,7 @@
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
 <script src="<?= BASE_URL('assets/plugins/custom/datatables/datatables.bundle.js') ?>"></script>
+<script src="<?= BASE_URL('assets/js/custom/toast.js') ?>"></script>
 
 <script src="<?= BASE_URL('assets/js/widgets.bundle.js') ?>"></script>
 
@@ -63,6 +64,7 @@ if ($page_target == 'login') { ?>
 
 <?php } elseif ($page_target == 'lich') { ?>
   <script src="<?= BASE_URL('assets/js/custom/app/calendar/table.js') ?>"></script>
+  <script src="<?= BASE_URL('assets/js/custom/app/calendar/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/js/custom/app/calendar/update.js') ?>"></script>
 <?php } ?>
 </body>

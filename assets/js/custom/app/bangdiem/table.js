@@ -5,6 +5,7 @@ var KTAppListDiem = (function () {
   // Shared variables
   var table;
   var datatable;
+  var formData = new FormData();
 
   // Private functions
   var initDatatable = function () {
@@ -26,6 +27,27 @@ var KTAppListDiem = (function () {
     });
   };
 
+  var edit_diem = function (id, text, column_name, target = null) {
+    formData.append("is_update", true);
+    formData.append("id", id);
+    formData.append("text", text);
+    formData.append("column_name", column_name);
+    formData.append("target", target);
+    axios
+      .post(window.location.href, formData)
+      .then((response) => {
+        console.log(response);
+        var data = response.data;
+        toastMixin.fire({
+          title: data.message,
+          icon: data.status ? "success" : "error",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
   var handleSearchDatatable = () => {
     const filterSearch = document.querySelector(
@@ -41,12 +63,16 @@ var KTAppListDiem = (function () {
     const filterStatus = document.querySelector(
       '[data-kt-list-diem-filter="status"]'
     );
+    var length = datatable.columns().header().length;
     $(filterStatus).on("change", (e) => {
       let value = e.target.value;
       if (value === "all") {
         value = "";
       }
-      datatable.column(6).search(value).draw();
+      datatable
+        .column(length - 2)
+        .search(value)
+        .draw();
     });
   };
 
@@ -65,45 +91,56 @@ var KTAppListDiem = (function () {
         // Select parent row
         const parent = e.target.closest("tr");
 
-        // Get category name
-        const productName = parent.querySelector(
-          '[data-kt-list-diem-filter="product_name"]'
-        ).innerText;
+        const id = parent
+          .querySelectorAll("td")[0]
+          .querySelector("input").value;
 
-        // SweetAlert2 pop up --- official docs reference: https://sweetalert2.github.io/
+        formData.append("is_delete", true);
+        formData.append("id", id);
+
         Swal.fire({
-          text: "Are you sure you want to delete " + productName + "?",
+          text: "Bạn có chắc chắn muốn xóa dữ liệu này không?",
           icon: "warning",
           showCancelButton: true,
           buttonsStyling: false,
-          confirmButtonText: "Yes, delete!",
-          cancelButtonText: "No, cancel",
+          confirmButtonText: "Ok, tôi đồng ý!",
+          cancelButtonText: "Không, hủy",
           customClass: {
             confirmButton: "btn fw-bold btn-danger",
             cancelButton: "btn fw-bold btn-active-light-primary",
           },
         }).then(function (result) {
           if (result.value) {
-            Swal.fire({
-              text: "You have deleted " + productName + "!.",
-              icon: "success",
-              buttonsStyling: false,
-              confirmButtonText: "Ok, got it!",
-              customClass: {
-                confirmButton: "btn fw-bold btn-primary",
-              },
-            }).then(function () {
-              // Remove current row
-              datatable.row($(parent)).remove().draw();
-            });
+            axios
+              .post(window.location.href, formData)
+              .then((response) => {
+                Swal.fire({
+                  text: response.data.message,
+                  icon: "success",
+                  buttonsStyling: false,
+                  confirmButtonText: "Hoàn tất!",
+                  customClass: {
+                    confirmButton: "btn fw-bold btn-primary",
+                  },
+                })
+                  .then(function () {
+                    datatable.row($(parent)).remove().draw();
+                  })
+                  .then(function () {
+                    toggleToolbars();
+                  });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           } else if (result.dismiss === "cancel") {
             Swal.fire({
-              text: productName + " was not deleted.",
+              text: "Xóa không thành công.",
               icon: "error",
               buttonsStyling: false,
-              confirmButtonText: "Ok, got it!",
+              confirmButtonText: "OK!",
               customClass: {
-                confirmButton: "btn fw-bold btn-primary",
+                confirmButton: "btn btn-primary",
               },
             });
           }
@@ -120,6 +157,22 @@ var KTAppListDiem = (function () {
       if (!table) {
         return;
       }
+
+      $(".diem").blur(function (e) {
+        e.preventDefault();
+        console.log($(this));
+        var id = $(this).data("id");
+        var target = $(this).data("target");
+        var text = $(this).text();
+        edit_diem(id, text, target, "diem");
+      });
+
+      $('select[name="phan_loai"]').change(function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        var text = $(this).val();
+        edit_diem(id, text, "phan_loai");
+      });
 
       initDatatable();
       handleSearchDatatable();

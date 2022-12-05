@@ -125,6 +125,7 @@ var KTCreateApp = (function () {
             axios
               .post(base_url, formData)
               .then((response) => {
+                console.log(response);
                 var data = response.data.data;
                 if (response.data.status) {
                   var href = `${base_url}bang-diem?lop=${data.lop}&mon=${data.mon}`;
@@ -240,7 +241,7 @@ var KTCreateApp = (function () {
     validations.push(
       FormValidation.formValidation(form, {
         fields: {
-          "import-sv": {
+          "file-sv": {
             validators: {
               notEmpty: {
                 message: "Chưa có file danh sách sinh viên",

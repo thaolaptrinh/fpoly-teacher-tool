@@ -11,13 +11,18 @@ class Teacher extends  Controller
   public function __construct()
   {
     # code...
+    $this->model_home = $this->model('TeacherModel');
 
     if (!isset($_SESSION['email'])) {
       header('Location: ' . BASE_URL('auth/login'));
       exit();
+    } else {
+      if ($this->model_home->getInfoTeacher('status') != 2) {
+        error('deactivated');
+        die();
+      }
     }
 
-    $this->model_home = $this->model('TeacherModel');
     $this->data['type'] = 'teacher';
     $this->data['page_parent'] = 'teacher';
     $this->data['page_target'] = 'teacher';

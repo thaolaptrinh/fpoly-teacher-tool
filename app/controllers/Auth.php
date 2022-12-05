@@ -11,12 +11,14 @@ class Auth extends Controller
   public function __construct()
   {
     # code...
+    $this->model_home = $this->model('AuthModel');
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])) {
       header('Location: ' . BASE_URL('dashboard'));
       exit();
     }
+
+
     $this->data['type'] = 'auth';
-    $this->model_home = $this->model('AuthModel');
     $this->data = array_merge($this->data, $this->model_home->data);
   }
 

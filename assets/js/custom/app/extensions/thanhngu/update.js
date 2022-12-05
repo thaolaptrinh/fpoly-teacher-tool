@@ -9,6 +9,10 @@ var initUpdatetnDetail = (id) => {
   formData_check.append("id", id);
   formData_update.append("id", id);
   formData_check.append("is_detail", true);
+
+
+  
+
   axios
     .post(window.location.href, formData_check)
     .then((response) => {

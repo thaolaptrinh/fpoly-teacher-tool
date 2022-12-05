@@ -93,6 +93,18 @@ class Database
     return false;
   }
 
+  function getDetailDiem($id, $data)
+  {
+    $this->connect();
+    $row = $this->conn->query("SELECT * FROM `diem_sv`
+  
+     WHERE id = '$id' ")->fetch_array();
+    if ($row) {
+      return $row[$data];
+    }
+    return false;
+  }
+
 
 
   function update($table, $data)
