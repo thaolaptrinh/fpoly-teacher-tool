@@ -86,7 +86,6 @@ class TeacherModel extends Model
                     }
                 }
 
-
                 $response['data'] = [
                     'lop' => $this->get_row("SELECT * FROM `loai_lop` WHERE id_loai = '$loai_lop' ")['ten_lop'],
                     'mon' => $this->get_row("SELECT * FROM `mon_hoc` WHERE id_mon = '$mon_hoc' ")['ma_mon'],
@@ -694,7 +693,7 @@ class TeacherModel extends Model
                 INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
                 INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
                 INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
-                WHERE status = 2
+                WHERE lich_day.status = 2
                  ORDER BY lich_day.id DESC")
                 ];
             } elseif (($_GET['status']) == 0) {
@@ -703,10 +702,21 @@ class TeacherModel extends Model
                 INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
                 INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
                 INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
-                WHERE status = 1
+                WHERE lich_day.status = 1
                  ORDER BY lich_day.id DESC")
                 ];
             }
+        }
+        if (isset($_GET['day'])) {
+
+            $this->data = [
+                'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop FROM lich_day 
+                INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
+                INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
+                INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
+                WHERE DATE_ADD(CURDATE(), INTERVAL '" . $_GET['day'] . "' DAY)  BETWEEN  lich_day.ngay_bat_dau AND lich_day.ngay_ket_thuc
+                 ORDER BY lich_day.id DESC")
+            ];
         }
 
         if (isset($_POST['is_add'])) {

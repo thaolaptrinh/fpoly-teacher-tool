@@ -14,6 +14,36 @@ var initUpdateDetail = (id) => {
     .then((response) => {
       let data = response.data.data;
 
+      form
+        .querySelectorAll('[name="hoc_ky_update"] > option')
+        .forEach(function (e) {
+          if (data.id_hocky == e.value) {
+            e.setAttribute("selected", "selected");
+          } else {
+            e.removeAttribute("selected");
+          }
+        });
+
+      form
+        .querySelectorAll('[name="mon_hoc_update"] > option')
+        .forEach(function (e) {
+          if (data.id_mon == e.value) {
+            e.setAttribute("selected", "selected");
+          } else {
+            e.removeAttribute("selected");
+          }
+        });
+
+      form
+        .querySelectorAll('[name="loai_lop_update"] > option')
+        .forEach(function (e) {
+          if (data.id_lop == e.value) {
+            e.setAttribute("selected", "selected");
+          } else {
+            e.removeAttribute("selected");
+          }
+        });
+
       form.querySelector('[name="hoc_ky_update"]').value = data.id_hocky;
       form.querySelector('[name="loai_lop_update"]').value = data.id_lop;
       form.querySelector('[name="mon_hoc_update"]').value = data.id_mon;
@@ -21,10 +51,10 @@ var initUpdateDetail = (id) => {
       form.querySelector('[name="ngay_hoc_update"]').value = data.ngay_hoc;
       form.querySelector('[name="ca_hoc_update"]').value = data.ca_hoc;
       form.querySelector('[name="so_sv_update"]').value = data.so_sv;
-      // form.querySelector('[name="ngay_bat_dau_update"]').value =
-      //   data.ngay_bat_dau;
-      // form.querySelector('[name="ngay_ket_thuc_update"]').value =
-      //   data.ngay_ket_thuc;
+      form.querySelector('[name="ngay_bat_dau_update"]').value =
+        data.ngay_bat_dau;
+      form.querySelector('[name="ngay_ket_thuc_update"]').value =
+        data.ngay_ket_thuc;
       form.querySelector('[name="ghi_chu_update"]').value = data.ghi_chu;
       form.querySelector('[name="status_update"]').value = data.status;
     })
@@ -45,7 +75,7 @@ var initForm_update = function () {
   );
   ngayKetThuc_update.flatpickr({
     enableTime: true,
-    minDate: ngayBatDau,
+    minDate: ngayBatDau_update,
     dateFormat: "Y-m-d",
   });
 };
@@ -145,13 +175,18 @@ var KTUpdateLich = (function () {
       },
     });
 
+    formData_update.append(
+      "status_update",
+      form.querySelector(`[name="status_update"]`).value
+    );
+
     form
       .querySelector(`[name="status_update"]`)
       .addEventListener("change", function () {
         if (this.checked) {
-          formData.append("status_update", this.value);
+          formData_update.append("status_update", this.value || 2);
         } else {
-          formData.append("status_update", 1);
+          formData_update.append("status_update", 1);
         }
       });
 

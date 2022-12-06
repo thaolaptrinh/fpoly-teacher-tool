@@ -218,8 +218,6 @@ var KTModalNewLich = (function () {
 
     cancelButton.addEventListener("click", function (e) {
       e.preventDefault();
-      form = document.querySelector("#kt_modal_new_lich");
-      form.reset(); // Reset form
       modal.hide(); // Hide modal
     });
   };
