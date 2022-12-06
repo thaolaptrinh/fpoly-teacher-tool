@@ -741,6 +741,29 @@ class TeacherModel extends Model
                 'lich_day',
                 "id = '" . $_POST['id'] . "'"
             );
+        } elseif (isset($_POST['is_detail'])) {
+            $this->get_item(
+                "SELECT * FROM `lich_day` WHERE id = '" . $_POST['id'] . "'"
+            );
+        } elseif (isset($_POST['is_update'])) {
+            $data_post = [
+                "id_hocky" => check_string($_POST['hoc_ky_update']),
+                "id_mon" => check_string($_POST['mon_hoc_update']),
+                "id_lop" => check_string($_POST['loai_lop_update']),
+                "ca_hoc" => check_string($_POST['ca_hoc_update']),
+                "phong_hoc" => check_string($_POST['phong_hoc_update']),
+                "ngay_hoc" => check_string($_POST['ngay_hoc_update']),
+                "ghi_chu" => check_string($_POST['ghi_chu_update']),
+                "so_sv" => check_string($_POST['so_sv_update']),
+                "ngay_bat_dau" => check_string($_POST['ngay_bat_dau_update']),
+                "ngay_ket_thuc" => check_string($_POST['ngay_ket_thuc_update']),
+                "status" => check_string($_POST['status_update']),
+            ];
+            $this->update_item(
+                "lich_day",
+                $data_post,
+                "id = '" . $_POST['id'] . "'"
+            );
         }
     }
 }

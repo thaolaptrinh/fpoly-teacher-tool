@@ -97,6 +97,17 @@ var KTSigninGeneral = (function () {
             axios
               .post(`${base_url + "auth/login"}`, formData)
               .then((response) => {
+                if (response.data.status) {
+                  console.log(localStorage.getItem("user_pass"));
+
+                  if (localStorage.getItem("is_remember")) {
+                    localStorage.setItem("user_email", formData.get("email"));
+                    localStorage.setItem("user_pass", formData.get("password"));
+                  } else {
+                    localStorage.removeItem("user_email");
+                    localStorage.removeItem("user_pass");
+                  }
+                }
                 Swal.fire({
                   text: response.data.message,
                   icon: response.data.status ? "success" : "error",
@@ -108,17 +119,6 @@ var KTSigninGeneral = (function () {
                   allowOutsideClick: !response.data.status,
                 }).then(function (result) {
                   if (result.isConfirmed && response.data.status) {
-                    if (localStorage.getItem("is_remember")) {
-                      localStorage.setItem("user_email", formData.get("email"));
-                      localStorage.setItem(
-                        "user_pass",
-                        formData.get("password")
-                      );
-                    } else {
-                      localStorage.removeItem("user_email");
-                      localStorage.removeItem("user_pass");
-                    }
-
                     var redirectUrl = form.getAttribute("data-kt-redirect-url");
                     if (redirectUrl) {
                       location.href = redirectUrl;

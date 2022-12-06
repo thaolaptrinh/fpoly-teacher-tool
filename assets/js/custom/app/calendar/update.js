@@ -1,11 +1,11 @@
 "use strict";
-const element = document.getElementById("kt_modal_update_link");
-const form = element.querySelector("#kt_modal_update_link_form");
+const element = document.getElementById("kt_modal_update_lich");
+const form = element.querySelector("#kt_modal_update_lich_form");
 const modal = new bootstrap.Modal(element);
 var formData_update = new FormData();
 var formData_check = new FormData();
 
-var initUpdateLinkDetail = (id) => {
+var initUpdateDetail = (id) => {
   formData_check.append("id", id);
   formData_update.append("id", id);
   formData_check.append("is_detail", true);
@@ -13,50 +13,129 @@ var initUpdateLinkDetail = (id) => {
     .post(window.location.href, formData_check)
     .then((response) => {
       let data = response.data.data;
-      form.querySelector('[name="link_name_update"]').value = data.ten;
-      form.querySelector('[name="link_url_update"]').value = data.url;
-      form.querySelector('[name="link_mota_update"]').value = data.mo_ta;
+
+      form.querySelector('[name="hoc_ky_update"]').value = data.id_hocky;
+      form.querySelector('[name="loai_lop_update"]').value = data.id_lop;
+      form.querySelector('[name="mon_hoc_update"]').value = data.id_mon;
+      form.querySelector('[name="phong_hoc_update"]').value = data.phong_hoc;
+      form.querySelector('[name="ngay_hoc_update"]').value = data.ngay_hoc;
+      form.querySelector('[name="ca_hoc_update"]').value = data.ca_hoc;
+      form.querySelector('[name="so_sv_update"]').value = data.so_sv;
+      // form.querySelector('[name="ngay_bat_dau_update"]').value =
+      //   data.ngay_bat_dau;
+      // form.querySelector('[name="ngay_ket_thuc_update"]').value =
+      //   data.ngay_ket_thuc;
+      form.querySelector('[name="ghi_chu_update"]').value = data.ghi_chu;
+      form.querySelector('[name="status_update"]').value = data.status;
     })
     .catch((error) => {
       console.log(error);
     });
 };
 
+var initForm_update = function () {
+  var ngayBatDau_update = $(form.querySelector('[name="ngay_bat_dau_update"]'));
+  ngayBatDau_update.flatpickr({
+    enableTime: true,
+    dateFormat: "Y-m-d",
+  });
+
+  var ngayKetThuc_update = $(
+    form.querySelector('[name="ngay_ket_thuc_update"]')
+  );
+  ngayKetThuc_update.flatpickr({
+    enableTime: true,
+    minDate: ngayBatDau,
+    dateFormat: "Y-m-d",
+  });
+};
+
 // Class definition
-var KTLinksUpdateLink = (function () {
+var KTUpdateLich = (function () {
   // Shared variables
 
   // Init Update schedule modal
 
-  var initUpdateLink = () => {
+  var initUpdateLich = () => {
     // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
     var validator = FormValidation.formValidation(form, {
       fields: {
-        link_name_update: {
+        so_sv_update: {
           validators: {
             notEmpty: {
-              message: "Tên liên kết không được để trống",
+              message: "Không được bỏ trống.",
             },
           },
         },
-        link_url_update: {
+        ca_hoc_update: {
           validators: {
             notEmpty: {
-              message: "URL liên kết không được để trống",
+              message: "Không được bỏ trống.",
             },
           },
         },
-
-        link_mota_update: {
+        ngay_hoc_update: {
           validators: {
             notEmpty: {
-              message: "Mô tả liên kết không được để trống",
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        phong_hoc_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        hoc_ky_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        loai_lop_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        mon_hoc_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        ngay_bat_dau_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
+            },
+          },
+        },
+        ngay_ket_thuc_update: {
+          validators: {
+            notEmpty: {
+              message: "Không được bỏ trống.",
             },
           },
         },
       },
-
       plugins: {
+        // startEndDate: new FormValidation.plugins.StartEndDate({
+        //   format: "DD-MM-YYYY",
+        //   startDate: {
+        //     field: "ngay_bat_dau",
+        //     message: "Ngày bắt đầu phải sớm hơn ngày kết thúc",
+        //   },
+        //   endDate: {
+        //     field: "ngay_ket_thuc",
+        //     message: "Ngày kết thúc phải lớn hơn ngày bắt đầu",
+        //   },
+        // }),
         trigger: new FormValidation.plugins.Trigger(),
         bootstrap: new FormValidation.plugins.Bootstrap5({
           rowSelector: ".fv-row",
@@ -66,26 +145,45 @@ var KTLinksUpdateLink = (function () {
       },
     });
 
+    form
+      .querySelector(`[name="status_update"]`)
+      .addEventListener("change", function () {
+        if (this.checked) {
+          formData.append("status_update", this.value);
+        } else {
+          formData.append("status_update", 1);
+        }
+      });
+
     // Submit button handler
     const submitButton = element.querySelector(
-      '[data-kt-links-modal-action="submit"]'
+      '[data-kt-modal-action="submit"]'
     );
+
     submitButton.addEventListener("click", (e) => {
       e.preventDefault();
 
-      formData_update.append(
-        "link_name_update",
-        form.querySelector('[name="link_name_update"]').value
-      );
-      formData_update.append(
-        "link_url_update",
-        form.querySelector('[name="link_url_update"]').value
-      );
-      formData_update.append(
-        "link_mota_update",
-        form.querySelector('[name="link_mota_update"]').value
-      );
-      formData_update.append("is_updatelink", true);
+      var formData_text = [
+        "hoc_ky_update",
+        "mon_hoc_update",
+        "loai_lop_update",
+        "ngay_hoc_update",
+        "phong_hoc_update",
+        "ca_hoc_update",
+        "so_sv_update",
+        "ngay_bat_dau_update",
+        "ngay_ket_thuc_update",
+        "ghi_chu_update",
+      ];
+
+      formData_text.forEach((element) => {
+        formData_update.append(
+          element,
+          form.querySelector(`[name="${element}"]`).value
+        );
+      });
+
+      formData_update.append("is_update", true);
 
       // Validate form before submit
       if (validator) {
@@ -145,7 +243,7 @@ var KTLinksUpdateLink = (function () {
 
     // Cancel button handler
     const cancelButton = element.querySelector(
-      '[data-kt-links-modal-action="cancel"]'
+      '[data-kt-modal-action="cancel"]'
     );
     cancelButton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -153,9 +251,7 @@ var KTLinksUpdateLink = (function () {
     });
 
     // Close button handler
-    const closeButton = element.querySelector(
-      '[data-kt-links-modal-action="close"]'
-    );
+    const closeButton = element.querySelector('[data-kt-modal-action="close"]');
 
     closeButton.addEventListener("click", (e) => {
       e.preventDefault();
@@ -166,12 +262,13 @@ var KTLinksUpdateLink = (function () {
   return {
     // Public functions
     init: function () {
-      initUpdateLink();
+      initForm_update();
+      initUpdateLich();
     },
   };
 })();
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
-  KTLinksUpdateLink.init();
+  KTUpdateLich.init();
 });
