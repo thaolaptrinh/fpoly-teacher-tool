@@ -38,6 +38,12 @@ function route($index)
 }
 
 
+function route_last()
+{
+  global $route;
+  return end($route);
+}
+
 
 
 require 'core/PHPMailer/src/Exception.php';

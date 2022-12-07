@@ -193,16 +193,9 @@ var KTLAdd = (function () {
                 },
               },
             },
-            thu_tu: {
-              validators: {
-                notEmpty: {
-                  message: "Thứ tự không được để trống",
-                },
-              },
-            },
           };
 
-          formData = ["ten_khoa", "thu_tu"];
+          formData = ["ten_khoa"];
           break;
         }
 
@@ -215,16 +208,9 @@ var KTLAdd = (function () {
                 },
               },
             },
-            thu_tu: {
-              validators: {
-                notEmpty: {
-                  message: "Thứ tự không được để trống",
-                },
-              },
-            },
           };
 
-          formData = ["ten_hocky", "thu_tu"];
+          formData = ["ten_hocky"];
           break;
         }
 

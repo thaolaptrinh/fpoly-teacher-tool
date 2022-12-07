@@ -14,6 +14,10 @@ var KTAppListLich = (function () {
       info: false,
       order: [],
       pageLength: 10,
+      language: {
+        emptyTable: "Không có sẵn dữ liệu",
+        zeroRecords: "Không tìm thấy dữ liệu",
+      },
       columnDefs: [
         // { render: DataTable.render.number(",", ".", 2), targets: 4 },
         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)

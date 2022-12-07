@@ -2,6 +2,7 @@
 global $DB;
 ?>
 
+
 <div id="kt_app_header" class="app-header">
   <div class="app-header-primary" data-kt-sticky="true" data-kt-sticky-name="app-header-primary-sticky" data-kt-sticky-offset="{default: 'false', lg: '300px'}">
     <div class="app-container container-xxl d-flex align-items-stretch justify-content-between">
@@ -83,6 +84,8 @@ global $DB;
 
             ?>
             <?php
+
+
             foreach ($menu as $item) {
               extract($item); ?>
 
@@ -106,7 +109,7 @@ global $DB;
                     <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
                       <?php
                       foreach ($sub as $item) { ?>
-                        <div class="menu-item">
+                        <div class="menu-item <?= route_last() == $item['path'] ? 'here' : false ?>">
                           <a class="menu-link py-3" href="<?= BASE_URL($path . '/' . $item['path']) ?>" title="Website quản lý điểm sinh viên dành cho giáo viên FPT Polytechnic" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" target="_parent">
                             <span class="menu-icon">
                               <span class="svg-icon svg-icon-3">

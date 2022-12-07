@@ -14,6 +14,10 @@ var KTAppListDiem = (function () {
       info: false,
       order: [],
       pageLength: 10,
+      language: {
+        emptyTable: "Không có sẵn dữ liệu",
+        zeroRecords: "Không tìm thấy dữ liệu",
+      },
       columnDefs: [
         // { render: DataTable.render.number(",", ".", 2), targets: 4 },
         { orderable: false, targets: 0 }, // Disable ordering on column 0 (checkbox)
@@ -36,8 +40,8 @@ var KTAppListDiem = (function () {
     axios
       .post(window.location.href, formData)
       .then((response) => {
-        console.log(response);
         var data = response.data;
+        console.log(data);
         toastMixin.fire({
           title: data.message,
           icon: data.status ? "success" : "error",
@@ -160,7 +164,6 @@ var KTAppListDiem = (function () {
 
       $(".diem").blur(function (e) {
         e.preventDefault();
-        console.log($(this));
         var id = $(this).data("id");
         var target = $(this).data("target");
         var text = $(this).text();

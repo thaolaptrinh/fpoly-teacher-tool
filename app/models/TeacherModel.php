@@ -11,11 +11,14 @@ class TeacherModel extends Model
     {
         # code...
         $this->data = [
-            'hoc_ky' => $this->get_list("SELECT * FROM  `hoc_ky` WHERE id_teacher  = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY thu_tu"),
-            'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY thu_tu"),
+            'hoc_ky' => $this->get_list("SELECT * FROM  `hoc_ky` 
+            WHERE id_teacher  = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY ten_hocky"),
+            'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' 
+            ORDER BY ten_khoa DESC"),
             'mon_hoc' => $this->get_list("SELECT * FROM `mon_hoc` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_mon DESC"),
             'loai_lop' => $this->get_list("SELECT * FROM `loai_lop` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_loai DESC"),
-            'lien_ket' => $this->get_list("SELECT * FROM `lien_ket` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'ORDER BY id_lienket DESC"),
+            'lien_ket' => $this->get_list("SELECT * FROM `lien_ket` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') .
+                "'ORDER BY id_lienket DESC"),
         ];
 
         if (isset($_POST["is_import"])) {
@@ -109,10 +112,8 @@ class TeacherModel extends Model
         $this->data = [
             'lich_day' => $this->get_list("SELECT lich_day.*, loai_lop.ten_lop, mon_hoc.ten_mon, mon_hoc.ma_mon FROM `lich_day`
             INNER JOIN loai_lop ON lich_day.id_lop = loai_lop.id_loai
-            INNER JOIN mon_hoc ON lich_day.id_mon = mon_hoc.id_mon
+            INNER JOIN mon_hoc ON lich_day.id_mon = mon_hoc.id_mon            
             WHERE lich_day.id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY lich_day.id DESC"),
-            'loai_lop' => $this->get_list("SELECT * FROM `loai_lop`
-            WHERE loai_lop.id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' ORDER BY loai_lop.id_loai DESC"),
             'thanh_ngu' => $this->get_row("SELECT * FROM `thanh_ngu` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' AND status = '2' ORDER BY rand() LIMIT 1"),
 
 
@@ -170,12 +171,23 @@ class TeacherModel extends Model
 
         if (isset($_POST['is_update'])) {
             $id_diem = $_POST['id'];
-            $text = $_POST['text'];
+            $text = check_string($_POST['text']);
             $column_name = $_POST['column_name'];
             $target = $_POST['target'];
 
             $array_diem = $this->getDetailDiem($id_diem, 'array_diem');
+
             if ($target == 'diem') {
+                if ($text == '') {
+                    $response['status'] =  false;
+                    $response['message'] =  'Dữ liệu rỗng!';
+                    die(json_encode($response));
+                }
+                if (!is_numeric($text) || floatval($text) < 0 ||  floatval($text) > 10) {
+                    $response['status'] =  false;
+                    $response['message'] =  'Điểm không hợp lệ!';
+                    die(json_encode($response));
+                }
                 $array_diem = json_decode($array_diem, true);
                 $array_diem[$column_name] =  $text;
                 $response['status'] =  $array_diem;
@@ -185,11 +197,11 @@ class TeacherModel extends Model
             }
             if ($is_update) {
                 $response['status'] =  true;
-                $response['message'] =  'Cập nhât thành công!';
+                $response['message'] =  'Cập nhật thành công!';
                 die(json_encode($response));
             } else {
                 $response['status'] =  false;
-                $response['message'] =  'Cập nhât thất bại!';
+                $response['message'] =  'Cập nhật thất bại!';
                 die(json_encode($response));
             }
         }
@@ -452,7 +464,9 @@ class TeacherModel extends Model
 
         $this->data = [
             'khoa' => $this->get_list("SELECT * FROM `khoa`
-             WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
+             WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'
+             ORDER BY ten_khoa DESC
+             "),
         ];
 
         if (isset($_POST['is_detail'])) {
@@ -462,7 +476,6 @@ class TeacherModel extends Model
         } elseif (isset($_POST['is_update'])) {
             $data_post = [
                 'ten_khoa' => check_string($_POST['ten_khoa_update']),
-                'thu_tu' => ($_POST['thu_tu_update']),
             ];
             $this->update_item(
                 "khoa",
@@ -473,7 +486,6 @@ class TeacherModel extends Model
 
             $data_insert = [
                 'ten_khoa' => check_string($_POST['ten_khoa']),
-                'thu_tu' => $_POST['thu_tu'],
                 'id_teacher' => $this->getInfoTeacher('id_teacher'),
 
             ];
@@ -496,7 +508,15 @@ class TeacherModel extends Model
         # code...
 
         $this->data = [
-            'hoc_ky' => $this->get_list("SELECT * FROM `hoc_ky` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
+            'hoc_ky' => $this->get_list("SELECT * FROM  `hoc_ky` 
+            WHERE id_teacher  = '" . $this->getInfoTeacher('id_teacher') . "' 
+            order by case 
+            when ten_hocky LIKE '%spring%' then 1 
+            when ten_hocky LIKE '%summer%'  then 2 
+            when ten_hocky LIKE '%fall%'  then 3
+            end
+
+            , reverse(reverse(ten_hocky) + 0) + 0 DESC"),
         ];
 
         if (isset($_POST['is_detail'])) {
@@ -506,7 +526,6 @@ class TeacherModel extends Model
         } elseif (isset($_POST['is_update'])) {
             $data_post = [
                 'ten_hocky' => check_string($_POST['ten_hocky_update']),
-                'thu_tu' => ($_POST['thu_tu_update']),
             ];
             $this->update_item(
                 "hoc_ky",
@@ -516,7 +535,6 @@ class TeacherModel extends Model
         } elseif (isset($_POST['is_add'])) {
             $data_insert = [
                 'ten_hocky' => check_string($_POST['ten_hocky']),
-                'thu_tu' => $_POST['thu_tu'],
                 'id_teacher' => $this->getInfoTeacher('id_teacher'),
 
             ];
@@ -540,7 +558,8 @@ class TeacherModel extends Model
             'loai_lop' => $this->get_list("SELECT loai_lop.*, khoa.ten_khoa FROM `loai_lop` 
             INNER JOIN khoa ON khoa.id_khoa = loai_lop.id_khoa
             WHERE loai_lop.id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
-            'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "'"),
+            'khoa' => $this->get_list("SELECT * FROM `khoa` WHERE id_teacher = '" . $this->getInfoTeacher('id_teacher') . "' 
+              ORDER BY ten_khoa DESC"),
         ];
 
 
@@ -674,50 +693,28 @@ class TeacherModel extends Model
     {
         # code...
 
+
+        $status = 2;
+        if (isset($_GET['status'])) {
+            $status = ($_GET['status'] == 1) ?  2 :  1;
+        }
+        $day = 7;
+        if (isset($_GET['day'])) {
+            $day = $_GET['day'];
+        }
+
         $this->data = [
-            'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop 
-            FROM lich_day 
+            'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop FROM lich_day 
             INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
             INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
             INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
+            WHERE lich_day.status = $status AND 
+             DATE_ADD(CURDATE(), INTERVAL $day DAY) 
+                 BETWEEN  lich_day.ngay_bat_dau AND lich_day.ngay_ket_thuc
              ORDER BY lich_day.id DESC")
         ];
 
 
-        if (isset($_GET['status'])) {
-
-
-            if (($_GET['status']) == 1) {
-                $this->data = [
-                    'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop FROM lich_day 
-                INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
-                INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
-                INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
-                WHERE lich_day.status = 2
-                 ORDER BY lich_day.id DESC")
-                ];
-            } elseif (($_GET['status']) == 0) {
-                $this->data = [
-                    'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop FROM lich_day 
-                INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
-                INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
-                INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
-                WHERE lich_day.status = 1
-                 ORDER BY lich_day.id DESC")
-                ];
-            }
-        }
-        if (isset($_GET['day'])) {
-
-            $this->data = [
-                'lich_day' => $this->get_list("SELECT lich_day.* ,`hoc_ky`.ten_hocky, `mon_hoc`.ma_mon, `mon_hoc`.ten_mon,  `loai_lop`.ten_lop FROM lich_day 
-                INNER JOIN `hoc_ky` on hoc_ky.id_hocky  = lich_day.id_hocky
-                INNER JOIN `mon_hoc` on mon_hoc.id_mon   = lich_day.id_mon 
-                INNER JOIN `loai_lop` on loai_lop.id_loai  = lich_day.id_lop
-                WHERE DATE_ADD(CURDATE(), INTERVAL '" . $_GET['day'] . "' DAY)  BETWEEN  lich_day.ngay_bat_dau AND lich_day.ngay_ket_thuc
-                 ORDER BY lich_day.id DESC")
-            ];
-        }
 
         if (isset($_POST['is_add'])) {
             $data_insert = [

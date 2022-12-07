@@ -140,7 +140,6 @@
     </div>
   </div>
   <div class="card-body py-4">
-    <!-- <div id="table-links"></div> -->
     <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_links">
       <thead>
         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
@@ -149,7 +148,7 @@
               <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_links .form-check-input" value="1" />
             </div>
           </th>
-          <th class="w-30px">STT</th>
+          <th class="w-50px">STT</th>
           <th class="min-w-125px">Tên liên kết</th>
           <th class="min-w-125px">URL</th>
           <th class="min-w-125px">Mô tả</th>

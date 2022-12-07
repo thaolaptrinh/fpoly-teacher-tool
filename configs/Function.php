@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
+
 $DB = new Database;
 
 function count_string($data)

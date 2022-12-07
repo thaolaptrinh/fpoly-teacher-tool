@@ -176,7 +176,9 @@
             <div class="row g-9 mb-8">
               <div class="col-md-6 fv-row">
                 <label class="required fs-6 fw-semibold mb-2">Học kỳ</label>
-                <select class="form-select form-select-solid" name="hoc_ky_update" data-control="select2" data-hide-search="true" data-placeholder="Chọn học kỳ" name="hoc_ky">
+                <select class="form-select form-select-solid" name="hoc_ky_update" data-control="select2" data-placeholder="Chọn học kỳ" name="hoc_ky">
+                  <option value="">Chọn học kỳ</option>
+
                   <?php
                   if (isset($this->data['hoc_ky']) && !empty($this->data['hoc_ky'])) {
                     $hoc_ky = $this->data['hoc_ky'];
@@ -191,7 +193,8 @@
 
               <div class="col-md-6 fv-row">
                 <label class="required fs-6 fw-semibold mb-2">Lớp</label>
-                <select class="form-select form-select-solid" name="loai_lop_update" data-control="select2" data-hide-search="true" data-placeholder="Chọn lớp" name="hoc_ky">
+                <select class="form-select form-select-solid" name="loai_lop_update" data-control="select2" data-placeholder="Chọn lớp" name="hoc_ky">
+                  <option value="">Chọn lớp</option>
                   <?php
                   if (isset($this->data['loai_lop']) && !empty($this->data['loai_lop'])) {
                     $loai_lop = $this->data['loai_lop'];
@@ -208,6 +211,8 @@
               <div class="col-md-6 fv-row">
                 <label class="required fs-6 fw-semibold mb-2">Môn học</label>
                 <select class="form-select form-select-solid" name="mon_hoc_update" data-control="select2" data-hide-search="true" data-placeholder="Chọn môn học" name="target_assign">
+                  <option value="">Chọn môn học</option>
+
                   <?php
                   if (isset($this->data['mon_hoc']) && !empty($this->data['mon_hoc'])) {
                     $mon_hoc = $this->data['mon_hoc'];

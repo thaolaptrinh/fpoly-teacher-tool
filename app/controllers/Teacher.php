@@ -35,6 +35,7 @@ class Teacher extends  Controller
 
     $this->data['page_title'] = 'Trang chủ';
     $this->data['content'] = 'teacher/index';
+    $this->data['page_target'] = 'index';
     $this->model_home->index();
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/teacher', $this->data);

@@ -67,10 +67,7 @@
                     <input type="text" name="ten_hocky_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
                   </div>
 
-                  <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Thứ tự</label>
-                    <input type="number" name="thu_tu_update" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
-                  </div>
+
                 </div>
 
                 <div class="text-center pt-15">
@@ -111,10 +108,7 @@
                     <input type="text" name="ten_hocky" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
                   </div>
 
-                  <div class="fv-row mb-7 fv-plugins-icon-container">
-                    <label class="required fw-semibold fs-6 mb-2">Thứ tự</label>
-                    <input type="number" name="thu_tu" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="" value="">
-                  </div>
+
                 </div>
 
                 <div class="text-center pt-15">
@@ -142,7 +136,6 @@
             </div>
           </th>
           <th class="min-w-100px">STT</th>
-          <th class="min-w-125px">Thứ tự</th>
           <th class="min-w-125px">Tên học kỳ</th>
           <th class="text-end min-w-100px">Actions</th>
         </tr>
@@ -164,7 +157,6 @@
                 </div>
               </td>
               <td> <?= $index++ ?> </td>
-              <td> <?= $thu_tu ?> </td>
               <td> <?= $ten_hocky ?> </td>
               <td class="text-end">
                 <a href="#" class="btn btn-light btn-active-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

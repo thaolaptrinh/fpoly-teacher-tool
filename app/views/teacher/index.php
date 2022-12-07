@@ -148,7 +148,7 @@
           <div class="col-7 ps-xl-10 pe-5">
 
             <div class="fs-2 fw-bold text-white mb-6">
-              <i>“<?= $this->data['thanh_ngu']['noi_dung'] ?>”</i>
+              <i>“<?= isset($this->data['thanh_ngu']['noi_dung']) ?  $this->data['thanh_ngu']['noi_dung'] : 'Đừng sợ phí công' ?>”</i>
             </div>
 
 
@@ -211,17 +211,17 @@
         </div>
       </div>
     </div>
-    <!-- <div class="card card-flush border-0">
+
+    <div class="card card-flush border-0">
       <div class="card-header pt-7">
         <h3 class="card-title align-items-start flex-column">
-          <span class="card-label fs-3 fw-bold text-gray-800">Lịch giảng dạy</span>
-          <span class="text-gray-400 mt-1 fw-semibold fs-6">Chọn thời gian để xem dữ liệu chi tiết</span>
+          <span class="card-label fs-3 fw-bold text-gray-800">Lịch dạy</span>
+          <span class="text-gray-400 mt-1 fw-semibold fs-6">
+            Lựa chọn thời gian hiện thị</span>
         </h3>
         <div class="card-toolbar">
           <div data-kt-daterangepicker="true" data-kt-daterangepicker-opens="left" class="btn btn-sm btn-light d-flex align-items-center px-4">
-            <div class="text-gray-600 fw-bold">
-              Loading date range...
-            </div>
+            <div class="text-gray-600 fw-bold">Loading date range...</div>
             <span class="svg-icon svg-icon-1 ms-2 me-0">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="currentColor" />
@@ -234,178 +234,91 @@
       </div>
       <div class="card-body pt-6">
         <div class="table-responsive">
-          <table class="table table-row-dashed align-middle gs-0 gy-6 my-0">
+
+
+          <table class="table table-row-dashed align-middle gs-0 gy-6 my-0" id="kt_list_lich_table">
             <thead>
               <tr class="fs-7 fw-bold text-gray-400">
-                <th class="p-0 pb-3 w-150px text-start">
-                  STATUS
-                </th>
-                <th class="p-0 pb-3 min-w-100px text-start">
-                  NAME
-                </th>
-                <th class="p-0 pb-3 min-w-100px text-center">
-                  BUDGET
-                </th>
-                <th class="p-0 pb-3 w-250px text-start">
-                  OPTIMIZATION SCORE
-                </th>
-                <th class="p-0 pb-3 w-50px text-end">ACTION</th>
+                <th class="p-0 pb-3 w-150px text-start">Trang thái</th>
+                <th class="p-0 pb-3 min-w-100px text-start">Giảng dạy</th>
+                <th class="p-0 pb-3 min-w-100px text-start">Địa điểm</th>
+                <th class="p-0 pb-3 min-w-100px text-start">Thời gian</th>
+                <th class="p-0 pb-3 min-w-100px text-center">Bảng điểm</th>
+                <th class="p-0 pb-3 w-50px text-end">Chi tiết</th>
               </tr>
             </thead>
-
             <tbody>
-              <tr>
-                <td>
-                  <span class="badge py-3 px-4 fs-7 badge-light-success">Live Now</span>
-                </td>
-                <td class="ps-0 text-start">
-                  <span class="text-gray-800 fw-bold fs-6 d-block">Marni Schlanger</span>
-                  <span class="text-gray-400 fw-semibold fs-7">20 Jul 2021</span>
-                </td>
-                <td class="text-center">
-                  <span class="text-gray-800 fw-bold fs-6">$15</span>
-                  <span class="text-gray-400 fw-bold fs-7 d-block">Daily</span>
-                </td>
-                <td class="ps-0 pe-20">
-                  <div class="progress bg-light-primary rounded">
-                    <div class="progress-bar bg-primary rounded m-0" role="progressbar" style="height: 12px; width: 120px" aria-valuenow="120" aria-valuemin="0" aria-valuemax="120px"></div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                      </svg>
-                    </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="badge py-3 px-4 fs-7 badge-light-primary">Reviewing</span>
-                </td>
-                <td class="ps-0 text-start">
-                  <span class="text-gray-800 fw-bold fs-6 d-block">Addison Smart</span>
-                  <span class="text-gray-400 fw-semibold fs-7">19 Jul 2021</span>
-                </td>
-                <td class="text-center">
-                  <span class="text-gray-800 fw-bold fs-6">$10</span>
-                  <span class="text-gray-400 fw-bold fs-7 d-block">Daily</span>
-                </td>
-                <td class="ps-0 pe-20">
-                  <div class="progress bg-light-primary rounded">
-                    <div class="progress-bar bg-primary rounded m-0" role="progressbar" style="height: 12px; width: 10px" aria-valuenow="10" aria-valuemin="0" aria-valuemax="10px"></div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                      </svg>
-                    </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="badge py-3 px-4 fs-7 badge-light-warning">Paused</span>
-                </td>
-                <td class="ps-0 text-start">
-                  <span class="text-gray-800 fw-bold fs-6 d-block">Paul Melone</span>
-                  <span class="text-gray-400 fw-semibold fs-7">21 Jul 2021</span>
-                </td>
-                <td class="text-center">
-                  <span class="text-gray-800 fw-bold fs-6">$3</span>
-                  <span class="text-gray-400 fw-bold fs-7 d-block">Daily</span>
-                </td>
-                <td class="ps-0 pe-20">
-                  <div class="progress bg-light-primary rounded">
-                    <div class="progress-bar bg-primary rounded m-0" role="progressbar" style="height: 12px; width: 60px" aria-valuenow="60" aria-valuemin="0" aria-valuemax="60px"></div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                      </svg>
-                    </span>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="badge py-3 px-4 fs-7 badge-light-success">Live Now</span>
-                </td>
-                <td class="ps-0 text-start">
-                  <span class="text-gray-800 fw-bold fs-6 d-block">Marni Schlanger</span>
-                  <span class="text-gray-400 fw-semibold fs-7">23 Jul 2021</span>
-                </td>
-                <td class="text-center">
-                  <span class="text-gray-800 fw-bold fs-6">$23</span>
-                  <span class="text-gray-400 fw-bold fs-7 d-block">Daily</span>
-                </td>
-                <td class="ps-0 pe-20">
-                  <div class="progress bg-light-primary rounded">
-                    <div class="progress-bar bg-primary rounded m-0" role="progressbar" style="height: 12px; width: 160px" aria-valuenow="160" aria-valuemin="0" aria-valuemax="160px"></div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <a href="#" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
-                    <span class="svg-icon svg-icon-5 svg-icon-gray-700">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
-                        <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
-                      </svg>
-                    </span>
-                  </a>
-                </td>
-              </tr>
+              <?php
+              if (!empty($this->model_home->data['lich_day'])) {
+                $lich_day = $this->model_home->data['lich_day'];
+                $i = 0;
+                foreach ($lich_day as $row) {
+                  extract($row); ?>
+                  <tr>
+                    <td>
+                      <span class="badge py-3 px-4 fs-7 <?= $status == 2 ? 'badge-light-success' : 'badge-light-warning' ?>"><?= $status == 2 ? 'Đang dạy' : 'Đã dạy' ?></span>
+                    </td>
+                    <td class="ps-0 text-start">
+                      <span class="text-gray-800 fw-bold fs-6 d-block">Môn - <?= $ten_mon ?></span>
+                      <span class="text-gray-400 fw-semibold fs-7">Lớp - <?= $ten_lop ?></span>
+                    </td>
+
+                    <td class="ps-0 text-start">
+                      <span class="text-gray-800 fw-bold fs-6 d-block">Phòng - <?= $phong_hoc ?></span>
+                      <span class="text-gray-400 fw-semibold fs-7">Ca - <?= $ca_hoc ?></span>
+                    </td>
+                    <td class="ps-0 text-start">
+                      <span class="text-gray-800 fw-bold fs-6"><?= $ngay_ket_thuc ?></span>
+                      <span class="text-gray-400 fw-bold fs-7 d-block"><?= $ngay_bat_dau ?></span>
+                    </td>
+
+                    <td class="text-center">
+                      <a href="<?= BASE_URL('bang-diem?lop=' . $ten_lop . '&mon=' . $ma_mon) ?>" target="_blank"" class=" btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
+                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                          </svg>
+                        </span>
+                      </a>
+                    </td>
+
+
+                    <?php
+                    $days = [7, 14, 30, 60, 90, -7, -14, -30, -60, -90];
+                    $start = new DateTime($ngay_bat_dau);
+                    $end = new DateTime($ngay_ket_thuc);
+                    foreach ($days as $day) {
+
+                      $date_now = date_create("now");
+                      date_add($date_now, date_interval_create_from_date_string("$day days"));
+                      if ($start <= $date_now && $date_now <= $end) {
+                        $day_target = $day;
+                        break;
+                      }
+                    }
+
+                    ?>
+
+                    <td class="text-center">
+                      <a href="<?= BASE_URL('lich-day?status=' . (($status == 2) ? 1 : 0) . '&day=' . (isset($day_target) ? $day_target : '7')) ?>" target="_blank"" class=" btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor" />
+                            <path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor" />
+                          </svg>
+                        </span>
+                      </a>
+                    </td>
+                  </tr>
+              <?php }
+              } ?>
             </tbody>
           </table>
         </div>
         <div class="separator separator-dashed border-gray-200 mb-n4"></div>
-        <div class="d-flex flex-stack flex-wrap pt-10">
-          <div class="fs-6 fw-semibold text-gray-700">
-            Showing 1 to 10 of 50 entries
-          </div>
-          <ul class="pagination">
-            <li class="page-item previous">
-              <a href="#" class="page-link">
-                <i class="previous"></i>
-              </a>
-            </li>
-            <li class="page-item active">
-              <a href="#" class="page-link">1</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">2</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">3</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">4</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">5</a>
-            </li>
-            <li class="page-item">
-              <a href="#" class="page-link">6</a>
-            </li>
-            <li class="page-item next">
-              <a href="#" class="page-link">
-                <i class="next"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
+
       </div>
-    </div> -->
+    </div>
   </div>
 </div>

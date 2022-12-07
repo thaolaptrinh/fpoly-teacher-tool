@@ -5,6 +5,11 @@ const modal = new bootstrap.Modal(element);
 var formData_update = new FormData();
 var formData_check = new FormData();
 
+formData_update.append(
+  "status_update",
+  form.querySelector(`[name="status_update"]`).value
+);
+
 var initUpdateDetail = (id) => {
   formData_check.append("id", id);
   formData_update.append("id", id);
@@ -175,18 +180,13 @@ var KTUpdateLich = (function () {
       },
     });
 
-    formData_update.append(
-      "status_update",
-      form.querySelector(`[name="status_update"]`).value
-    );
-
     form
       .querySelector(`[name="status_update"]`)
       .addEventListener("change", function () {
         if (this.checked) {
-          formData_update.append("status_update", this.value || 2);
+          formData_update.set("status_update", 2);
         } else {
-          formData_update.append("status_update", 1);
+          formData_update.set("status_update", 1);
         }
       });
 
