@@ -1,10 +1,16 @@
 # DỰ ÁN 1 2022 - FPOLY Teacher Tool
 
 
+# Auth 
+![alt](./preview/auth.png)
+
+# App 
 
 ![alt](./preview/app.png)
-![alt](./preview/app.png)
-![alt](./preview/app.png)
+
+# Admin 
+
+![alt](./preview/admin.png)
 
 
 
@@ -51,7 +57,7 @@ $base = 'http://' . $\_SERVER['HTTP_HOST'] . '/path_folder/'
 
 Truy cập folder/admin/bootstrap.php -> thay đổi biến $base_url trong block if và else
 
-# Nếu bạn deploy admin lên subdomain config như sau:
+# Nếu Deploy admin lên subdomain config như sau:
 
 - Đặt thư mục gốc path_domain/admin hoặc đường dẫn đến thư mục admin
 
