@@ -1,5 +1,15 @@
 # DỰ ÁN 1 2022 - FPOLY Teacher Tool
 
+
+
+![alt](./preview/app.png)
+![alt](./preview/app.png)
+![alt](./preview/app.png)
+
+
+
+
+
 # Bắt đầu thiết lập
 
 - Sau khi có giải nén mã nguồn:
