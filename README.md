@@ -12,15 +12,11 @@
 
 ![alt](./preview/admin.png)
 
-# Bắt đầu thiết lập
+# Getting started
 
-- Sau khi có giải nén mã nguồn:
-  Nếu bạn chạy trên localhost của máy chủ ảo như Xampp,... bạn thiết lập như sau:
+- composer require google/apiclient:^2.12.1
 
 # Config Database:
 
 - Import sql database: documents/fpoly_teacher_tool.sql
-
-Truy cập đến folder/configs/Database.php
--> thay đổi các thông tin phù hợp cho máy ảo của bạn
-HOSTNAME, USERNAME, PASSWORD, DATABASE, PORT
+- Config Database (configs/Database.php) -> changes: HOSTNAME, USERNAME, PASSWORD, DATABASE, PORT
