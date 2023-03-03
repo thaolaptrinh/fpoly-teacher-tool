@@ -13,7 +13,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
 
 $folder = str_replace(strtolower($_SERVER['DOCUMENT_ROOT']), '', strtolower(__DIR__));
 
-$base_url = $web_root . $folder;
+$base_url = $web_root . $folder . '/';
 
 
 function BASE_URL($url)

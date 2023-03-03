@@ -5,14 +5,7 @@ define('HOSTNAME', 'localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
 define('DATABASE', 'fpoly_teacher_tool');
-define('PORT', '2003');
-
-
-// define('HOSTNAME', 'localhost');
-// define('USERNAME', 'ihzwudyw_app');
-// define('PASSWORD', '160723Thao@');
-// define('DATABASE', 'ihzwudyw_app');
-// define('PORT', '3306');
+define('PORT', '3306');
 
 
 class Database
