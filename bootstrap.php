@@ -4,11 +4,17 @@ define('_DIR_ROOT', __DIR__);
 
 
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-  $base_url = 'https://' . $_SERVER['HTTP_HOST'] . '/';
+  $web_root = 'https://' . $_SERVER['HTTP_HOST'];
 } else {
-  $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/fpoly_teacher_tool/';
-  // $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/';
+  $web_root = 'http://' . $_SERVER['HTTP_HOST'];
 }
+
+
+
+$folder = str_replace(strtolower($_SERVER['DOCUMENT_ROOT']), '', strtolower(__DIR__));
+
+$base_url = $web_root . $folder;
+
 
 function BASE_URL($url)
 {
