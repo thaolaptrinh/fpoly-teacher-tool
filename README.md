@@ -1,5 +1,5 @@
 # Website quản lý điểm sinh viên dành cho Giáo viên FPT Polytechnic
-
+# Student score management website for teachers FPT Polytechnic
 # Auth
 
 ![alt](./preview/auth.png)
