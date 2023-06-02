@@ -1,24 +1,22 @@
 # Student score management website for teachers FPT Polytechnic
 
-## Auth preview
+## Preview
+
+### Auth
 
 ![alt](./documents/preview/auth.png)
 
-# App preview
+### App
 
 ![alt](./documents/preview/app.png)
 
-## Admin preview
+### Admin
 
 ![alt](./documents/preview/admin.png)
 
 ## Getting started
 
-- composer install
-
-- composer require google/apiclient:^2.12.1
-
-- composer dump-autoload
+1. Clone project
 
 ## Setup Database:
 
@@ -38,4 +36,4 @@
 
 ## Document:
 
-- Get file -> [database.sql](./documents/database.sql)
+- Get file -> [database.sql](./documents/word.docx)
