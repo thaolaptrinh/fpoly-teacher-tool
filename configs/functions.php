@@ -1,5 +1,4 @@
 <?php
-$DB = new Database;
 
 function count_string($data)
 {
