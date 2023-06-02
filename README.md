@@ -1,20 +1,18 @@
-# Website quản lý điểm sinh viên dành cho Giáo viên FPT Polytechnic
-
 # Student score management website for teachers FPT Polytechnic
 
-# Auth
+## Auth preview
 
 ![alt](./documents/preview/auth.png)
 
-# App
+# App preview
 
 ![alt](./documents/preview/app.png)
 
-# Admin
+## Admin preview
 
 ![alt](./documents/preview/admin.png)
 
-# Getting started
+## Getting started
 
 - composer install
 
@@ -22,7 +20,22 @@
 
 - composer dump-autoload
 
-# Config Database:
+## Setup Database:
 
-- Import sql database: documents/database.sql
-- Config Database, Mail: .env or database
+- Get file -> [database.sql](./documents/database.sql)
+
+## Account test
+
+1. CLIENT:
+
+- email: fpoly@gmail.com
+- password: Fpoly@gmail.com
+
+2. ADMIN:
+
+- email: fpolyteachertool@gmail.com
+- password: Fpoly@gmail.com
+
+## Document:
+
+- Get file -> [database.sql](./documents/database.sql)
