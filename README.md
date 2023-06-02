@@ -16,7 +16,11 @@
 
 # Getting started
 
+- composer install
+
 - composer require google/apiclient:^2.12.1
+
+- composer dump-autoload
 
 # Config Database:
 
