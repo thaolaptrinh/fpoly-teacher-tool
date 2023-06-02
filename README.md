@@ -1,16 +1,18 @@
 # Website quản lý điểm sinh viên dành cho Giáo viên FPT Polytechnic
+
 # Student score management website for teachers FPT Polytechnic
+
 # Auth
 
-![alt](./preview/auth.png)
+![alt](./documents/preview/auth.png)
 
 # App
 
-![alt](./preview/app.png)
+![alt](./documents/preview/app.png)
 
 # Admin
 
-![alt](./preview/admin.png)
+![alt](./documents/preview/admin.png)
 
 # Getting started
 
@@ -18,5 +20,5 @@
 
 # Config Database:
 
-- Import sql database: documents/fpoly_teacher_tool.sql
+- Import sql database: documents/database.sql
 - Config Database (configs/Database.php) -> changes: HOSTNAME, USERNAME, PASSWORD, DATABASE, PORT
