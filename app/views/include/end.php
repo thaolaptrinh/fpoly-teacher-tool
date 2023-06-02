@@ -79,7 +79,10 @@ if ($page_target == 'login') { ?>
   <script src="<?= BASE_URL('assets/admin/js/coso/table.js') ?>"></script>
   <script src="<?= BASE_URL('assets/admin/js/coso/add.js') ?>"></script>
   <script src="<?= BASE_URL('assets/admin/js/coso/update.js') ?>"></script>
-
+<?php } elseif ($page_target == 'admin/account') { ?>
+  <script src="<?= BASE_URL('assets/admin/js/account/table.js') ?>"></script>
+  <script src="<?= BASE_URL('assets/admin/js/account/add.js') ?>"></script>
+  <script src="<?= BASE_URL('assets/admin/js/account/update.js') ?>"></script>
 <?php } elseif ($page_target == 'admin/site') { ?>
   <script src="<?= BASE_URL('assets/admin/js/index.js') ?>"></script>
   <script src="<?= BASE_URL('assets/admin/js/site/site.js') ?>"></script>

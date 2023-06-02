@@ -71,9 +71,10 @@ class Home extends Controller
     $this->model_home->account();
     $this->data['page_title'] = 'Tài khoản';
     $this->data['content'] = 'admin/manager/account';
-    $this->data['page_target'] = 'account';
+
+    $this->data['page_target'] = 'admin/account';
     $this->data = array_merge($this->data, $this->model_home->data);
-    $this->render('layouts/admin', $this->data);
+    $this->render('layouts/admin/home', $this->data);
   }
 
 

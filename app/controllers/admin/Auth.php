@@ -14,7 +14,7 @@ class Auth extends Controller
     if (!empty($_SESSION['access_token'])) {
       header('location: ' . BASE_URL(''));
     }
-
+    $this->data['page_parent'] = "admin.auth";
     $this->data['type'] = 'auth';
     $this->model_home = $this->model('admin/AuthModel');
     $this->data = array_merge($this->data, $this->model_home->data);
@@ -23,9 +23,10 @@ class Auth extends Controller
   public function login()
   {
     # code...
-    $this->model_home->login();
+    $res =  $this->model_home->login();
+
     $this->data['content'] = 'admin/login';
-    $this->data['page_target'] = 'login';
+    $this->data['page_target'] = 'login.admin';
     $this->data['page_title'] = 'Đăng nhập';
     $this->data = array_merge($this->data, $this->model_home->data);
     $this->render('layouts/admin/auth', $this->data);

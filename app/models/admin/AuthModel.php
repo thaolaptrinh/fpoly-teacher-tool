@@ -36,21 +36,23 @@ class AuthModel extends Model
         $oauth2 = new Google\Service\Oauth2($this->client);
         $userInfo = $oauth2->userinfo->get();
 
-
-        if ($this->get_list("SELECT * FROM `admin` WHERE email = '" . $userInfo['email'] . "'")) {
+        if ($this->get_row("SELECT * FROM `admin` WHERE email = '" . $userInfo['email'] . "'")) {
 
           $_SESSION['access_token'] = $token['access_token'];
 
           $this->update_value("admin", ['access_token' =>  $_SESSION['access_token']], "email = '" . $userInfo['email'] . "'");
 
           $_SESSION['user_data'] = json_decode(json_encode($userInfo), true);
+        } else {
+          error('500');
+          die();
         }
       }
     }
 
 
     if (!isset($_SESSION['access_token'])) {
-      $this->client->setHostedDomain('fpt.edu.vn');
+      // $this->client->setHostedDomain('fpt.edu.vn');
       $this->client->setPrompt('select_account');
       $this->data['authUrl'] = $this->client->createAuthUrl();
     } else {
