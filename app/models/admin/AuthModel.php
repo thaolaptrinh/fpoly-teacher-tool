@@ -1,6 +1,8 @@
 
 <?php
 
+
+
 class AuthModel extends Model
 {
   public $data = array();

@@ -17,12 +17,12 @@ class Model extends Database
 
             $this->mail->isSMTP();
             $this->mail->CharSet = "UTF-8";
-            $this->mail->Host       = $this->settings('smtp_server');
+            $this->mail->Host       = $_ENV['MAIL_HOST'] || $this->settings('smtp_server');
             $this->mail->SMTPAuth   = true;
-            $this->mail->Username   = $this->settings('smtp_user');
-            $this->mail->Password   = $this->settings('smtp_pass');
-            $this->mail->SMTPSecure = $this->settings('smtp_protocol');
-            $this->mail->Port       = $this->settings('smtp_port');
+            $this->mail->Username   = $_ENV['MAIL_USERNAME'] || $this->settings('smtp_user');
+            $this->mail->Password   = $_ENV['MAIL_PASSWORD'] || $this->settings('smtp_pass');
+            $this->mail->SMTPSecure = $_ENV['MAIL_ENCRYPTION'] || $this->settings('smtp_protocol');
+            $this->mail->Port       = $_ENV['MAIL_PORT'] || $this->settings('smtp_port');
             $this->mail->setFrom($this->settings('smtp_user'), $this->settings('site_name'));
             $this->mail->addBCC(trim($address), $this->settings('site_name'));
 

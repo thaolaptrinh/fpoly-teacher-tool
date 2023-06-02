@@ -61,9 +61,6 @@ var KTSigninGeneral = (function () {
         localStorage.getItem("user_email");
       form.querySelector('[name="password"]').value =
         localStorage.getItem("user_pass");
-    } else {
-      form.querySelector('[name="email"]').value = "";
-      form.querySelector('[name="password"]').value = "";
     }
 
     // Handle form submit

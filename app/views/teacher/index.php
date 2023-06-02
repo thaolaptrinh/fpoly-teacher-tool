@@ -512,68 +512,104 @@
 
 
 
-<!-- <div class="modal fade" id="kt_modal_feedback" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2>Feedback</h2>
-          <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-            <span class="svg-icon svg-icon-1">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-              </svg>
-            </span>
-          </div>
-        </div>
-        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-          <form id="kt_modal_new_card_form" class="form" action="#">
-
-            <div class="row mb-10">
-
-              <div class="col-md-12 fv-row mb-7">
-                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                  <span class="required">Vấn đề liên quan</span>
-                  <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Vấn đề gặp phải"></i>
-                </label>
-
-                <select name="type_feedback" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Vấn đề">
-                  <option></option>
-                  <option value="1">Hệ thống</option>
-                  <option value="2">Các chức năng</option>
-                  <option value="0">Vấn đề khác</option>
-                </select>
-
-
-              </div>
-
-              <div class="col-md-12 fv-row">
-                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
-                  <span class="required">Nội dung</span>
-                  <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Nội dung"></i>
-                </label>
-
-                <textarea class="form-control form-control-solid" name="notes"></textarea>
-
-
-              </div>
-
-
-
-
-            </div>
-
-
-            <div class="text-center pt-15">
-              <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Làm mới</button>
-              <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
-                <span class="indicator-label">Submit</span>
-                <span class="indicator-progress">Please wait...
-                  <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-              </button>
-            </div>
-          </form>
+<div class="modal fade" id="kt_modal_feedback" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered mw-650px">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Feedback</h2>
+        <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+          <span class="svg-icon svg-icon-1">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+              <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+            </svg>
+          </span>
         </div>
       </div>
+      <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+        <form id="kt_modal_new_card_form" class="form" action="#">
+
+          <div class="row mb-10">
+
+            <div class="col-md-12 fv-row mb-7">
+              <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                <span class="required">Vấn đề liên quan</span>
+                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Vấn đề gặp phải"></i>
+              </label>
+
+              <select name="type_feedback" id="type_feedback" class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Vấn đề">
+                <option></option>
+                <option value="1">Hệ thống</option>
+                <option value="2">Các chức năng</option>
+                <option value="0">Vấn đề khác</option>
+              </select>
+
+
+            </div>
+
+            <div class="col-md-12 fv-row">
+              <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">
+                <span class="required">Nội dung</span>
+                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="Nội dung"></i>
+              </label>
+
+              <textarea class="form-control form-control-solid" name="notes" id="notes"></textarea>
+
+
+            </div>
+
+
+
+
+          </div>
+
+
+          <div class="text-center pt-15">
+            <button type="reset" id="kt_modal_new_card_cancel" class="btn btn-light me-3">Làm mới</button>
+            <button type="submit" id="kt_modal_new_card_submit" class="btn btn-primary">
+              <span class="indicator-label">Submit</span>
+              <span class="indicator-progress">Please wait...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div> -->
+  </div>
+</div>
+
+
+<script>
+  const feedback = document.querySelector("#kt_modal_new_card_form")
+  const type_feedback = document.querySelector("#type_feedback")
+  const notes = document.querySelector("#notes")
+  feedback.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    if (type_feedback.value !== "" && notes.value !== '') {
+      Swal.fire(
+        'Đã nhận thông tin',
+        'Cảm ơn bạn đã đóng góp!',
+        'success'
+      )
+      feedback.reset()
+      $("#kt_modal_feedback").modal('hide')
+
+    } else {
+      Swal.fire({
+        text: "Vui lòng điền đầy đủ thông tin",
+        icon: "error",
+        buttonsStyling: false,
+        confirmButtonText: "Ok",
+        customClass: {
+          confirmButton: "btn btn-primary",
+        },
+        allowOutsideClick: false,
+      }).then(function(result) {
+        if (result.isConfirmed) {
+
+        }
+      });
+    }
+  })
+</script>

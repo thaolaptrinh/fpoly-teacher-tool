@@ -3235,6 +3235,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 
 // Class definition
 var KTPasswordMeter = function(element, options) {
+    console.log(1);
     ////////////////////////////
     // ** Private variables  ** //
     ////////////////////////////

@@ -60,13 +60,20 @@ function route_last()
 
 
 require_once 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+
 require 'core/PHPMailer/src/Exception.php';
 require 'core/PHPMailer/src/PHPMailer.php';
 require 'core/PHPMailer/src/SMTP.php';
 
+require_once  'core/Database.php';
 
-require_once  'configs/Database.php';
-require_once  'configs/Function.php';
+$DB = new Database;
+
+require_once  'configs/functions.php';
 
 
 // site setting
@@ -85,7 +92,7 @@ $site_status = $DB->settings('site_status');
 
 
 
-require_once  'configs/Routes.php';
+require_once  'configs/routes.php';
 require_once  'core/Route.php';
 require_once  'core/Controller.php';
 require_once  'core/Model.php';

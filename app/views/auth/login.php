@@ -18,10 +18,16 @@
         <span class="w-125px text-gray-500 fw-semibold fs-7">hoặc tài khoản</span>
       </div>
       <div class="fv-row mb-8 fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
-        <input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent">
+        <input type="text" placeholder="Email" name="email" autocomplete="email" value="Fpoly@gmail.com" class="form-control bg-transparent">
       </div>
-      <div class="fv-row mb-3 fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid">
-        <input type="password" placeholder="Mật khẩu" name="password" autocomplete="off" class="form-control bg-transparent">
+      <div class="fv-row mb-3 fv-plugins-icon-container fv-plugins-bootstrap5-row-invalid " data-kt-password-meter="true">
+        <div class="position-relative">
+          <input type="password" placeholder="Mật khẩu" name="password" autocomplete="current-password" value="Fpoly@gmail.com" class="form-control bg-transparent">
+          <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
+            <i class="bi bi-eye-slash fs-2"></i>
+            <i class="bi bi-eye fs-2 d-none"></i>
+          </span>
+        </div>
       </div>
       <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
 
