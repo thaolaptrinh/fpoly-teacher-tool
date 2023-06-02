@@ -25,4 +25,4 @@
 # Config Database:
 
 - Import sql database: documents/database.sql
-- Config Database (configs/Database.php) -> changes: HOSTNAME, USERNAME, PASSWORD, DATABASE, PORT
+- Config Database, Mail: .env or database
