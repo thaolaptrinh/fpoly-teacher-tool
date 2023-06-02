@@ -22,7 +22,7 @@ class Auth extends Controller
     $this->model_home = $this->model('AuthModel');
     if (isset($_SESSION['email']) && !empty($_SESSION['email'])) {
       header('Location: ' . BASE_URL('dashboard'));
-      exit();
+      die();
     }
 
 

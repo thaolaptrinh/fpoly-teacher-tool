@@ -23,8 +23,8 @@ class Model extends Database
             $this->mail->Password   = $_ENV['MAIL_PASSWORD'] || $this->settings('smtp_pass');
             $this->mail->SMTPSecure = $_ENV['MAIL_ENCRYPTION'] || $this->settings('smtp_protocol');
             $this->mail->Port       = $_ENV['MAIL_PORT'] || $this->settings('smtp_port');
-            $this->mail->setFrom($this->settings('smtp_user'), $this->settings('site_name'));
-            $this->mail->addBCC(trim($address), $this->settings('site_name'));
+            $this->mail->setFrom($_ENV['MAIL_FROM_ADDRESS'], $_ENV['MAIL_FROM_NAME']);
+            $this->mail->addBCC(trim($address), $_ENV['MAIL_FROM_NAME']);
 
             $this->mail->isHTML(true);
             $this->mail->Subject = $subject;

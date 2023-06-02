@@ -59,7 +59,6 @@ var KTAuthResetPassword = (function () {
             axios
               .post(`${base_url + "auth/reset-password"}`, formData)
               .then((response) => {
-                console.log(response);
                 Swal.fire({
                   text: response.data.message,
                   icon: response.data.status ? "success" : "error",

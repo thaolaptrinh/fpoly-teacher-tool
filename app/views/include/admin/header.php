@@ -48,6 +48,10 @@ global $DB;
                     'name' => 'Site',
                     'path' => 'quan-ly/site',
                   ],
+                  [
+                    'name' => 'Account',
+                    'path' => 'quan-ly/account',
+                  ],
 
                 ]
               ],

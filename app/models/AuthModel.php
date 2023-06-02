@@ -19,7 +19,6 @@ class AuthModel extends Model
     # code...
 
 
-
     if (isset($_POST['email'])) {
 
       $data = [
@@ -155,7 +154,7 @@ class AuthModel extends Model
 
           $pass_new = generate_pass();
 
-          $send =  $this->send_mail($data['email'], $this->settings('site_name'), 'Mật khẩu mới của bạn: ' . $pass_new);
+          $send = $this->send_mail($data['email'], 'Thay đổi mật khẩu', 'Mật khẩu mới của bạn: ' . $pass_new);
 
           if ($send) {
 

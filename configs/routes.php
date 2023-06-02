@@ -6,9 +6,7 @@ $routes['dashboard'] = 'teacher';
 
 
 //Auth  
-// $routes['login'] = 'auth/login';
-// $routes['register'] = 'auth/register';
-// $routes['reset-pasword'] = 'auth/resetpass'; 
+
 $routes['auth/logout'] = 'teacher/logout';
 $routes['auth/reset-password'] = 'auth/resetpass';
 
@@ -34,3 +32,4 @@ $routes['admin'] = 'admin/home';
 $routes['admin/quan-ly/site'] = 'admin/home/site';
 $routes['admin/quan-ly/co-so'] = 'admin/home/co_so';
 $routes['admin/giao-vien'] = 'admin/home/teachers';
+$routes['admin/quan-ly/account'] = 'admin/home/account';

@@ -112,6 +112,76 @@ class HomeModel extends Model
     }
   }
 
+  public function account()
+  {
+    # code...
+
+    $this->data = [
+      "accounts" => $this->get_list("SELECT * FROM `admin` ORDER  BY id  DESC"),
+    ];
+
+    if (isset($_POST['is_detail'])) {
+      $this->get_item(
+        "SELECT * FROM `admin` WHERE id = '" . $_POST['id'] . "'"
+      );
+    } elseif (isset($_POST['is_update'])) {
+      $data_post = [
+        'email' => check_string($_POST['email_update']),
+        'access' => check_string($_POST['access_update']),
+      ];
+
+      $data_required = [
+        'email' => check_string($_POST['email_update']),
+      ];
+
+      $this->update_item(
+        "admin",
+        $data_post,
+        "id = '" . $_POST['id'] . "'",
+        $data_required
+
+      );
+    } elseif (isset($_POST['is_add'])) {
+      $data_insert = [
+        'email' => check_string($_POST['email']),
+        'access' => check_string($_POST['access']),
+      ];
+
+      $data_required = [
+        'email' => check_string($_POST['email']),
+      ];
+
+      $this->add_item(
+        "admin",
+        $data_insert,
+        $data_required
+
+      );
+    } elseif (isset($_POST['is_delete'])) {
+
+      $access = $this->get_row("SELECT access FROM `admin` WHERE access_token = '" . $_SESSION['access_token'] . "' ")['access'];
+
+      if ($access == 999) {
+        $access_delete = $this->get_row("SELECT access FROM `admin` WHERE id = '" . $_POST['id'] . "' ")['access'];
+        if ($access_delete != 999) {
+          $this->delete_item(
+            'admin',
+            "id = '" . $_POST['id'] . "'"
+          );
+        } else {
+          $response['status'] = false;
+          $response['message'] = 'Không có quyền xóa tài khoản này!';
+          die(json_encode($response));
+        }
+      } else {
+
+        $response['status'] = false;
+        $response['message'] = 'Không có quyền xóa tài khoản này!';
+        die(json_encode($response));
+      }
+    }
+  }
+
   public function teachers()
   {
     # code...

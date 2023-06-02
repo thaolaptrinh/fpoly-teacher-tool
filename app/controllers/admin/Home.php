@@ -57,6 +57,26 @@ class Home extends Controller
     $this->render('layouts/admin/home', $this->data);
   }
 
+  public function account()
+  {
+    # code...
+
+    $access = $this->model_home->get_row("SELECT access FROM `admin` WHERE access_token = '" . $_SESSION['access_token'] . "' ")['access'];
+
+    if ($access != 999) {
+      error('500');
+      die();
+    }
+
+    $this->model_home->account();
+    $this->data['page_title'] = 'Tài khoản';
+    $this->data['content'] = 'admin/manager/account';
+    $this->data['page_target'] = 'account';
+    $this->data = array_merge($this->data, $this->model_home->data);
+    $this->render('layouts/admin', $this->data);
+  }
+
+
   public function teachers()
   {
     # code...
