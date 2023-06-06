@@ -1,4 +1,4 @@
-# Student score management website for teachers FPT Polytechnic
+# FPT Polytechnic grade management website
 
 ## Preview
 
